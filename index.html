@@ -29,6 +29,8 @@ h3.script,.script{font-family:var(--f-script);font-weight:400;font-size:2.3rem;l
 .orn::before,.orn::after{content:"";width:44px;height:1px;background:var(--antigo)}
 .texto{font-size:1.02rem;color:var(--textoSuave)}
 .data{font-family:var(--f-tit);font-size:1.15rem;color:var(--enfase)}
+/* Data da capa em tamanho maior (ajuste aqui se quiser maior ou menor) */
+.data-capa{font-size:1.75rem;line-height:1.25}
 
 section.sec{padding:64px 22px;position:relative;overflow:hidden}
 .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
@@ -70,7 +72,7 @@ section.alt{background:var(--secaoAlt)}
 .escuro{background:var(--enfase);color:var(--textoClaro);padding:90px 22px}
 .escuro h2{color:var(--textoClaro)}
 .escuro .sub{color:var(--claro)}
-.escuro::before,.escuro::after{content:"";position:absolute;left:0;right:0;height:16px;background:var(--renda,none) repeat-x;background-size:auto 100%}
+.escuro::before,.escuro::after{content:"";position:absolute;left:0;right:0;height:16px;background:var(--renda,none) repeat-x;background-size:auto 100%;z-index:3}
 .escuro::before{top:0}
 .escuro::after{bottom:0;transform:scaleY(-1)}
 .cd{display:flex;justify-content:center;gap:16px}
@@ -90,6 +92,7 @@ section.alt{background:var(--secaoAlt)}
 /* Confirmar presença */
 .rsvp-ico{width:84px;height:84px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);display:grid;place-items:center;margin:8px auto 4px;border:4px solid var(--claro)}
 .rsvp-ico svg{width:40px;height:40px}
+.rsvp-ico img{width:44px;height:44px;object-fit:contain}
 .revelar{max-height:0;overflow:hidden;opacity:0;transition:max-height .8s ease,opacity .6s ease}
 .revelar.aberto{max-height:1000px;opacity:1}
 form{display:grid;gap:14px;margin-top:18px;text-align:left}
@@ -126,7 +129,8 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
    ========================================================================== */
 const CONFIG = {
   nome: "Maria Vitória",
-  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",            // opcional: imagem PNG da logo do nome (substitui o texto na abertura, capa e rodapé)
+  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",            // opcional: imagem PNG da logo do nome (substitui o texto na abertura e na capa)
+  logoRodape: "",          // opcional: OUTRA logo do nome só para o rodapé (acima da hashtag). Vazio = usa a logoNome
   logoRodapeBranca: true,  // true = a logo do rodapé fica branca sobre o fundo escuro; false = cores originais
   hashtag: "#MariaVitóriaXV",
   cidade: "São Francisco - MG",
@@ -175,7 +179,9 @@ const CONFIG = {
     fundo: "", veu: 0
   },
 
-  contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva" },   // conta até o primeiro evento; use null para ocultar
+  /* Conta até o primeiro evento; use null para ocultar.
+     fundo: imagem, GIF ou vídeo .mp4 | veu: 0 a 1 (cobre o fundo com a cor do bloco para dar leitura aos números) */
+  contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Vertical_invitation_background_t%E2%80%A6_df144e38.jpg?raw=true", veu: 0.4 },
 
   /* 📅 EVENTOS (alimentam a linha do tempo, os cartões de local e a contagem) */
   eventos: [
@@ -206,6 +212,7 @@ const CONFIG = {
   rsvp: {
     titulo: "Confirmar Presença",
     chamada: "Toque no ícone para confirmar",
+    iconeImagem: "",   // opcional: imagem PNG/SVG própria para o ícone. Vazio = usa o ícone de confirmação (✓) padrão
     mensagem: "Em breve a nossa assessoria entrará em contato para confirmar a sua presença e a dos seus acompanhantes:",
     whatsapp: "61986112425",   // ⚠️ número com DDI e DDD, ex.: "5538999999999". Vazio = mostra só a mensagem, sem formulário
     fundo: "", veu: 0
@@ -228,7 +235,7 @@ if (ff) { const st = document.createElement('style'); st.textContent = ff; docum
 if (C.renda) root.style.setProperty('--renda', `url("${C.renda}")`);
 
 /* utilitários */
-const nomeHTML = (cls, branca) => C.logoNome ? `<img class="logo-nome${branca && C.logoRodapeBranca !== false ? ' branca' : ''}" src="${C.logoNome}" alt="${C.nome}">` : `<div class="${cls}">${C.nome}</div>`;
+const nomeHTML = (cls, branca, logo) => { const L = logo || C.logoNome; return L ? `<img class="logo-nome${branca && C.logoRodapeBranca !== false ? ' branca' : ''}" src="${L}" alt="${C.nome}">` : `<div class="${cls}">${C.nome}</div>`; };
 const extrairId = u => { const m = (u || '').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : null; };
 const fm = (d, o) => new Intl.DateTimeFormat('pt-BR', o).format(d);
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -289,7 +296,8 @@ const sec = (id, rot, html, cls = '') => {
   secoes.push(`<section class="sec ${cls}" id="${id}">${fundoHTML(CFG[id], cor)}<div class="wrap">${html}</div></section>`); if (rot) menu.push([id, rot]);
 };
 const tit = (t, s) => `${s ? `<p class="sub">${s}</p>` : ''}<h2>${t}</h2><div class="orn">♥</div>`;
-const ZAP = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.4-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>`;
+/* ícone de confirmação (check dentro de um círculo) */
+const ICONE_OK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3.2 3.2 5.8-6.4"/></svg>`;
 
 const capa = `<header class="hero" id="inicio">${fundoHTML(C.capa, 'var(--fundo)')}
   <div class="capa-card">
@@ -298,7 +306,7 @@ const capa = `<header class="hero" id="inicio">${fundoHTML(C.capa, 'var(--fundo)
     <p class="sub">XV Anos</p>
     <p class="frase">“${C.capa.frase}”</p>
     <div class="orn">♥</div>
-    <p class="data">${dataTexto}</p>
+    <p class="data data-capa">${dataTexto}</p>
     <p class="sub" style="margin-top:6px">${C.cidade}</p>
     
   </div></header>`;
@@ -333,7 +341,7 @@ if (G && (G.texto || (G.itens || []).length)) sec('presentes', 'Presentes', `${t
 
 const R = C.rsvp;
 if (R) sec('confirmar', 'Confirmar', `${tit(R.titulo)}<p class="texto">${R.chamada || ''}</p>
-  <button class="rsvp-ico" id="rsvpBtn" aria-expanded="false" aria-controls="rsvpBox" aria-label="Confirmar presença">${ZAP}</button>
+  <button class="rsvp-ico" id="rsvpBtn" aria-expanded="false" aria-controls="rsvpBox" aria-label="Confirmar presença">${R.iconeImagem ? `<img src="${R.iconeImagem}" alt="">` : ICONE_OK}</button>
   <div class="revelar" id="rsvpBox"><div class="ev"><p class="texto">${R.mensagem}</p>
   ${R.whatsapp ? `<form id="formRsvp">
     <label>Seu nome completo <input name="nome" required autocomplete="name"></label>
@@ -342,7 +350,7 @@ if (R) sec('confirmar', 'Confirmar', `${tit(R.titulo)}<p class="texto">${R.chama
     <label>Mensagem para a debutante <textarea name="recado"></textarea></label>
     <button class="btn cheio" type="submit">Confirmar no WhatsApp</button></form>` : ''}</div></div>`, 'alt');
 
-$('#app').innerHTML = capa + secoes.join('') + `<footer>${nomeHTML('script', true)}<p>${C.hashtag}</p></footer>`;
+$('#app').innerHTML = capa + secoes.join('') + `<footer>${nomeHTML('script', true, C.logoRodape)}<p>${C.hashtag}</p></footer>`;
 $('#menu').innerHTML = menu.map(([id, r]) => `<a href="#${id}">${r}</a>`).join('');
 
 /* Animações de entrada, menu, contagem */
