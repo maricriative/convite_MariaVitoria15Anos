@@ -107,6 +107,8 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 #ytwrap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
 .rv.in{opacity:1;transform:none}
+.logo-nome{display:block;width:80%;max-width:300px;height:auto;margin:10px auto}
+.logo-nome.branca{filter:brightness(0) invert(1)}
 </style>
 </head>
 <body class="locked">
@@ -124,6 +126,8 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
    ========================================================================== */
 const CONFIG = {
   nome: "Maria Vitória",
+  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",            // opcional: imagem PNG da logo do nome (substitui o texto na abertura, capa e rodapé)
+  logoRodapeBranca: true,  // true = a logo do rodapé fica branca sobre o fundo escuro; false = cores originais
   hashtag: "#MariaVitóriaXV",
   cidade: "São Francisco - MG",
   celebracao: "Aniversário de Maria Vitória e de seu Vô Tone Veloso",
@@ -160,7 +164,7 @@ const CONFIG = {
 
   capa: {
     frase: "Nada acontece sem antes existir um sonho, e na idade dos sonhos tudo é possível!",
-    fundo: "", veu: 0
+    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Botanical_invitation_background_%E2%80%A6_4bbde213.jpg?raw=true", veu: 0
   },
   dataTexto: "",   // opcional: sobrescreve o texto da data na capa (ex.: "08 e 09 de Janeiro de 2027")
 
@@ -168,7 +172,7 @@ const CONFIG = {
     titulo: "Maria Vitória XV anos",
     texto: "Nunca deixe de sonhar, pois se podemos sonhar, também podemos tornar nossos sonhos realidade.",
     foto: "",   // foto da debutante (retangular)
-    fundo: "https://github.com/maricriative/convite_alice15/blob/main/image_5f09652.jpg?raw=true", veu: 0
+    fundo: "", veu: 0
   },
 
   contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva" },   // conta até o primeiro evento; use null para ocultar
@@ -194,7 +198,7 @@ const CONFIG = {
       { nome: "Hotel Supremo", link: "https://www.hotelsupremo.com.br/", botao: "Visitar site", imagem: "" },
       { nome: "Hotel Moriah", link: "https://www.instagram.com/hotelmoriah_/", botao: "Ver Instagram", imagem: "" }
     ],
-    fundo: "https://github.com/maricriative/convite_alice15/blob/main/image_5f09652.jpg?raw=true", veu: 0
+    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Vertical_invitation_background_t%E2%80%A6_59c6b899.jpg?raw=true", veu: 0
   },
 
   presentes: { titulo: "Presentes", texto: "", itens: [] },   // preencha "texto" ou "itens" para exibir
@@ -203,7 +207,7 @@ const CONFIG = {
     titulo: "Confirmar Presença",
     chamada: "Toque no ícone para confirmar",
     mensagem: "Em breve a nossa assessoria entrará em contato para confirmar a sua presença e a dos seus acompanhantes:",
-    whatsapp: "",   // ⚠️ número com DDI e DDD, ex.: "5538999999999". Vazio = mostra só a mensagem, sem formulário
+    whatsapp: "61986112425",   // ⚠️ número com DDI e DDD, ex.: "5538999999999". Vazio = mostra só a mensagem, sem formulário
     fundo: "", veu: 0
   }
 };
@@ -224,6 +228,7 @@ if (ff) { const st = document.createElement('style'); st.textContent = ff; docum
 if (C.renda) root.style.setProperty('--renda', `url("${C.renda}")`);
 
 /* utilitários */
+const nomeHTML = (cls, branca) => C.logoNome ? `<img class="logo-nome${branca && C.logoRodapeBranca !== false ? ' branca' : ''}" src="${C.logoNome}" alt="${C.nome}">` : `<div class="${cls}">${C.nome}</div>`;
 const extrairId = u => { const m = (u || '').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : null; };
 const fm = (d, o) => new Intl.DateTimeFormat('pt-BR', o).format(d);
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -271,7 +276,7 @@ if (A.usar !== false) {
   const vid = A.video ? `<video id="introVid" src="${A.video}" playsinline></video>` : '';
   intro.innerHTML = A.imagem
     ? `${vid}<button class="selo-clique" id="abrir" aria-label="Abrir convite"></button>`
-    : `${vid}<p class="sub">XV Anos</p><div class="intro-nome">${C.nome}</div><button class="selo" id="abrir">${A.texto || 'Abrir'}</button>`;
+    : `${vid}<p class="sub">XV Anos</p>${nomeHTML('intro-nome')}<button class="selo" id="abrir">${A.texto || 'Abrir'}</button>`;
   if (A.imagem) intro.onclick = abrir;
   $('#abrir').onclick = e => { e.stopPropagation(); abrir(); };
 } else { intro.remove(); document.body.classList.remove('locked'); }
@@ -289,7 +294,7 @@ const ZAP = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0
 const capa = `<header class="hero" id="inicio">${fundoHTML(C.capa, 'var(--fundo)')}
   <div class="capa-card">
     <p class="sub">${C.celebracao}</p>
-    <div class="nome">${C.nome}</div>
+    ${nomeHTML('nome')}
     <p class="sub">XV Anos</p>
     <p class="frase">“${C.capa.frase}”</p>
     <div class="orn">♥</div>
@@ -337,7 +342,7 @@ if (R) sec('confirmar', 'Confirmar', `${tit(R.titulo)}<p class="texto">${R.chama
     <label>Mensagem para a debutante <textarea name="recado"></textarea></label>
     <button class="btn cheio" type="submit">Confirmar no WhatsApp</button></form>` : ''}</div></div>`, 'alt');
 
-$('#app').innerHTML = capa + secoes.join('') + `<footer><div class="script">${C.nome}</div><p>${C.hashtag}</p></footer>`;
+$('#app').innerHTML = capa + secoes.join('') + `<footer>${nomeHTML('script', true)}<p>${C.hashtag}</p></footer>`;
 $('#menu').innerHTML = menu.map(([id, r]) => `<a href="#${id}">${r}</a>`).join('');
 
 /* Animações de entrada, menu, contagem */
