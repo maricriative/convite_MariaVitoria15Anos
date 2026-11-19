@@ -45,7 +45,24 @@ section.alt{background:var(--secaoAlt)}
   text-decoration:none;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:transform .2s}
 .btn:active{transform:scale(.97)}
 .btn.cheio{background:var(--enfase);color:var(--textoClaro);width:100%}
-.foto{width:100%;max-width:280px;aspect-ratio:3/4;object-fit:cover;margin:24px auto 0;border:3px solid var(--antigo)}
+
+/* Foto da debutante na moldura em formato de porta (arco no topo) */
+.foto{width:100%;max-width:280px;aspect-ratio:2/3;object-fit:cover;margin:30px auto 8px;
+  border-radius:140px 140px 6px 6px;border:3px solid var(--antigo);padding:6px;background:var(--card);
+  outline:1px solid var(--rosa);outline-offset:6px;box-shadow:0 12px 30px rgba(138,78,91,.25)}
+
+/* Galeria */
+.carrossel{position:relative;width:100%;max-width:300px;aspect-ratio:3/4;margin:0 auto;overflow:hidden;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .9s}
+.slide.ativo{opacity:1;z-index:1}
+.slide img{width:100%;height:100%;max-width:none;object-fit:cover}
+.pontos{position:absolute;left:0;right:0;bottom:10px;z-index:2;display:flex;gap:6px;justify-content:center}
+.pontos i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.7);transition:.3s}
+.pontos i.ativo{background:var(--enfase);transform:scale(1.25)}
+
+/* Dress code: bolinhas de cores */
+.cores{display:flex;gap:12px;justify-content:center;margin-top:20px}
+.cores i{width:34px;height:34px;border-radius:50%;border:2px solid var(--card);box-shadow:0 2px 8px rgba(0,0,0,.2)}
 
 /* Abertura */
 #intro{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;color:var(--enfase);
@@ -124,8 +141,11 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 <script>
 /* ==========================================================================
    ✏️ CONFIGURAÇÕES — XV ANOS MARIA VITÓRIA
-   FUNDO DAS SEÇÕES: em cada seção, "fundo" aceita imagem, GIF ou vídeo .mp4 (o vídeo toca sozinho, mudo e em loop).
-   "veu" (de 0 a 1) cobre o fundo com a cor da seção para dar leitura ao texto: 0 = sem véu, 0.5 = metade, 1 = cobre tudo.
+   EM TODAS AS SEÇÕES VOCÊ PODE USAR:
+     fundo: imagem, GIF ou vídeo .mp4 (o vídeo toca sozinho, mudo e em loop). "" = sem fundo.
+     cor:   cor de fundo da seção, em hexadecimal (ex.: "#F1CCD4"). "" = cor padrão da seção.
+     veu:   de 0 a 1, cobre o fundo (imagem/vídeo) com a cor da seção para dar leitura ao texto:
+            0 = sem véu, 0.5 = metade, 1 = cobre tudo.
    ========================================================================== */
 const CONFIG = {
   nome: "Maria Vitória",
@@ -166,22 +186,23 @@ const CONFIG = {
   musica: "",
   youtube: "https://youtu.be/6_LsCe4jUF8?is=hUHBTJKa1Hb2_wkU",
 
+  /* ---------- SEÇÕES (na ordem em que aparecem) ---------- */
+
   capa: {
     frase: "Nada acontece sem antes existir um sonho, e na idade dos sonhos tudo é possível!",
-    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Botanical_invitation_background_%E2%80%A6_4bbde213.jpg?raw=true", veu: 0
+    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Botanical_invitation_background_%E2%80%A6_4bbde213.jpg?raw=true", cor: "", veu: 0
   },
   dataTexto: "",   // opcional: sobrescreve o texto da data na capa (ex.: "08 e 09 de Janeiro de 2027")
 
   mensagem: {
     titulo: "Maria Vitória XV anos",
     texto: "Nunca deixe de sonhar, pois se podemos sonhar, também podemos tornar nossos sonhos realidade.",
-    foto: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.27.jpeg?raw=true",   // foto da debutante (retangular)
-    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(9).png?raw=true", veu: 0
+    foto: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.27.jpeg?raw=true",   // foto da debutante, na moldura em formato de porta (ideal 840 x 1260 px, proporção 2:3)
+    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(9).png?raw=true", cor: "", veu: 0
   },
 
-  /* Conta até o primeiro evento; use null para ocultar.
-     fundo: imagem, GIF ou vídeo .mp4 | veu: 0 a 1 (cobre o fundo com a cor do bloco para dar leitura aos números) */
-  contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(8).png?raw=true", veu: 0.0 },
+  /* Conta até o primeiro evento; use null para ocultar. */
+  contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva", fundo: "", cor: "", veu: 0.0 },
 
   /* 📅 EVENTOS (alimentam a linha do tempo, os cartões de local e a contagem) */
   eventos: [
@@ -192,10 +213,23 @@ const CONFIG = {
   ],
 
   /* Linha do tempo: por padrão usa os eventos. Para itens próprios: itens: [{hora:"19h00", dia:"08 jan", titulo:"", descricao:""}] */
-  programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null },
-  local: { titulo: "Onde & Quando" },
+  programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null, fundo: "", cor: "", veu: 0 },
 
-  dressCode: { titulo: "Dress Code", texto: "" },   // preencha "texto" para exibir a seção
+  local: { titulo: "Onde & Quando", fundo: "", cor: "", veu: 0 },
+
+  /* 👗 DRESS CODE: preencha "texto" para exibir a seção.
+     cores: bolinhas de cores sugeridas (opcional), ex.: ["#F1CCD4", "#FFFFFF"] */
+  dressCode: { titulo: "Dress Code", texto: "", cores: [], fundo: "", cor: "", veu: 0 },
+
+  /* 🖼️ GALERIA: coloque os links das fotos entre aspas, separados por vírgula (ideal 900 x 1200 px, proporção 3:4).
+     Exemplo: fotos: ["foto1.jpg", "https://.../foto2.jpg"]. Vazia = a seção não aparece. */
+  galeria: {
+    titulo: "Galeria",
+    fotos: [
+      ""
+    ],
+    fundo: "", cor: "", veu: 0
+  },
 
   hospedagem: {
     titulo: "Onde se Hospedar",
@@ -204,10 +238,10 @@ const CONFIG = {
       { nome: "Hotel Supremo", link: "https://www.hotelsupremo.com.br/", botao: "Visitar site", imagem: "" },
       { nome: "Hotel Moriah", link: "https://www.instagram.com/hotelmoriah_/", botao: "Ver Instagram", imagem: "" }
     ],
-    fundo: "", veu: 0
+    fundo: "", cor: "", veu: 0
   },
 
-  presentes: { titulo: "Presentes", texto: "", itens: [] },   // preencha "texto" ou "itens" para exibir
+  presentes: { titulo: "Presentes", texto: "", itens: [], fundo: "", cor: "", veu: 0 },   // preencha "texto" ou "itens" para exibir
 
   rsvp: {
     titulo: "Confirmar Presença",
@@ -215,7 +249,7 @@ const CONFIG = {
     iconeImagem: "",   // opcional: imagem PNG/SVG própria para o ícone. Vazio = usa o ícone de confirmação (✓) padrão
     mensagem: "Em breve a nossa assessoria entrará em contato para confirmar a sua presença e a dos seus acompanhantes:",
     whatsapp: "61986112425",   // ⚠️ número com DDI e DDD, ex.: "5538999999999". Vazio = mostra só a mensagem, sem formulário
-    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Floral_seamless_pattern_background_2abdf738.jpg?raw=true", veu: 0
+    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Floral_seamless_pattern_background_2abdf738.jpg?raw=true", cor: "", veu: 0
   }
 };
 
@@ -244,11 +278,14 @@ const ev = C.eventos, d0 = new Date(ev[0].dataHora);
 const dataTexto = C.dataTexto || (ev.map(e => fm(new Date(e.dataHora), { day: '2-digit' })).join(' e ') + ' de ' + cap(fm(d0, { month: 'long' })) + ' de ' + fm(d0, { year: 'numeric' }));
 document.title = `${C.nome} — XV Anos`;
 
-/* fundo de seção: imagem, gif ou vídeo (+ véu opcional) */
+/* cor de fundo própria da seção (opcional) */
+const corSec = c => c && c.cor ? ` style="background-color:${c.cor}"` : '';
+
+/* fundo de seção: imagem, gif ou vídeo (+ véu opcional, na cor da seção) */
 const fundoHTML = (c, cor) => {
   if (!c || !c.fundo) return '';
   const s = c.fundo, el = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(s) ? `<video class="bg" src="${s}" autoplay muted loop playsinline></video>` : `<img class="bg" src="${s}" alt="">`;
-  return el + (c.veu > 0 ? `<div class="veu" style="background:${cor};opacity:${c.veu}"></div>` : '');
+  return el + (c.veu > 0 ? `<div class="veu" style="background:${c.cor || cor};opacity:${c.veu}"></div>` : '');
 };
 
 /* 🎵 Música */
@@ -290,16 +327,16 @@ if (A.usar !== false) {
 
 /* Seções */
 const secoes = [], menu = [];
-const CFG = { convite: C.mensagem, contagem: C.contagem, dia: C.programacao, local: C.local, traje: C.dressCode, hospedagem: C.hospedagem, presentes: C.presentes, confirmar: C.rsvp };
+const CFG = { convite: C.mensagem, contagem: C.contagem, dia: C.programacao, local: C.local, traje: C.dressCode, galeria: C.galeria, hospedagem: C.hospedagem, presentes: C.presentes, confirmar: C.rsvp };
 const sec = (id, rot, html, cls = '') => {
   const cor = cls.includes('escuro') ? 'var(--enfase)' : cls.includes('alt') ? 'var(--secaoAlt)' : 'var(--fundo)';
-  secoes.push(`<section class="sec ${cls}" id="${id}">${fundoHTML(CFG[id], cor)}<div class="wrap">${html}</div></section>`); if (rot) menu.push([id, rot]);
+  secoes.push(`<section class="sec ${cls}" id="${id}"${corSec(CFG[id])}>${fundoHTML(CFG[id], cor)}<div class="wrap">${html}</div></section>`); if (rot) menu.push([id, rot]);
 };
 const tit = (t, s) => `${s ? `<p class="sub">${s}</p>` : ''}<h2>${t}</h2><div class="orn">♥</div>`;
 /* ícone de confirmação (check dentro de um círculo) */
 const ICONE_OK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3.2 3.2 5.8-6.4"/></svg>`;
 
-const capa = `<header class="hero" id="inicio">${fundoHTML(C.capa, 'var(--fundo)')}
+const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.capa, 'var(--fundo)')}
   <div class="capa-card">
     <p class="sub">${C.celebracao}</p>
     ${nomeHTML('nome')}
@@ -330,11 +367,16 @@ if (C.local) sec('local', 'Local', tit(C.local.titulo) + ev.map(e => {
     <a class="btn" style="margin-top:16px" href="${e.mapsUrl || 'https://www.google.com/maps/search/?api=1&query=' + enc(q)}" target="_blank" rel="noopener">Como chegar</a></div>`;
 }).join(''), 'alt');
 
-const D = C.dressCode;
-if (D && D.texto) sec('traje', 'Traje', `${tit(D.titulo)}<p class="texto">${D.texto}</p>`);
+const D = C.dressCode, coresD = D ? (D.cores || []).filter(Boolean) : [];
+if (D && (D.texto || coresD.length)) sec('traje', 'Traje', `${tit(D.titulo)}${D.texto ? `<p class="texto">${D.texto}</p>` : ''}${coresD.length ? `<div class="cores">${coresD.map(c => `<i style="background:${c}"></i>`).join('')}</div>` : ''}`);
+
+const GA = C.galeria, fotosG = GA ? (GA.fotos || []).filter(Boolean) : [];
+if (fotosG.length) sec('galeria', 'Galeria', `${tit(GA.titulo || 'Galeria')}
+  <div class="carrossel">${fotosG.map((g, i) => `<div class="slide${i ? '' : ' ativo'}"><img src="${g}" alt="Foto ${i + 1}" loading="lazy"></div>`).join('')}
+  ${fotosG.length > 1 ? `<div class="pontos">${fotosG.map((_, i) => `<i class="${i ? '' : 'ativo'}"></i>`).join('')}</div>` : ''}</div>`, 'alt');
 
 const H = C.hospedagem;
-if (H) sec('hospedagem', 'Hospedagem', `${tit(H.titulo)}<p class="texto">${H.texto}</p>` + H.lista.map(h => `<div class="ev">${h.imagem ? `<img src="${h.imagem}" alt="${h.nome}" style="margin-bottom:14px">` : ''}<h3>${h.nome}</h3><a class="btn" style="margin-top:14px" href="${h.link}" target="_blank" rel="noopener">${h.botao || 'Saiba mais'}</a></div>`).join(''), D && D.texto ? '' : '');
+if (H) sec('hospedagem', 'Hospedagem', `${tit(H.titulo)}<p class="texto">${H.texto}</p>` + H.lista.map(h => `<div class="ev">${h.imagem ? `<img src="${h.imagem}" alt="${h.nome}" style="margin-bottom:14px">` : ''}<h3>${h.nome}</h3><a class="btn" style="margin-top:14px" href="${h.link}" target="_blank" rel="noopener">${h.botao || 'Saiba mais'}</a></div>`).join(''));
 
 const G = C.presentes;
 if (G && (G.texto || (G.itens || []).length)) sec('presentes', 'Presentes', `${tit(G.titulo)}${G.texto ? `<p class="texto">${G.texto}</p>` : ''}${(G.itens || []).length ? `<div class="ev">${G.itens.map(i => `<p class="texto">${i}</p>`).join('')}</div>` : ''}`, 'alt');
@@ -370,6 +412,14 @@ function contagem() {
   el.innerHTML = n.map((v, i) => `<div><b>${String(v).padStart(2, '0')}</b><span>${['dias', 'horas', 'min', 'seg'][i]}</span></div>`).join('');
 }
 contagem(); setInterval(contagem, 1000);
+
+/* Galeria: troca automática de fotos */
+const slides = document.querySelectorAll('.slide'), pontos = document.querySelectorAll('.pontos i'); let cur = 0;
+if (slides.length > 1) setInterval(() => {
+  slides[cur].classList.remove('ativo'); pontos[cur].classList.remove('ativo');
+  cur = (cur + 1) % slides.length;
+  slides[cur].classList.add('ativo'); pontos[cur].classList.add('ativo');
+}, 4000);
 
 /* Confirmar presença */
 const rb = $('#rsvpBtn');
