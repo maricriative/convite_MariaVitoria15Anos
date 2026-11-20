@@ -57,13 +57,13 @@ section.alt{background:var(--secaoAlt)}
 .btn.cheio{background:var(--enfase);color:var(--textoClaro);width:100%}
 
 /* Foto da debutante na moldura em formato de porta (arco no topo) */
-.foto{width:100%;max-width:280px;aspect-ratio:2/3;object-fit:cover;margin:0 auto;
+.foto{width:100%;max-width:280px;aspect-ratio:2/3;object-fit:cover;margin:30px auto 8px;
   border-radius:140px 140px 6px 6px;border:3px solid var(--antigo);padding:6px;background:var(--card);
   outline:1px solid var(--rosa);outline-offset:6px;box-shadow:0 12px 30px rgba(138,78,91,.25)}
-/* Renda por fora da moldura da foto (imagem PNG sobreposta, com o miolo transparente) */
-.foto-wrap{position:relative;width:100%;max-width:280px;margin:30px auto 8px}
-.foto-wrap.com-renda{margin:80px auto 70px}
-.foto-renda{position:absolute;left:50%;top:50%;width:calc(var(--esc,1.3)*100%);max-width:calc(100vw - 8px);height:auto;transform:translate(-50%,-50%);pointer-events:none;z-index:3}
+/* Renda por fora da moldura da galeria (imagem PNG sobreposta, com o miolo transparente) */
+.gal-wrap{position:relative;width:100%;max-width:300px;margin:0 auto}
+.gal-wrap.com-renda{margin:70px auto 60px}
+.gal-renda{position:absolute;left:50%;top:50%;width:calc(var(--esc,1.3)*100%);max-width:calc(100vw - 8px);height:auto;transform:translate(-50%,-50%);pointer-events:none;z-index:3}
 
 /* Galeria */
 .carrossel{position:relative;width:100%;max-width:300px;aspect-ratio:3/4;margin:0 auto;overflow:hidden;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2)}
@@ -228,12 +228,7 @@ const CONFIG = {
     titulo: "Maria Vitória XV anos",
     texto: "Nunca deixe de sonhar, pois se podemos sonhar, também podemos tornar nossos sonhos realidade.",
     foto: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.27.jpeg?raw=true",   // foto da debutante, na moldura em formato de porta (ideal 840 x 1260 px, proporção 2:3)
-    /* RENDA POR FORA DA MOLDURA: PNG com fundo transparente, proporção 2:3, ideal 1000 x 1500 px.
-       O miolo (por onde a foto aparece) deve ser transparente, centralizado, com cerca de 810 x 1190 px e arco no topo.
-       escalaMoldura: tamanho da renda em relação à moldura da foto (1.3 = 30% maior). Vazio = sem renda. */
-    rendaMoldura: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true",
-    escalaMoldura: 1.3,
-    renda: "", fundo: "", cor: "", veu: 0
+    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(9).png?raw=true", cor: "", veu: 0
   },
 
   /* Conta até o primeiro evento; use null para ocultar. */
@@ -270,7 +265,12 @@ const CONFIG = {
       "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Foto%20de%20Deyvison%20Marlon%20(7).jpg?raw=true",
       "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Foto%20de%20Deyvison%20Marlon%20(5).jpg?raw=true"
     ],
-    renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true", fundo: "", cor: "#fbf3f5", veu: 0
+    /* RENDA POR FORA DA MOLDURA DA GALERIA: PNG com fundo transparente, proporção 3:4, ideal 1000 x 1333 px.
+       O miolo (por onde as fotos aparecem) deve ser transparente, retangular, centralizado, com cerca de 770 x 1027 px.
+       escalaMoldura: tamanho da renda em relação à moldura (1.3 = 30% maior). Vazio = sem renda. */
+    rendaMoldura: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true",
+    escalaMoldura: 1.3,
+    renda: "", fundo: "", cor: "#fbf3f5", veu: 0
   },
 
   hospedagem: {
@@ -418,8 +418,7 @@ const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.ca
   </div></header>`;
 
 const M = C.mensagem;
-const fotoHTML = M && M.foto ? `<div class="foto-wrap${M.rendaMoldura ? ' com-renda' : ''}"><img class="foto" src="${M.foto}" alt="${C.nome}">${M.rendaMoldura ? `<img class="foto-renda" src="${M.rendaMoldura}" alt="" style="--esc:${M.escalaMoldura || 1.3}">` : ''}</div>` : '';
-if (M) sec('convite', 'Convite', `${tit(M.titulo)}<p class="texto">${M.texto}</p>${fotoHTML}`);
+if (M) sec('convite', 'Convite', `${tit(M.titulo)}<p class="texto">${M.texto}</p>${M.foto ? `<img class="foto" src="${M.foto}" alt="${C.nome}">` : ''}`);
 
 if (C.contagem) sec('contagem', 'Contagem', `<p class="sub">${C.contagem.subtitulo || ''}</p><h2>${C.contagem.titulo}</h2><div id="cd" class="cd" style="margin-top:22px"></div>`, 'escuro');
 
@@ -442,8 +441,9 @@ if (D && (D.texto || coresD.length)) sec('traje', 'Traje', `${tit(D.titulo)}${D.
 
 const GA = C.galeria, fotosG = GA ? (GA.fotos || []).filter(Boolean) : [];
 if (fotosG.length) sec('galeria', 'Galeria', `${tit(GA.titulo || 'Galeria')}
-  <div class="carrossel">${fotosG.map((g, i) => `<div class="slide${i ? '' : ' ativo'}"><img src="${g}" alt="Foto ${i + 1}" loading="lazy"></div>`).join('')}
-  ${fotosG.length > 1 ? `<div class="pontos">${fotosG.map((_, i) => `<i class="${i ? '' : 'ativo'}"></i>`).join('')}</div>` : ''}</div>`, 'alt');
+  <div class="gal-wrap${GA.rendaMoldura ? ' com-renda' : ''}"><div class="carrossel">${fotosG.map((g, i) => `<div class="slide${i ? '' : ' ativo'}"><img src="${g}" alt="Foto ${i + 1}" loading="lazy"></div>`).join('')}
+  ${fotosG.length > 1 ? `<div class="pontos">${fotosG.map((_, i) => `<i class="${i ? '' : 'ativo'}"></i>`).join('')}</div>` : ''}</div>
+  ${GA.rendaMoldura ? `<img class="gal-renda" src="${GA.rendaMoldura}" alt="" style="--esc:${GA.escalaMoldura || 1.3}">` : ''}</div>`, 'alt');
 
 const H = C.hospedagem;
 if (H) sec('hospedagem', 'Hospedagem', `${tit(H.titulo)}<p class="texto">${H.texto}</p>` + H.lista.map(h => `<div class="ev">${h.imagem ? `<img src="${h.imagem}" alt="${h.nome}" style="margin-bottom:14px">` : ''}<h3>${h.nome}</h3><a class="btn" style="margin-top:14px" href="${h.link}" target="_blank" rel="noopener">${h.botao || 'Saiba mais'}</a></div>`).join(''));
