@@ -68,6 +68,10 @@ section.alt{background:var(--secaoAlt)}
 .gal-faixa{position:absolute;left:-14px;right:-14px;height:var(--fh,28px);background-repeat:repeat-x;background-position:center;background-size:auto 100%;pointer-events:none;z-index:3}
 .gal-faixa.topo{top:calc(var(--fh,28px)/-2)}
 .gal-faixa.base{bottom:calc(var(--fh,28px)/-2);transform:scaleY(-1)}
+/* laterais: a mesma faixa girada 90°, com o desenho voltado para dentro da moldura */
+.gal-lado{position:absolute;top:50%;width:calc(100%*4/3 + 28px);height:var(--fh,28px);background-repeat:repeat-x;background-position:center;background-size:auto 100%;pointer-events:none;z-index:3}
+.gal-lado.esq{left:0;transform:translate(-50%,-50%) rotate(-90deg)}
+.gal-lado.dir{right:0;transform:translate(50%,-50%) rotate(90deg)}
 
 /* Galeria */
 .carrossel{position:relative;width:100%;max-width:300px;aspect-ratio:3/4;margin:0 auto;overflow:hidden;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2)}
@@ -270,7 +274,7 @@ const CONFIG = {
       "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Foto%20de%20Deyvison%20Marlon%20(5).jpg?raw=true"
     ],
     /* RENDA DA MOLDURA DA GALERIA (o convite detecta sozinho qual dos dois tipos você usou):
-       A) FAIXA fina (ex.: 1200 x 72 px, a mesma das seções): vira uma renda no TOPO e outra na BASE da moldura.
+       A) FAIXA fina (ex.: 1200 x 72 px, a mesma das seções): vira renda nos 4 lados da moldura (topo, base, esquerda e direita).
        B) MOLDURA inteira: PNG 3:4 (ideal 1000 x 1333 px) com o miolo transparente (cerca de 770 x 1027 px) e o desenho em volta.
           Neste caso, escalaMoldura = tamanho da renda em relação à moldura (1.3 = 30% maior).
        Vazio = sem renda. */
@@ -337,7 +341,7 @@ function galRenda(img) {
     const st = `background-image:url('${img.src}')`;
     img.remove();
     w.classList.remove('com-renda'); w.classList.add('com-faixa');
-    w.insertAdjacentHTML('beforeend', `<i class="gal-faixa topo" style="${st}"></i><i class="gal-faixa base" style="${st}"></i>`);
+    w.insertAdjacentHTML('beforeend', `<i class="gal-faixa topo" style="${st}"></i><i class="gal-faixa base" style="${st}"></i><i class="gal-lado esq" style="${st}"></i><i class="gal-lado dir" style="${st}"></i>`);
   }
 }
 
