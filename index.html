@@ -40,6 +40,9 @@ section.alt{background:var(--secaoAlt)}
 .wrap{max-width:480px;margin:0 auto;text-align:center}
 .ev{margin-top:34px}
 .ev+.ev{padding-top:34px;border-top:1px solid var(--antigo)}
+/* Cartão de cada evento (com fundo próprio opcional) */
+.ev-card{position:relative;overflow:hidden;margin-top:30px;padding:34px 20px;border:1px solid var(--antigo)}
+.ev-conteudo{position:relative;z-index:2}
 .ev-nome{font-family:var(--f-tit);font-weight:400;font-size:1.9rem;line-height:1.15;color:var(--enfase)}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;border-radius:99px;border:1px solid var(--enfase);color:var(--enfase);
   text-decoration:none;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:transform .2s}
@@ -205,11 +208,15 @@ const CONFIG = {
   contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva", fundo: "", cor: "", veu: 0.0 },
 
   /* 📅 EVENTOS (alimentam a linha do tempo, os cartões de local e a contagem) */
+  /* Cada evento vira um cartão na seção "Onde & Quando" e pode ter o seu próprio fundo:
+       fundo: imagem, GIF ou vídeo .mp4 | cor: cor de fundo do cartão (ex.: "#F1CCD4") | veu: 0 a 1 */
   eventos: [
-    { titulo: "Missa", dataHora: "2027-01-08T19:00:00", espaco: "Igreja Sagrada Família", endereco: "", mapsUrl: "" },
+    { titulo: "Missa", dataHora: "2027-01-08T19:00:00", espaco: "Igreja Sagrada Família", endereco: "", mapsUrl: "",
+      fundo: "", cor: "", veu: 0 },
     { titulo: "Baile", dataHora: "2027-01-09T20:00:00", espaco: "OAB São Francisco-MG",
       endereco: "Av. Montes Claros, 2550, João Aguiar - São Francisco",
-      mapsUrl: "https://maps.app.goo.gl/kBrdsFXSnrKq6bA29?g_st=iw" }
+      mapsUrl: "https://maps.app.goo.gl/kBrdsFXSnrKq6bA29?g_st=iw",
+      fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(8).png?raw=true", cor: "", veu: 0 }
   ],
 
   /* Linha do tempo: por padrão usa os eventos. Para itens próprios: itens: [{hora:"19h00", dia:"08 jan", titulo:"", descricao:""}] */
@@ -361,10 +368,10 @@ if (P) {
 
 if (C.local) sec('local', 'Local', tit(C.local.titulo) + ev.map(e => {
   const d = new Date(e.dataHora), q = [e.espaco, e.endereco, C.cidade].filter(Boolean).join(' ');
-  return `<div class="ev"><p class="sub">${e.titulo}</p><h3 class="ev-nome">${e.espaco}</h3>
+  return `<div class="ev-card"${corSec(e)}>${fundoHTML(e, 'var(--secaoAlt)')}<div class="ev-conteudo"><p class="sub">${e.titulo}</p><h3 class="ev-nome">${e.espaco}</h3>
     <p class="data">${cap(fm(d, { weekday: 'long' }))}, ${fm(d, { day: 'numeric', month: 'long' })} · ${hora(d)}</p>
     ${e.endereco ? `<p class="texto" style="margin-top:6px">${e.endereco}</p>` : ''}
-    <a class="btn" style="margin-top:16px" href="${e.mapsUrl || 'https://www.google.com/maps/search/?api=1&query=' + enc(q)}" target="_blank" rel="noopener">Como chegar</a></div>`;
+    <a class="btn" style="margin-top:16px" href="${e.mapsUrl || 'https://www.google.com/maps/search/?api=1&query=' + enc(q)}" target="_blank" rel="noopener">Como chegar</a></div></div>`;
 }).join(''), 'alt');
 
 const D = C.dressCode, coresD = D ? (D.cores || []).filter(Boolean) : [];
