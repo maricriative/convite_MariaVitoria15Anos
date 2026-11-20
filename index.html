@@ -72,7 +72,6 @@ section.alt{background:var(--secaoAlt)}
   background:var(--claro) center/cover no-repeat;transition:transform 1.1s cubic-bezier(.77,0,.18,1),opacity .8s}
 #intro.open{transform:translateY(-100%);opacity:0}
 #introVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:10;display:none;background:#000}
-.intro-nome{font-family:var(--f-script);font-size:clamp(3rem,16vw,4.6rem);line-height:1}
 .selo{width:104px;height:104px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);border:3px solid var(--card);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500}
 .selo-clique{width:130px;height:130px;border-radius:50%;background:transparent}
 
@@ -152,7 +151,7 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
    ========================================================================== */
 const CONFIG = {
   nome: "Maria Vitória",
-  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",            // opcional: imagem PNG da logo do nome (substitui o texto na abertura e na capa)
+  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",            // opcional: imagem PNG da logo do nome (substitui o texto na capa)
   logoRodape: "",          // opcional: OUTRA logo do nome só para o rodapé (acima da hashtag). Vazio = usa a logoNome
   logoRodapeBranca: true,  // true = a logo do rodapé fica branca sobre o fundo escuro; false = cores originais
   hashtag: "#MariaVitóriaXV",
@@ -182,8 +181,8 @@ const CONFIG = {
   /* Borda de renda: deixe "" para a renda desenhada, ou coloque uma imagem repetível (PNG) da identidade visual */
   renda: "",
 
-  /* ✉️ ABERTURA */
-  abertura: { usar: true, imagem: "", video: "", texto: "Toque para abrir" },
+  /* ✉️ ABERTURA: sem imagem, mostra só o botão redondo com o texto abaixo (sem logo e sem "XV Anos") */
+  abertura: { usar: true, imagem: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Wedding_invitation_suite_design_1b18670d%20(1).jpg?raw=true", video: "Untitled project 12.mp4", texto: "Toque para abrir" },
 
   /* 🎵 MÚSICA: arquivo mp3 (prioridade) ou link do YouTube */
   musica: "",
@@ -215,7 +214,7 @@ const CONFIG = {
       fundo: "", cor: "", veu: 0 },
     { titulo: "Baile", dataHora: "2027-01-09T20:00:00", espaco: "OAB São Francisco-MG",
       endereco: "Av. Montes Claros, 2550, João Aguiar - São Francisco",
-      mapsUrl: "https://maps.app.goo.gl/kBrdsFXSnrKq6bA29?g_st=iw",
+      mapsUrl: "https://maps.app.goo.gl/kBrdsFXsnrKq6bA29?g_st=iw",
       fundo: "", cor: "#fbf3f5", veu: 0 }
   ],
 
@@ -317,7 +316,7 @@ function tocar() {
 function pausar() { quer = false; if (audio) audio.pause(); else if (yt && yt.pauseVideo) yt.pauseVideo(); mb.classList.remove('tocando'); tocando = false; }
 mb.onclick = () => tocando ? pausar() : tocar();
 
-/* ✉️ Abertura */
+/* ✉️ Abertura (sem logo e sem "XV Anos": só o botão de toque) */
 const intro = $('#intro'), A = C.abertura || {};
 function entrar() { intro.classList.add('open'); document.body.classList.remove('locked'); tocar(); setTimeout(() => intro.remove(), 1100); }
 if (A.usar !== false) {
@@ -331,7 +330,7 @@ if (A.usar !== false) {
   const vid = A.video ? `<video id="introVid" src="${A.video}" playsinline></video>` : '';
   intro.innerHTML = A.imagem
     ? `${vid}<button class="selo-clique" id="abrir" aria-label="Abrir convite"></button>`
-    : `${vid}<p class="sub">XV Anos</p>${nomeHTML('intro-nome')}<button class="selo" id="abrir">${A.texto || 'Abrir'}</button>`;
+    : `${vid}<button class="selo" id="abrir">${A.texto || 'Abrir'}</button>`;
   if (A.imagem) intro.onclick = abrir;
   $('#abrir').onclick = e => { e.stopPropagation(); abrir(); };
 } else { intro.remove(); document.body.classList.remove('locked'); }
