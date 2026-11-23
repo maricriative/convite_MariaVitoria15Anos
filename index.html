@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#F1CCD4">
 <meta name="theme-color" content="#F1CCD4" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light">
@@ -36,7 +36,6 @@ h3.script,.script{font-family:var(--f-script);font-weight:400;font-size:2.3rem;l
 .orn::before,.orn::after{content:"";width:44px;height:1px;background:var(--antigo)}
 .texto{font-size:1.02rem;color:var(--textoSuave)}
 .data{font-family:var(--f-tit);font-size:1.15rem;color:var(--enfase)}
-/* Data da capa em tamanho maior (ajuste aqui se quiser maior ou menor) */
 .data-capa{font-size:1.75rem;line-height:1.25}
 
 section.sec{padding:64px 22px;position:relative;overflow:hidden}
@@ -47,20 +46,16 @@ section.alt{background:var(--secaoAlt)}
 .wrap{max-width:480px;margin:0 auto;text-align:center}
 .ev{margin-top:34px}
 .ev+.ev{padding-top:34px;border-top:1px solid var(--antigo)}
-/* Cartão de cada evento (com fundo próprio opcional) */
 .ev-card{position:relative;overflow:hidden;margin-top:30px;padding:34px 20px;border:1px solid var(--antigo)}
 .ev-conteudo{position:relative;z-index:2}
 .ev-nome{font-family:var(--f-tit);font-weight:400;font-size:1.9rem;line-height:1.15;color:var(--enfase)}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;border-radius:99px;border:1px solid var(--enfase);color:var(--enfase);
   text-decoration:none;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:transform .2s}
 .btn:active{transform:scale(.97)}
-.btn.cheio{background:var(--enfase);color:var(--textoClaro);width:100%}
 
-/* Foto da debutante na moldura em formato de porta (arco no topo) */
 .foto{width:100%;max-width:280px;aspect-ratio:2/3;object-fit:cover;margin:30px auto 8px;
   border-radius:140px 140px 6px 6px;border:3px solid var(--antigo);padding:6px;background:var(--card);
   outline:1px solid var(--rosa);outline-offset:6px;box-shadow:0 12px 30px rgba(138,78,91,.25)}
-/* Renda da galeria: (A) moldura inteira com miolo transparente, ou (B) faixa fina de renda no topo e na base da moldura (detectado sozinho) */
 .gal-wrap{position:relative;width:100%;max-width:300px;margin:0 auto}
 .gal-wrap.com-renda{margin:70px auto 60px}
 .gal-wrap.com-faixa{margin:40px auto}
@@ -68,12 +63,10 @@ section.alt{background:var(--secaoAlt)}
 .gal-faixa{position:absolute;left:-14px;right:-14px;height:var(--fh,28px);background-repeat:repeat-x;background-position:center;background-size:auto 100%;pointer-events:none;z-index:3}
 .gal-faixa.topo{top:calc(var(--fh,28px)/-2)}
 .gal-faixa.base{bottom:calc(var(--fh,28px)/-2);transform:scaleY(-1)}
-/* laterais: a mesma faixa girada 90°, com o desenho voltado para dentro da moldura */
 .gal-lado{position:absolute;top:50%;width:calc(100%*4/3 + 28px);height:var(--fh,28px);background-repeat:repeat-x;background-position:center;background-size:auto 100%;pointer-events:none;z-index:3}
 .gal-lado.esq{left:0;transform:translate(-50%,-50%) rotate(-90deg)}
 .gal-lado.dir{right:0;transform:translate(50%,-50%) rotate(90deg)}
 
-/* Galeria */
 .carrossel{position:relative;width:100%;max-width:300px;aspect-ratio:3/4;margin:0 auto;overflow:hidden;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2)}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s}
 .slide.ativo{opacity:1;z-index:1}
@@ -82,31 +75,25 @@ section.alt{background:var(--secaoAlt)}
 .pontos i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.7);transition:.3s}
 .pontos i.ativo{background:var(--enfase);transform:scale(1.25)}
 
-/* Dress code: bolinhas de cores */
 .cores{display:flex;gap:12px;justify-content:center;margin-top:20px}
 .cores i{width:34px;height:34px;border-radius:50%;border:2px solid var(--card);box-shadow:0 2px 8px rgba(0,0,0,.2)}
 
-/* Abertura */
 #intro{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;color:var(--enfase);
   background:var(--claro) center/cover no-repeat;transition:transform 1.1s cubic-bezier(.77,0,.18,1),opacity .8s}
 #intro.open{transform:translateY(-100%);opacity:0}
-/* o vídeo só aparece quando já está tocando (evita o piscar preto) */
 #introVid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:10;background:transparent;opacity:0;pointer-events:none;transition:opacity .25s}
 #introVid.pronto{opacity:1;pointer-events:auto}
 .selo{width:104px;height:104px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);border:3px solid var(--card);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500}
 .selo-clique{width:130px;height:130px;border-radius:50%;background:transparent}
 
-/* Capa */
 .hero{position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:36px 20px;background:var(--fundo) center/cover no-repeat}
 .capa-card{width:100%;max-width:400px;text-align:center;padding:10px}
 .capa-card .nome{font-family:var(--f-script);font-size:clamp(2.8rem,14vw,4rem);line-height:1.05;color:var(--enfase);margin:8px 0}
 .frase{font-family:var(--f-tit);font-size:1.08rem;color:var(--texto);margin:16px 0 4px;line-height:1.45}
 
-/* Bloco escuro (contagem) com borda de renda e laço */
 .escuro{background:var(--enfase);color:var(--textoClaro);padding:90px 22px}
 .escuro h2{color:var(--textoClaro)}
 .escuro .sub{color:var(--claro)}
-/* Renda (faixa de imagem repetida) no topo e/ou na base de qualquer seção */
 .renda{position:absolute;left:0;right:0;z-index:3;background-repeat:repeat-x;background-position:center top;background-size:auto 100%;pointer-events:none}
 .renda.topo{top:0}
 .renda.base{bottom:0;transform:scaleY(-1)}
@@ -114,7 +101,6 @@ section.alt{background:var(--secaoAlt)}
 .cd b{display:block;font-family:var(--f-tit);font-weight:400;font-size:2.1rem;line-height:1}
 .cd span{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--claro)}
 
-/* Linha do tempo */
 .tl{position:relative;text-align:left}
 .tl::before{content:"";position:absolute;left:103px;top:10px;bottom:10px;width:1px;background:var(--antigo)}
 .tl-i{display:grid;grid-template-columns:84px 18px 1fr;gap:10px;margin-bottom:26px;align-items:start}
@@ -124,16 +110,10 @@ section.alt{background:var(--secaoAlt)}
 .tl-t b{display:block;font-family:var(--f-tit);font-weight:400;font-size:1.15rem;color:var(--enfase)}
 .tl-t span{font-size:.85rem;color:var(--textoSuave)}
 
-/* Confirmar presença */
+/* Confirmar presença (apenas aviso, sem formulário) */
 .rsvp-ico{width:84px;height:84px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);display:grid;place-items:center;margin:8px auto 4px;border:4px solid var(--claro)}
 .rsvp-ico svg{width:40px;height:40px}
 .rsvp-ico img{width:44px;height:44px;object-fit:contain}
-.revelar{max-height:0;overflow:hidden;opacity:0;transition:max-height .8s ease,opacity .6s ease}
-.revelar.aberto{max-height:1000px;opacity:1}
-form{display:grid;gap:14px;margin-top:18px;text-align:left}
-label{display:grid;gap:4px;font-size:.8rem;color:var(--enfase);font-weight:500}
-input,select,textarea{font:inherit;padding:10px 2px;border:none;border-bottom:1px solid var(--antigo);border-radius:0;background:transparent;color:var(--texto);width:100%;outline:none}
-textarea{min-height:70px}
 
 footer{position:relative;overflow:hidden;background:var(--enfase);color:var(--textoClaro);text-align:center;padding:52px 20px calc(52px + env(safe-area-inset-bottom,0px))}
 footer .script{font-size:2.8rem}
@@ -143,7 +123,6 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 #musicBtn.tocando{animation:giro 6s linear infinite}
 @keyframes giro{to{transform:rotate(360deg)}}
 #ytwrap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-/* faixa inferior (área do botão/barra do celular) na cor configurada em CONFIG.barras */
 #barra-inf{position:fixed;left:0;right:0;bottom:0;height:env(safe-area-inset-bottom,0px);z-index:119;pointer-events:none}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .8s,transform .8s}
 .rv.in{opacity:1;transform:none}
@@ -163,88 +142,68 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
    ✏️ CONFIGURAÇÕES — XV ANOS MARIA VITÓRIA
    EM TODAS AS SEÇÕES VOCÊ PODE USAR:
      fundo: imagem, GIF ou vídeo .mp4 (o vídeo toca sozinho, mudo e em loop). "" = sem fundo.
-     cor:   cor de fundo da seção, em hexadecimal (ex.: "#F1CCD4"). "" = cor padrão da seção.
-     veu:   de 0 a 1, cobre o fundo (imagem/vídeo) com a cor da seção para dar leitura ao texto:
-            0 = sem véu, 0.5 = metade, 1 = cobre tudo.
-     renda: imagem PNG de renda (fundo transparente) repetida no topo e na base da seção. "" = sem renda.
-            Medidas: 1200 x 72 px (proporção 50:1), com a ponta esquerda encaixando na direita para repetir sem emenda.
-            O desenho deve ficar "pendurado", com o bordado voltado para baixo (na base a imagem é espelhada sozinha).
-     rendaAltura: altura da renda na tela, em px (padrão 24). A imagem ideal tem 3x essa altura (24 -> 72 px, 40 -> 120 px).
+     repetir: false = o vídeo de fundo toca UMA vez só (começa quando a seção aparece na tela).
+     cor:   cor de fundo da seção, em hexadecimal. "" = cor padrão da seção.
+     veu:   de 0 a 1, cobre o fundo com a cor da seção para dar leitura ao texto.
+     renda: imagem PNG de renda repetida no topo e na base da seção. "" = sem renda.
+            A altura agora se ajusta sozinha ao formato da imagem (nunca menor que rendaAltura).
+     rendaAltura: altura MÍNIMA da renda, em px (padrão 24).
      rendaPos: "ambas" (padrão), "topo" ou "base".
    ========================================================================== */
 const CONFIG = {
   nome: "Maria Vitória",
-  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",            // opcional: imagem PNG da logo do nome (substitui o texto na capa)
-  logoRodape: "",          // opcional: OUTRA logo do nome só para o rodapé (acima da hashtag). Vazio = usa a logoNome
-  logoRodapeBranca: true,  // true = a logo do rodapé fica branca sobre o fundo escuro; false = cores originais
+  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",
+  logoRodape: "",
+  logoRodapeBranca: true,
   hashtag: "#MariaVitóriaXV",
   cidade: "São Francisco - MG",
   celebracao: "Aniversário de Maria Vitória e de seu Vô Tone Veloso",
 
-  /* 📱 BARRAS DO NAVEGADOR: cor da barra superior (endereço/busca) e da área inferior do celular.
-     Use a cor do convite (ex.: a mesma da abertura). Vazio em "inferior" = usa a cor da superior.
-     Obs.: a barra de cima é aceita pela maioria dos celulares (Chrome e Safari). A de baixo depende do aparelho:
-     no iPhone a cor da página aparece nela; no Android o navegador nem sempre permite mudar. */
   barras: { superior: "#F1CCD4", inferior: "#F1CCD4" },
-  /* ATENÇÃO: a cor só vale quando o link abre no navegador do celular (Chrome, Safari, Samsung Internet).
-     Quando o link é aberto DENTRO de aplicativos (Gmail, Outlook, WhatsApp, Instagram), o próprio aplicativo
-     desenha as barras dele e ignora esta configuração: nenhum site consegue mudar isso. */
 
-  /* 🎨 PALETA (identidade visual: #D299A2, #E6A9BA, #F1CCD4, #E3A1A8). Troque qualquer cor. */
   paleta: {
-    fundo:       "#FBF3F5",  // fundo da página
-    card:        "#FFFAFB",  // cartões e molduras
-    secaoAlt:    "#F7E6EA",  // seções alternadas
-    claro:       "#F1CCD4",  // rosa claro: renda, detalhes sobre fundo escuro
-    rosa:        "#E6A9BA",  // filete interno das molduras
-    antigo:      "#D299A2",  // bordas, linhas e ornamentos
-    salmao:      "#E3A1A8",  // reserva (uso livre)
-    enfase:      "#8A4E5B",  // títulos, botões, menu, blocos escuros
-    texto:       "#5E2F3A",  // texto principal
-    textoSuave:  "#85535F",  // texto secundário
-    textoClaro:  "#FFF7F8"   // texto sobre fundo escuro
+    fundo:       "#FBF3F5",
+    card:        "#FFFAFB",
+    secaoAlt:    "#F7E6EA",
+    claro:       "#F1CCD4",
+    rosa:        "#E6A9BA",
+    antigo:      "#D299A2",
+    salmao:      "#E3A1A8",
+    enfase:      "#8A4E5B",
+    texto:       "#5E2F3A",
+    textoSuave:  "#85535F",
+    textoClaro:  "#FFF7F8"
   },
 
-  /* 🔤 FONTES: Achetta (títulos) e Barsela Calligraphy (nome/script).
-     Se tiver os arquivos, coloque o nome aqui (.woff2, .ttf ou .otf, na mesma pasta do convite).
-     Sem os arquivos, o convite usa fontes parecidas (Italiana e Pinyon Script). */
   fontes: { arquivoTitulo: "", arquivoScript: "" },
 
-  /* Renda padrão do bloco escuro da contagem (se a seção "contagem" não tiver a sua própria). Imagem 1200 x 72 px.
-     Para colocar renda em outras seções, use "renda" dentro de cada seção, abaixo. */
   renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true",
+  rendaAltura: 24,       // altura mínima (px) de todas as rendas
+  rendaAlturaMax: 110,   // altura máxima (px) quando a renda é ajustada automaticamente
+  rendaTile: 360,        // largura (px) de cada repetição da renda: aumente para rendas maiores
 
-  rendaAltura: 24,   // altura padrão (px) de todas as rendas
-
-  /* ✉️ ABERTURA: sem imagem, mostra só o botão redondo com o texto abaixo (sem logo e sem "XV Anos").
-     cor: cor mostrada enquanto a imagem de abertura carrega (use o tom principal da imagem). Vazio = rosa claro da paleta. */
   abertura: { usar: true, cor: "", imagem: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Wedding_invitation_suite_design_1b18670d%20(1).jpg?raw=true", video: "Untitled project 12.mp4", texto: "Toque para abrir" },
 
-  /* 🎵 MÚSICA: arquivo mp3 (prioridade) ou link do YouTube */
   musica: "",
   youtube: "https://youtu.be/6_LsCe4jUF8?is=hUHBTJKa1Hb2_wkU",
-
-  /* ---------- SEÇÕES (na ordem em que aparecem) ---------- */
 
   capa: {
     frase: "Nada acontece sem antes existir um sonho, e na idade dos sonhos tudo é possível!",
     renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Botanical_invitation_background_%E2%80%A6_4bbde213.jpg?raw=true", cor: "", veu: 0
   },
-  dataTexto: "",   // opcional: sobrescreve o texto da data na capa (ex.: "08 e 09 de Janeiro de 2027")
+  dataTexto: "",
 
   mensagem: {
     titulo: "Maria Vitória XV anos",
+    usarLogo: true,      // true = mostra a logo no lugar do nome; false = volta o texto
+    textoEspaco: 34,     // distância (px) entre a logo e o texto: aumente para descer o texto
     texto: "Nunca deixe de sonhar, pois se podemos sonhar, também podemos tornar nossos sonhos realidade.",
-    foto: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.27.jpeg?raw=true",   // foto da debutante, na moldura em formato de porta (ideal 840 x 1260 px, proporção 2:3)
+    foto: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.27.jpeg?raw=true",
     renda: "", fundo: "gesso_flores.png", cor: "", veu: 0
   },
 
-  /* Conta até o primeiro evento; use null para ocultar. */
   contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva", renda: "", fundo: "", cor: "", veu: 0.0 },
 
-  /* 📅 EVENTOS (alimentam a linha do tempo, os cartões de local e a contagem) */
-  /* Cada evento vira um cartão na seção "Onde & Quando" e pode ter o seu próprio fundo:
-       fundo: imagem, GIF ou vídeo .mp4 | cor: cor de fundo do cartão (ex.: "#F1CCD4") | veu: 0 a 1 */
   eventos: [
     { titulo: "Missa", dataHora: "2027-01-08T19:00:00", espaco: "Igreja Sagrada Família", endereco: "", mapsUrl: "",
       fundo: "", cor: "", veu: 0 },
@@ -254,17 +213,13 @@ const CONFIG = {
       fundo: "", cor: "#fbf3f5", veu: 0 }
   ],
 
-  /* Linha do tempo: por padrão usa os eventos. Para itens próprios: itens: [{hora:"19h00", dia:"08 jan", titulo:"", descricao:""}] */
   programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null, renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(10).png?raw=true", cor: "", veu: 0 },
 
-  local: { titulo: "Onde & Quando", renda: "", fundo: "enhanced_output (47).mp4", cor: "#fbf3f5", veu: 0 },
+  /* repetir: false = o vídeo toca só 1 vez (quando a seção aparece) e fica parado no último quadro */
+  local: { titulo: "Onde & Quando", renda: "", fundo: "enhanced_output (47).mp4", repetir: false, cor: "#fbf3f5", veu: 0 },
 
-  /* 👗 DRESS CODE: preencha "texto" para exibir a seção.
-     cores: bolinhas de cores sugeridas (opcional), ex.: ["#F1CCD4", "#FFFFFF"] */
   dressCode: { titulo: "Dress Code", texto: "", cores: [], renda: "", fundo: "", cor: "", veu: 0 },
 
-  /* 🖼️ GALERIA: coloque os links das fotos entre aspas, separados por vírgula (ideal 900 x 1200 px, proporção 3:4).
-     Exemplo: fotos: ["foto1.jpg", "https://.../foto2.jpg"]. Vazia = a seção não aparece. */
   galeria: {
     titulo: "Galeria",
     fotos: [
@@ -273,14 +228,9 @@ const CONFIG = {
       "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Foto%20de%20Deyvison%20Marlon%20(7).jpg?raw=true",
       "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Foto%20de%20Deyvison%20Marlon%20(5).jpg?raw=true"
     ],
-    /* RENDA DA MOLDURA DA GALERIA (o convite detecta sozinho qual dos dois tipos você usou):
-       A) FAIXA fina (ex.: 1200 x 72 px, a mesma das seções): vira renda nos 4 lados da moldura (topo, base, esquerda e direita).
-       B) MOLDURA inteira: PNG 3:4 (ideal 1000 x 1333 px) com o miolo transparente (cerca de 770 x 1027 px) e o desenho em volta.
-          Neste caso, escalaMoldura = tamanho da renda em relação à moldura (1.3 = 30% maior).
-       Vazio = sem renda. */
     rendaMoldura: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true",
     escalaMoldura: 1.3,
-    rendaFaixaAltura: 28,   // só para o tipo A: altura da faixa na tela (px)
+    rendaFaixaAltura: 28,   // altura MÍNIMA da faixa (tipo A); cresce sozinha conforme a imagem
     renda: "", fundo: "", cor: "#fbf3f5", veu: 0
   },
 
@@ -294,16 +244,15 @@ const CONFIG = {
     renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Watercolor_curtains_framing_blan%E2%80%A6_2ac50269.jpg?raw=true", cor: "", veu: 0
   },
 
-  rodape: { renda: "", rendaAltura: 24, rendaPos: "topo" },   // renda no topo do rodapé (mesmas regras das seções)
+  rodape: { renda: "", rendaAltura: 24, rendaPos: "topo" },
 
-  presentes: { titulo: "Presentes", texto: "", itens: [], renda: "", fundo: "", cor: "#fbf3f5", veu: 0 },   // preencha "texto" ou "itens" para exibir
+  presentes: { titulo: "Presentes", texto: "", itens: [], renda: "", fundo: "", cor: "#fbf3f5", veu: 0 },
 
+  /* Confirmar presença: agora só mostra o aviso de que a assessoria entrará em contato */
   rsvp: {
     titulo: "Confirmar Presença",
-    chamada: "Toque no ícone para confirmar",
-    iconeImagem: "",   // opcional: imagem PNG/SVG própria para o ícone. Vazio = usa o ícone de confirmação (✓) padrão
-    mensagem: "Em breve a nossa assessoria entrará em contato para confirmar a sua presença e a dos seus acompanhantes:",
-    whatsapp: "61986112425",   // ⚠️ número com DDI e DDD, ex.: "5538999999999". Vazio = mostra só a mensagem, sem formulário
+    iconeImagem: "",
+    mensagem: "Em breve a nossa assessoria entrará em contato para confirmar a sua presença e a dos seus acompanhantes.",
     renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(13).png?raw=true", cor: "", veu: 0
   }
 };
@@ -314,30 +263,40 @@ const CONFIG = {
 const $ = (s, r = document) => r.querySelector(s), C = CONFIG, enc = encodeURIComponent, root = document.documentElement;
 Object.entries(C.paleta || {}).forEach(([k, v]) => v && root.style.setProperty('--' + k, v));
 
-/* 📱 cores das barras do navegador (superior e inferior) */
 const Bar = C.barras || {}, corTopo = Bar.superior || '', corBase = Bar.inferior || corTopo;
 if (corTopo) document.querySelectorAll('meta[name="theme-color"],meta[name="msapplication-navbutton-color"]').forEach(m => m.setAttribute('content', corTopo));
 root.style.colorScheme = 'light';
 if (corBase) { root.style.backgroundColor = corBase; $('#barra-inf').style.background = corBase; }
 
-/* fontes personalizadas */
 const F = C.fontes || {}; let ff = '';
 if (F.arquivoTitulo) ff += `@font-face{font-family:'Achetta';src:url("${F.arquivoTitulo}")}`;
 if (F.arquivoScript) ff += `@font-face{font-family:'Barsela Calligraphy';src:url("${F.arquivoScript}")}`;
 if (ff) { const st = document.createElement('style'); st.textContent = ff; document.head.appendChild(st); }
 
-/* renda: faixa de imagem repetida no topo e/ou na base de uma seção */
+/* renda: faixa de imagem repetida no topo e/ou na base de uma seção (altura ajustada depois por ajustarRendas) */
 const rendaHTML = c => {
   if (!c || !c.renda) return '';
-  const st = `background-image:url('${c.renda}');height:${c.rendaAltura || C.rendaAltura || 24}px`, pos = c.rendaPos || 'ambas';
-  return (pos !== 'base' ? `<i class="renda topo" style="${st}"></i>` : '') + (pos !== 'topo' ? `<i class="renda base" style="${st}"></i>` : '');
+  const min = c.rendaAltura || C.rendaAltura || 24, pos = c.rendaPos || 'ambas',
+    st = `background-image:url('${c.renda}');height:${min}px`, at = ` data-renda="${c.renda}" data-min="${min}"`;
+  return (pos !== 'base' ? `<i class="renda topo"${at} style="${st}"></i>` : '') + (pos !== 'topo' ? `<i class="renda base"${at} style="${st}"></i>` : '');
 };
 
-/* renda da galeria: se a imagem for uma FAIXA (bem mais larga que alta), vira topo + base da moldura;
-   se for uma MOLDURA inteira (proporção parecida com a da foto), fica por cima da galeria */
+/* altura automática da renda conforme o formato da imagem (evita rendas minúsculas) */
+function alturaRenda(w, h, min, max) { return Math.round(Math.min(max, Math.max(min, (C.rendaTile || 360) * h / w))); }
+function ajustarRendas() {
+  const cache = {};
+  document.querySelectorAll('.renda[data-renda]').forEach(el => {
+    const s = el.dataset.renda, min = +el.dataset.min;
+    (cache[s] = cache[s] || new Promise(ok => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => ok(null); i.src = s; }))
+      .then(i => { if (i && i.naturalWidth) el.style.height = alturaRenda(i.naturalWidth, i.naturalHeight, min, C.rendaAlturaMax || 110) + 'px'; });
+  });
+}
+
+/* renda da galeria: FAIXA (bem mais larga que alta) vira topo + base + laterais; MOLDURA inteira fica por cima */
 function galRenda(img) {
   const w = img.parentNode;
   if (img.naturalWidth / img.naturalHeight > 1.5) {
+    w.style.setProperty('--fh', alturaRenda(img.naturalWidth, img.naturalHeight, (C.galeria && C.galeria.rendaFaixaAltura) || 28, 90) + 'px');
     const st = `background-image:url('${img.src}')`;
     img.remove();
     w.classList.remove('com-renda'); w.classList.add('com-faixa');
@@ -345,7 +304,6 @@ function galRenda(img) {
   }
 }
 
-/* utilitários */
 const nomeHTML = (cls, branca, logo) => { const L = logo || C.logoNome; return L ? `<img class="logo-nome${branca && C.logoRodapeBranca !== false ? ' branca' : ''}" src="${L}" alt="${C.nome}">` : `<div class="${cls}">${C.nome}</div>`; };
 const extrairId = u => { const m = (u || '').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : null; };
 const fm = (d, o) => new Intl.DateTimeFormat('pt-BR', o).format(d);
@@ -355,13 +313,13 @@ const ev = C.eventos, d0 = new Date(ev[0].dataHora);
 const dataTexto = C.dataTexto || (ev.map(e => fm(new Date(e.dataHora), { day: '2-digit' })).join(' e ') + ' de ' + cap(fm(d0, { month: 'long' })) + ' de ' + fm(d0, { year: 'numeric' }));
 document.title = `${C.nome} — XV Anos`;
 
-/* cor de fundo própria da seção (opcional) */
 const corSec = c => c && c.cor ? ` style="background-color:${c.cor}"` : '';
 
-/* fundo de seção: imagem, gif ou vídeo (+ véu opcional, na cor da seção) */
+/* fundo de seção: imagem, gif ou vídeo (repetir:false = vídeo toca uma vez só) */
 const fundoHTML = (c, cor) => {
   if (!c || !c.fundo) return '';
-  const s = c.fundo, el = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(s) ? `<video class="bg" src="${s}" autoplay muted loop playsinline></video>` : `<img class="bg" src="${s}" alt="">`;
+  const s = c.fundo, ehVideo = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(s),
+    el = ehVideo ? `<video class="bg" src="${s}" ${c.repetir === false ? 'muted playsinline preload="auto" data-uma-vez' : 'autoplay muted loop playsinline'}></video>` : `<img class="bg" src="${s}" alt="">`;
   return el + (c.veu > 0 ? `<div class="veu" style="background:${c.cor || cor};opacity:${c.veu}"></div>` : '');
 };
 
@@ -383,10 +341,9 @@ function tocar() {
 function pausar() { quer = false; if (audio) audio.pause(); else if (yt && yt.pauseVideo) yt.pauseVideo(); mb.classList.remove('tocando'); tocando = false; }
 mb.onclick = () => tocando ? pausar() : tocar();
 
-/* ✉️ Abertura (sem logo e sem "XV Anos": só o botão de toque) */
+/* ✉️ Abertura */
 const intro = $('#intro'), A = C.abertura || {};
 if (A.cor) intro.style.backgroundColor = A.cor;
-/* pré-carrega a imagem de abertura e a imagem da capa, para não haver piscar na troca de tela */
 if (A.imagem) { const l = document.createElement('link'); l.rel = 'preload'; l.as = 'image'; l.href = A.imagem; document.head.appendChild(l); }
 const carregar = src => new Promise(ok => {
   if (!src || /\.(mp4|webm|mov|m4v)(\?|$)/i.test(src)) return ok();
@@ -426,7 +383,6 @@ const sec = (id, rot, html, cls = '') => {
   secoes.push(`<section class="sec ${cls}" id="${id}"${corSec(CFG[id])}>${fundoHTML(CFG[id], cor)}${rendaHTML(CFG[id])}<div class="wrap">${html}</div></section>`);
 };
 const tit = (t, s) => `${s ? `<p class="sub">${s}</p>` : ''}<h2>${t}</h2><div class="orn">♥</div>`;
-/* ícone de confirmação (check dentro de um círculo) */
 const ICONE_OK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3.2 3.2 5.8-6.4"/></svg>`;
 
 const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.capa, 'var(--fundo)')}${rendaHTML(C.capa)}
@@ -440,8 +396,9 @@ const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.ca
     <p class="sub" style="margin-top:6px">${C.cidade}</p>
   </div></header>`;
 
+/* Mensagem: logo no lugar do nome + texto mais abaixo */
 const M = C.mensagem;
-if (M) sec('convite', 'Convite', `${tit(M.titulo)}<p class="texto">${M.texto}</p>${M.foto ? `<img class="foto" src="${M.foto}" alt="${C.nome}">` : ''}`);
+if (M) sec('convite', 'Convite', `${(M.usarLogo !== false && C.logoNome) ? `<img class="logo-nome" src="${C.logoNome}" alt="${C.nome}"><p class="sub">XV Anos</p><div class="orn">♥</div>` : tit(M.titulo)}<p class="texto" style="margin-top:${M.textoEspaco ?? 28}px">${M.texto}</p>${M.foto ? `<img class="foto" src="${M.foto}" alt="${C.nome}">` : ''}`);
 
 if (C.contagem) sec('contagem', 'Contagem', `<p class="sub">${C.contagem.subtitulo || ''}</p><h2>${C.contagem.titulo}</h2><div id="cd" class="cd" style="margin-top:22px"></div>`, 'escuro');
 
@@ -474,18 +431,26 @@ if (H) sec('hospedagem', 'Hospedagem', `${tit(H.titulo)}<p class="texto">${H.tex
 const G = C.presentes;
 if (G && (G.texto || (G.itens || []).length)) sec('presentes', 'Presentes', `${tit(G.titulo)}${G.texto ? `<p class="texto">${G.texto}</p>` : ''}${(G.itens || []).length ? `<div class="ev">${G.itens.map(i => `<p class="texto">${i}</p>`).join('')}</div>` : ''}`, 'alt');
 
+/* Confirmar presença: só o aviso, sem formulário */
 const R = C.rsvp;
-if (R) sec('confirmar', 'Confirmar', `${tit(R.titulo)}<p class="texto">${R.chamada || ''}</p>
-  <button class="rsvp-ico" id="rsvpBtn" aria-expanded="false" aria-controls="rsvpBox" aria-label="Confirmar presença">${R.iconeImagem ? `<img src="${R.iconeImagem}" alt="">` : ICONE_OK}</button>
-  <div class="revelar" id="rsvpBox"><div class="ev"><p class="texto">${R.mensagem}</p>
-  ${R.whatsapp ? `<form id="formRsvp">
-    <label>Seu nome completo <input name="nome" required autocomplete="name"></label>
-    <label>Você irá comparecer?<select name="presenca"><option value="sim">Sim, estarei lá!</option><option value="nao">Infelizmente não poderei ir</option></select></label>
-    <label>Acompanhantes (nomes ou quantidade) <input name="acomp"></label>
-    <label>Mensagem para a debutante <textarea name="recado"></textarea></label>
-    <button class="btn cheio" type="submit">Confirmar no WhatsApp</button></form>` : ''}</div></div>`, 'alt');
+if (R) sec('confirmar', 'Confirmar', `${tit(R.titulo)}
+  <div class="rsvp-ico" aria-hidden="true">${R.iconeImagem ? `<img src="${R.iconeImagem}" alt="">` : ICONE_OK}</div>
+  <p class="texto" style="margin-top:18px">${R.mensagem}</p>`, 'alt');
 
 $('#app').innerHTML = capa + secoes.join('') + `<footer>${rendaHTML(C.rodape)}${nomeHTML('script', true, C.logoRodape)}<p>${C.hashtag}</p></footer>`;
+
+/* ajusta o tamanho das rendas conforme a imagem enviada */
+ajustarRendas();
+
+/* vídeos que tocam uma vez só: começam quando a seção aparece na tela e param no último quadro */
+document.querySelectorAll('video[data-uma-vez]').forEach(v => {
+  v.muted = true;
+  const play = () => v.play().catch(() => {});
+  if ('IntersectionObserver' in window) {
+    const o = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { play(); o.disconnect(); } }), { threshold: .35 });
+    o.observe(v.closest('section') || v);
+  } else play();
+});
 
 /* Animações de entrada e contagem */
 const rvs = document.querySelectorAll('.wrap, footer');
@@ -511,26 +476,6 @@ if (slides.length > 1) setInterval(() => {
   cur = (cur + 1) % slides.length;
   slides[cur].classList.add('ativo'); pontos[cur].classList.add('ativo');
 }, 4000);
-
-/* Confirmar presença */
-const rb = $('#rsvpBtn');
-if (rb) rb.onclick = () => { const a = $('#rsvpBox').classList.toggle('aberto'); rb.setAttribute('aria-expanded', a); };
-const form = $('#formRsvp');
-if (form) form.onsubmit = e => {
-  e.preventDefault();
-  const f = new FormData(form), vai = f.get('presenca') === 'sim';
-  let msg = `Olá! Sou ${f.get('nome')}. ` + (vai ? `Confirmo minha presença nos XV Anos de ${C.nome}.` : `Infelizmente não poderei comparecer.`);
-  if (vai && f.get('acomp')) msg += `\nAcompanhantes: ${f.get('acomp')}`;
-  if (f.get('recado')) msg += `\nRecado: ${f.get('recado')}`;
-  open(`https://wa.me/${C.rsvp.whatsapp}?text=${enc(msg)}`, '_blank');
-};
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
