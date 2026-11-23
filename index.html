@@ -218,8 +218,9 @@ const CONFIG = {
   dataTexto: "",
 
   mensagem: {
-    titulo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA-02.png?raw=true",
-    usarLogo: true,      // true = mostra a logo no lugar do nome; false = volta o texto
+    titulo: "Maria Vitória XV anos",   // só aparece se usarLogo for false (aqui vai TEXTO, não link)
+    usarLogo: true,      // true = mostra a imagem de "logo" no lugar do nome; false = mostra o texto do título
+    logo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA-02.png?raw=true",   // logo da seção Mensagem (vazio = usa a logoNome da capa)
     textoEspaco: 34,     // distância (px) entre a logo e o texto: aumente para descer o texto
     texto: "Nunca deixe de sonhar, pois se podemos sonhar, também podemos tornar nossos sonhos realidade.",
     foto: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.27.jpeg?raw=true",
@@ -234,13 +235,13 @@ const CONFIG = {
     { titulo: "Baile", dataHora: "2027-01-09T20:00:00", espaco: "OAB São Francisco-MG",
       endereco: "Av. Montes Claros, 2550, João Aguiar - São Francisco",
       mapsUrl: "https://maps.app.goo.gl/kBrdsFXsnrKq6bA29?g_st=iw",
-      fundo: "", cor: "#fbf3f5", veu: 0 }
+      fundo: "", cor: "", veu: 0 }
   ],
 
   programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null, renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(10).png?raw=true", cor: "", veu: 0 },
 
   /* repetir: false = o vídeo toca só 1 vez (quando a seção aparece) e fica parado no último quadro */
-  local: { titulo: "Onde & Quando", renda: "", fundo: "Borboletas.mp4", repetir: false, cor: "fbf3f5", veu: 0 },
+  local: { titulo: "Onde & Quando", renda: "", fundo: "Borboletas.mp4", poster: "", repetir: false, cor: "#fbf3f5", veu: 0 },
 
   dressCode: { titulo: "Dress Code", texto: "", cores: [], renda: "", fundo: "", cor: "", veu: 0 },
 
@@ -361,7 +362,7 @@ const corSec = c => c && c.cor ? ` style="background-color:${c.cor}"` : '';
 const fundoHTML = (c, cor) => {
   if (!c || !c.fundo) return '';
   const s = c.fundo, ehVideo = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(s),
-    el = ehVideo ? `<video class="bg" src="${s}" ${c.repetir === false ? 'muted playsinline webkit-playsinline preload="metadata" data-uma-vez' : 'autoplay muted loop playsinline webkit-playsinline preload="metadata"'} onerror="this.style.display='none'"></video>` : `<img class="bg" src="${s}" alt="">`;
+    el = ehVideo ? `<video class="bg" src="${s}" ${c.repetir === false ? 'muted playsinline webkit-playsinline preload="metadata" data-uma-vez' + (c.poster ? ` poster="${c.poster}"` : '') : 'autoplay muted loop playsinline webkit-playsinline preload="metadata"'} onerror="this.style.display='none'"></video>` : `<img class="bg" src="${s}" alt="" onerror="this.style.display='none'">`;
   return el + (c.veu > 0 ? `<div class="veu" style="background:${c.cor || cor};opacity:${c.veu}"></div>` : '');
 };
 
@@ -450,7 +451,7 @@ const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.ca
 
 /* Mensagem: logo no lugar do nome + texto mais abaixo */
 const M = C.mensagem;
-if (M) sec('convite', 'Convite', `${(M.usarLogo !== false && C.logoNome) ? `<img class="logo-nome" src="${C.logoNome}" alt="${C.nome}"><p class="sub">XV Anos</p><div class="orn">♥</div>` : tit(M.titulo)}<p class="texto" style="margin-top:${M.textoEspaco != null ? M.textoEspaco : 28}px">${M.texto}</p>${M.foto ? `<img class="foto" src="${M.foto}" alt="${C.nome}">` : ''}`);
+if (M) sec('convite', 'Convite', `${(M.usarLogo !== false && (M.logo || C.logoNome)) ? `<img class="logo-nome" src="${M.logo || C.logoNome}" alt="${C.nome}"><p class="sub">XV Anos</p><div class="orn">♥</div>` : tit(M.titulo)}<p class="texto" style="margin-top:${M.textoEspaco != null ? M.textoEspaco : 28}px">${M.texto}</p>${M.foto ? `<img class="foto" src="${M.foto}" alt="${C.nome}">` : ''}`);
 
 if (C.contagem) sec('contagem', 'Contagem', `<p class="sub">${C.contagem.subtitulo || ''}</p><h2>${C.contagem.titulo}</h2><div id="cd" class="cd" style="margin-top:22px"></div>`, 'escuro');
 
@@ -533,6 +534,3 @@ if (slides.length > 1) setInterval(() => {
 </script>
 </body>
 </html>
-
-
-
