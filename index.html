@@ -146,6 +146,13 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 .rv.in{opacity:1;transform:none}
 .logo-nome{display:block;width:80%;max-width:300px;height:auto;margin:10px auto}
 .logo-nome.branca{filter:brightness(0) invert(1)}
+.presente-lista{margin-top:22px}
+.presente-lista p{padding:10px 0;border-bottom:1px solid var(--rosa)}
+.presente-lista p:last-child{border-bottom:none}
+.pix{margin-top:30px;padding:26px 18px;border:1px solid var(--antigo);background:var(--card)}
+.pix-num{font-size:1.5rem;margin:6px 0 16px}
+.video-frame{max-width:320px;margin:0 auto;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2);overflow:hidden;background:#000}
+.video-frame video{width:100%;max-height:80vh;display:block}
 /* Celulares antigos sem aspect-ratio (iOS < 15, Android antigo) */
 @supports not (aspect-ratio:1/1){
   .carrossel{height:0;padding-top:133.33%}
@@ -167,6 +174,7 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
    EM TODAS AS SEÇÕES VOCÊ PODE USAR:
      fundo: imagem, GIF ou vídeo .mp4 (o vídeo toca sozinho, mudo e em loop). "" = sem fundo.
      repetir: false = o vídeo de fundo toca UMA vez só (começa quando a seção aparece na tela).
+     espacoTopo: espaço (px) acima do título da seção: aumente para afastar o texto das flores.
      cor:   cor de fundo da seção, em hexadecimal. "" = cor padrão da seção.
      veu:   de 0 a 1, cobre o fundo com a cor da seção para dar leitura ao texto.
      renda: imagem PNG de renda repetida no topo e na base da seção. "" = sem renda.
@@ -181,7 +189,7 @@ const CONFIG = {
   logoRodapeBranca: true,
   hashtag: "#MariaVitóriaXV",
   cidade: "São Francisco - MG",
-  celebracao: "Aniversário de Maria Vitória e de seu Vô Tone Veloso",
+  celebracao: "Aniversário de\nMaria Vitória\ne de seu Vô Tone Veloso",   // \n = quebra de linha
 
   barras: { superior: "#F1CCD4", inferior: "#F1CCD4" },
 
@@ -213,7 +221,7 @@ const CONFIG = {
 
   capa: {
     frase: "Nada acontece sem antes existir um sonho, e na idade dos sonhos tudo é possível!",
-    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Capa%2002.jpg?raw=true", cor: "", veu: 0
+    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Capa.jpg?raw=true", cor: "", veu: 0
   },
   dataTexto: "",
 
@@ -238,7 +246,7 @@ const CONFIG = {
       fundo: "", cor: "", veu: 0 }
   ],
 
-  programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null, renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(10).png?raw=true", cor: "", veu: 0 },
+  programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null, espacoTopo: 130, renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(10).png?raw=true", cor: "", veu: 0 },
 
   /* repetir: false = o vídeo toca só 1 vez (quando a seção aparece) e fica parado no fim.
      congelarAntes: segundos antes do final em que o vídeo é congelado (evita a tela preta do último quadro).
@@ -268,19 +276,28 @@ const CONFIG = {
       { nome: "Hotel Supremo", link: "https://www.hotelsupremo.com.br/", botao: "Visitar site", imagem: "" },
       { nome: "Hotel Moriah", link: "https://www.instagram.com/hotelmoriah_/", botao: "Ver Instagram", imagem: "" }
     ],
-    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Watercolor_curtains_framing_blan%E2%80%A6_2ac50269.jpg?raw=true", cor: "", veu: 2
+    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Watercolor_curtains_framing_blan%E2%80%A6_2ac50269.jpg?raw=true", cor: "", veu: 0
   },
 
   rodape: { renda: "", rendaAltura: 24, rendaPos: "topo" },
 
-  presentes: { titulo: "Presentes", texto: "", itens: [], renda: "", fundo: "", cor: "#fbf3f5", veu: 0 },
+  presentes: {
+    titulo: "Sugestão de Presente", subtitulo: "Ideias de presentes", texto: "",
+    itens: ["Tamanho de roupa P", "Calça 36 boca de sino, flare", "Joias em prata ou ouro"],
+    pix: "45988415642", pixTexto: "45 98841-5642",   // pix = o que é copiado; pixTexto = o que aparece (vazio em pix = sem bloco Pix)
+    renda: "", fundo: "", cor: "#fbf3f5", veu: 0
+  },
+
+  /* 🎬 VÍDEO DA DEBUTANTE: coloque o arquivo na mesma pasta do convite com este nome (ou mude o nome aqui).
+     Se o arquivo não existir, a seção some sozinha. poster = imagem de capa do vídeo (opcional). */
+  video: { titulo: "Um Pouco da Maria Vitória", subtitulo: "Vídeo", arquivo: "VideoMaria.mp4", poster: "", pausarMusica: true, renda: "", fundo: "", cor: "", veu: 0 },
 
   /* Confirmar presença: agora só mostra o aviso de que a assessoria entrará em contato */
   rsvp: {
     titulo: "Confirmar Presença",
     iconeImagem: "",
     mensagem: "Em breve a nossa assessoria entrará em contato para confirmar a sua presença e a dos seus acompanhantes.",
-    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(13).png?raw=true", cor: "", veu: 10
+    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(13).png?raw=true", cor: "", veu: 0
   }
 };
 
@@ -355,10 +372,10 @@ const fm = (d, o) => new Intl.DateTimeFormat('pt-BR', o).format(d);
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const hora = d => fm(d, { hour: '2-digit', minute: '2-digit' }).replace(':', 'h');
 const ev = C.eventos, d0 = new Date(ev[0].dataHora);
-const dataTexto = C.dataTexto || (ev.map(e => fm(new Date(e.dataHora), { day: '2-digit' })).join(' e ') + ' de ' + cap(fm(d0, { month: 'long' })) + ' de ' + fm(d0, { year: 'numeric' }));
+const dataTexto = C.dataTexto || (ev.map(e => fm(new Date(e.dataHora), { day: '2-digit' })).join(' e ') + ' de ' + cap(fm(d0, { month: 'long' })) + '<br>de ' + fm(d0, { year: 'numeric' }));
 document.title = `${C.nome} — XV Anos`;
 
-const corSec = c => c && c.cor ? ` style="background-color:${c.cor}"` : '';
+const corSec = c => { let st = ''; if (c && c.cor) st += `background-color:${c.cor};`; if (c && c.espacoTopo) st += `padding-top:${c.espacoTopo}px;`; return st ? ` style="${st}"` : ''; };
 
 /* fundo de seção: imagem, gif ou vídeo (repetir:false = vídeo toca uma vez só) */
 const fundoHTML = (c, cor) => {
@@ -432,7 +449,7 @@ if (A.usar !== false) {
 
 /* Seções */
 const secoes = [];
-const CFG = { convite: C.mensagem, contagem: C.contagem && { ...C.contagem, renda: C.contagem.renda || C.renda }, dia: C.programacao, local: C.local, traje: C.dressCode, galeria: C.galeria, hospedagem: C.hospedagem, presentes: C.presentes, confirmar: C.rsvp };
+const CFG = { convite: C.mensagem, contagem: C.contagem && { ...C.contagem, renda: C.contagem.renda || C.renda }, dia: C.programacao, local: C.local, traje: C.dressCode, galeria: C.galeria, video: C.video, hospedagem: C.hospedagem, presentes: C.presentes, confirmar: C.rsvp };
 const sec = (id, rot, html, cls = '') => {
   const cor = cls.includes('escuro') ? 'var(--enfase)' : cls.includes('alt') ? 'var(--secaoAlt)' : 'var(--fundo)';
   secoes.push(`<section class="sec ${cls}" id="${id}"${corSec(CFG[id])}>${fundoHTML(CFG[id], cor)}${rendaHTML(CFG[id])}<div class="wrap">${html}</div></section>`);
@@ -442,7 +459,7 @@ const ICONE_OK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 
 const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.capa, 'var(--fundo)')}${rendaHTML(C.capa)}
   <div class="capa-card">
-    <p class="sub">${C.celebracao}</p>
+    <p class="sub">${C.celebracao.replace(/\n/g, '<br>')}</p>
     ${nomeHTML('nome')}
     <p class="sub">XV Anos</p>
     <p class="frase">“${C.capa.frase}”</p>
@@ -463,6 +480,16 @@ if (P) {
   sec('dia', 'Programação', `${tit(P.titulo, P.subtitulo)}<div class="tl">${itens.map(i => `<div class="tl-i"><div class="tl-h">${i.hora}<small>${i.dia || ''}</small></div><div class="tl-d">♥</div><div class="tl-t"><b>${i.titulo}</b><span>${i.descricao || ''}</span></div></div>`).join('')}</div>`);
 }
 
+const GA = C.galeria, fotosG = GA ? (GA.fotos || []).filter(Boolean) : [];
+if (fotosG.length) sec('galeria', 'Galeria', `${tit(GA.titulo || 'Galeria')}
+  <div class="gal-wrap${GA.rendaMoldura ? ' com-renda' : ''}" style="--fh:${GA.rendaFaixaAltura || 28}px"><div class="carrossel">${fotosG.map((g, i) => `<div class="slide${i ? '' : ' ativo'}"><img src="${g}" alt="Foto ${i + 1}" loading="lazy"></div>`).join('')}
+  ${fotosG.length > 1 ? `<div class="pontos">${fotosG.map((_, i) => `<i class="${i ? '' : 'ativo'}"></i>`).join('')}</div>` : ''}</div>
+  ${GA.rendaMoldura ? `<img class="gal-renda" src="${GA.rendaMoldura}" alt="" style="--esc:${GA.escalaMoldura || 1.3}" onload="galRenda(this)">` : ''}</div>`, 'alt');
+
+/* Vídeo da debutante */
+const V = C.video;
+if (V && V.arquivo) sec('video', 'Vídeo', `${tit(V.titulo, V.subtitulo)}<div class="video-frame"><video id="videoMaria" src="${V.arquivo}#t=0.1" ${V.poster ? `poster="${V.poster}"` : ''} controls playsinline webkit-playsinline preload="metadata" onerror="var s=this.closest('section');if(s)s.style.display='none'"></video></div>`);
+
 if (C.local) sec('local', 'Local', tit(C.local.titulo) + ev.map(e => {
   const d = new Date(e.dataHora), q = [e.espaco, e.endereco, C.cidade].filter(Boolean).join(' ');
   return `<div class="ev-card"${corSec(e)}>${fundoHTML(e, 'var(--secaoAlt)')}<div class="ev-conteudo"><p class="sub">${e.titulo}</p><h3 class="ev-nome">${e.espaco}</h3>
@@ -474,17 +501,12 @@ if (C.local) sec('local', 'Local', tit(C.local.titulo) + ev.map(e => {
 const D = C.dressCode, coresD = D ? (D.cores || []).filter(Boolean) : [];
 if (D && (D.texto || coresD.length)) sec('traje', 'Traje', `${tit(D.titulo)}${D.texto ? `<p class="texto">${D.texto}</p>` : ''}${coresD.length ? `<div class="cores">${coresD.map(c => `<i style="background:${c}"></i>`).join('')}</div>` : ''}`);
 
-const GA = C.galeria, fotosG = GA ? (GA.fotos || []).filter(Boolean) : [];
-if (fotosG.length) sec('galeria', 'Galeria', `${tit(GA.titulo || 'Galeria')}
-  <div class="gal-wrap${GA.rendaMoldura ? ' com-renda' : ''}" style="--fh:${GA.rendaFaixaAltura || 28}px"><div class="carrossel">${fotosG.map((g, i) => `<div class="slide${i ? '' : ' ativo'}"><img src="${g}" alt="Foto ${i + 1}" loading="lazy"></div>`).join('')}
-  ${fotosG.length > 1 ? `<div class="pontos">${fotosG.map((_, i) => `<i class="${i ? '' : 'ativo'}"></i>`).join('')}</div>` : ''}</div>
-  ${GA.rendaMoldura ? `<img class="gal-renda" src="${GA.rendaMoldura}" alt="" style="--esc:${GA.escalaMoldura || 1.3}" onload="galRenda(this)">` : ''}</div>`, 'alt');
 
 const H = C.hospedagem;
 if (H) sec('hospedagem', 'Hospedagem', `${tit(H.titulo)}<p class="texto">${H.texto}</p>` + H.lista.map(h => `<div class="ev">${h.imagem ? `<img src="${h.imagem}" alt="${h.nome}" style="margin-bottom:14px">` : ''}<h3>${h.nome}</h3><a class="btn" style="margin-top:14px" href="${h.link}" target="_blank" rel="noopener">${h.botao || 'Saiba mais'}</a></div>`).join(''));
 
 const G = C.presentes;
-if (G && (G.texto || (G.itens || []).length)) sec('presentes', 'Presentes', `${tit(G.titulo)}${G.texto ? `<p class="texto">${G.texto}</p>` : ''}${(G.itens || []).length ? `<div class="ev">${G.itens.map(i => `<p class="texto">${i}</p>`).join('')}</div>` : ''}`, 'alt');
+if (G && (G.texto || (G.itens || []).length || G.pix)) sec('presentes', 'Presentes', `${tit(G.titulo, G.subtitulo)}${G.texto ? `<p class="texto">${G.texto}</p>` : ''}${(G.itens || []).length ? `<div class="presente-lista">${G.itens.map(i => `<p class="texto">${i}</p>`).join('')}</div>` : ''}${G.pix ? `<div class="pix"><p class="sub">Chave Pix</p><p class="data pix-num">${G.pixTexto || G.pix}</p><button class="btn" id="copiarPix" type="button">Copiar chave</button></div>` : ''}`, 'alt');
 
 /* Confirmar presença: só o aviso, sem formulário */
 const R = C.rsvp;
@@ -495,6 +517,23 @@ if (R) sec('confirmar', 'Confirmar', `${tit(R.titulo)}
 $('#app').innerHTML = capa + secoes.join('') + `<footer>${rendaHTML(C.rodape)}${nomeHTML('script', true, C.logoRodape)}<p>${C.hashtag}</p></footer>`;
 
 window.__pronto = true;
+
+/* copiar chave Pix */
+const cp = $('#copiarPix');
+if (cp) cp.onclick = () => {
+  const txt = C.presentes.pix, ok = () => { cp.textContent = 'Chave copiada!'; setTimeout(() => { cp.textContent = 'Copiar chave'; }, 2500); };
+  const alt = () => { const t = document.createElement('textarea'); t.value = txt; t.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); ok(); } catch (e) {} t.remove(); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, alt); else alt();
+};
+
+/* vídeo da debutante: pausa a música enquanto ele toca e retoma depois */
+const vm = $('#videoMaria');
+if (vm) {
+  let tinha = false;
+  vm.addEventListener('play', () => { if (C.video.pausarMusica !== false && tocando) { tinha = true; pausar(); } });
+  const volta = () => { if (tinha) { tinha = false; tocar(); } };
+  vm.addEventListener('pause', volta); vm.addEventListener('ended', volta);
+}
 
 /* ajusta o tamanho das rendas conforme a imagem enviada */
 try { ajustarRendas(); } catch (e) {}
@@ -548,8 +587,3 @@ if (slides.length > 1) setInterval(() => {
 </script>
 </body>
 </html>
-
-
-
-
-
