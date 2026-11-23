@@ -213,7 +213,7 @@ const CONFIG = {
 
   capa: {
     frase: "Nada acontece sem antes existir um sonho, e na idade dos sonhos tudo é possível!",
-    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Capa%2002.jpg?raw=true", cor: "", veu: 0
+    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Capa.jpg?raw=true", cor: "", veu: 0
   },
   dataTexto: "",
 
@@ -240,8 +240,10 @@ const CONFIG = {
 
   programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null, renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(10).png?raw=true", cor: "", veu: 0 },
 
-  /* repetir: false = o vídeo toca só 1 vez (quando a seção aparece) e fica parado no último quadro */
-  local: { titulo: "Onde & Quando", renda: "", fundo: "Borboletas.mp4", poster: "", repetir: false, cor: "#fbf3f5", veu: 0 },
+  /* repetir: false = o vídeo toca só 1 vez (quando a seção aparece) e fica parado no fim.
+     congelarAntes: segundos antes do final em que o vídeo é congelado (evita a tela preta do último quadro).
+     Ainda aparece preto? aumente (ex.: 0.8). Ainda aparecem borboletas? diminua (ex.: 0.2). */
+  local: { titulo: "Onde & Quando", renda: "", fundo: "Borboletas.mp4", poster: "", repetir: false, congelarAntes: 0.5, cor: "#fbf3f5", veu: 0 },
 
   dressCode: { titulo: "Dress Code", texto: "", cores: [], renda: "", fundo: "", cor: "", veu: 0 },
 
@@ -362,7 +364,7 @@ const corSec = c => c && c.cor ? ` style="background-color:${c.cor}"` : '';
 const fundoHTML = (c, cor) => {
   if (!c || !c.fundo) return '';
   const s = c.fundo, ehVideo = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(s),
-    el = ehVideo ? `<video class="bg" src="${s}" ${c.repetir === false ? 'muted playsinline webkit-playsinline preload="metadata" data-uma-vez' + (c.poster ? ` poster="${c.poster}"` : '') : 'autoplay muted loop playsinline webkit-playsinline preload="metadata"'} onerror="this.style.display='none'"></video>` : `<img class="bg" src="${s}" alt="" onerror="this.style.display='none'">`;
+    el = ehVideo ? `<video class="bg" src="${s}" ${c.repetir === false ? 'muted playsinline webkit-playsinline preload="metadata" data-uma-vez data-antes="' + (c.congelarAntes || 0) + '"' + (c.poster ? ` poster="${c.poster}"` : '') : 'autoplay muted loop playsinline webkit-playsinline preload="metadata"'} onerror="this.style.display='none'"></video>` : `<img class="bg" src="${s}" alt="" onerror="this.style.display='none'">`;
   return el + (c.veu > 0 ? `<div class="veu" style="background:${c.cor || cor};opacity:${c.veu}"></div>` : '');
 };
 
@@ -501,6 +503,18 @@ try { ajustarRendas(); } catch (e) {}
 document.querySelectorAll('video[data-uma-vez]').forEach(v => {
   v.muted = true;
   const play = () => v.play().catch(() => {});
+  /* congela o vídeo um pouco antes do fim, para não aparecer o último quadro (preto) */
+  const antes = parseFloat(v.dataset.antes) || 0;
+  if (antes) {
+    let vigia = false;
+    const checar = () => {
+      if (v.paused || v.ended) { vigia = false; return; }
+      if (v.duration && v.currentTime >= v.duration - antes) { v.pause(); vigia = false; return; }
+      requestAnimationFrame(checar);
+    };
+    v.addEventListener('playing', () => { if (!vigia) { vigia = true; requestAnimationFrame(checar); } });
+    v.addEventListener('ended', () => { if (v.duration) { v.currentTime = Math.max(0, v.duration - antes - 0.05); v.pause(); } });
+  }
   if ('IntersectionObserver' in window) {
     const o = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { play(); o.disconnect(); } }), { threshold: .35 });
     o.observe(v.closest('section') || v);
@@ -534,4 +548,3 @@ if (slides.length > 1) setInterval(() => {
 </script>
 </body>
 </html>
-
