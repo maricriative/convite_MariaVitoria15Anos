@@ -279,7 +279,7 @@ const CONFIG = {
       { nome: "Hotel Supremo", link: "https://www.hotelsupremo.com.br/", botao: "Visitar site", imagem: "" },
       { nome: "Hotel Moriah", link: "https://www.instagram.com/hotelmoriah_/", botao: "Ver Instagram", imagem: "" }
     ],
-    renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Watercolor_curtains_framing_blan%E2%80%A6_2ac50269.jpg?raw=true", cor: "", veu: 0
+    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Watercolor_curtains_framing_blan%E2%80%A6_2ac50269.jpg?raw=true", cor: "", veu: 0
   },
 
   rodape: { renda: "", rendaAltura: 24, rendaPos: "topo" },
@@ -293,7 +293,7 @@ const CONFIG = {
 
   /* 🎬 VÍDEO DA DEBUTANTE: coloque o arquivo na mesma pasta do convite com este nome (ou mude o nome aqui).
      Se o arquivo não existir, a seção some sozinha. poster = imagem de capa do vídeo (opcional). */
-  video: { titulo: "Um Pouco da Maria Vitória", subtitulo: "Vídeo", arquivo: "VideoMariaVitoria02.mp4", poster: "", pausarMusica: true, renda: "", fundo: "", cor: "", veu: 0 },
+  video: { titulo: "Um Pouco da Maria Vitória", subtitulo: "Vídeo", arquivo: "VideoMaria.mp4", poster: "", renda: "", fundo: "", cor: "", veu: 0 },
 
   /* Confirmar presença: agora só mostra o aviso de que a assessoria entrará em contato */
   rsvp: {
@@ -529,7 +529,7 @@ if (cp) cp.onclick = () => {
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, alt); else alt();
 };
 
-/* vídeo da debutante: pausa a música enquanto ele toca e retoma depois */
+/* vídeo da debutante (a música de fundo continua tocando normalmente) */
 const vm = $('#videoMaria');
 if (vm) {
   /* só botão de play/pausa: sem barra de controles e sem volume (o volume é o do aparelho) */
@@ -539,10 +539,6 @@ if (vm) {
   vm.addEventListener('play', () => bt.classList.add('oculto'));
   vm.addEventListener('pause', () => bt.classList.remove('oculto'));
   vm.addEventListener('ended', () => bt.classList.remove('oculto'));
-  let tinha = false;
-  vm.addEventListener('play', () => { if (C.video.pausarMusica !== false && tocando) { tinha = true; pausar(); } });
-  const volta = () => { if (tinha) { tinha = false; tocar(); } };
-  vm.addEventListener('pause', volta); vm.addEventListener('ended', volta);
 }
 
 /* ajusta o tamanho das rendas conforme a imagem enviada */
@@ -597,7 +593,3 @@ if (slides.length > 1) setInterval(() => {
 </script>
 </body>
 </html>
-
-
-
-
