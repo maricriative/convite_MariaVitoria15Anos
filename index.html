@@ -151,8 +151,11 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 .presente-lista p:last-child{border-bottom:none}
 .pix{margin-top:30px;padding:26px 18px;border:1px solid var(--antigo);background:var(--card)}
 .pix-num{font-size:1.5rem;margin:6px 0 16px}
-.video-frame{max-width:320px;margin:0 auto;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2);overflow:hidden;background:#000}
-.video-frame video{width:100%;max-height:80vh;display:block}
+.video-frame{position:relative;max-width:320px;margin:0 auto;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2);overflow:hidden;background:#000}
+.video-frame video{width:100%;max-height:80vh;display:block;cursor:pointer}
+.vplay{position:absolute;top:50%;left:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);border:3px solid var(--claro);display:grid;place-items:center;transition:opacity .3s}
+.vplay svg{width:34px;height:34px;margin-left:4px}
+.vplay.oculto{opacity:0;pointer-events:none}
 /* Celulares antigos sem aspect-ratio (iOS < 15, Android antigo) */
 @supports not (aspect-ratio:1/1){
   .carrossel{height:0;padding-top:133.33%}
@@ -290,7 +293,7 @@ const CONFIG = {
 
   /* 🎬 VÍDEO DA DEBUTANTE: coloque o arquivo na mesma pasta do convite com este nome (ou mude o nome aqui).
      Se o arquivo não existir, a seção some sozinha. poster = imagem de capa do vídeo (opcional). */
-  video: { titulo: "Um Pouco da Maria Vitória", subtitulo: "Vídeo", arquivo: "VideoMariaVitoria.mp4", poster: "", pausarMusica: true, renda: "", fundo: "", cor: "", veu: 0 },
+  video: { titulo: "Um Pouco da Maria Vitória", subtitulo: "Vídeo", arquivo: "VideoMaria.mp4", poster: "", pausarMusica: true, renda: "", fundo: "", cor: "", veu: 0 },
 
   /* Confirmar presença: agora só mostra o aviso de que a assessoria entrará em contato */
   rsvp: {
@@ -488,7 +491,7 @@ if (fotosG.length) sec('galeria', 'Galeria', `${tit(GA.titulo || 'Galeria')}
 
 /* Vídeo da debutante */
 const V = C.video;
-if (V && V.arquivo) sec('video', 'Vídeo', `${tit(V.titulo, V.subtitulo)}<div class="video-frame"><video id="videoMaria" src="${V.arquivo}#t=0.1" ${V.poster ? `poster="${V.poster}"` : ''} controls playsinline webkit-playsinline preload="metadata" onerror="var s=this.closest('section');if(s)s.style.display='none'"></video></div>`);
+if (V && V.arquivo) sec('video', 'Vídeo', `${tit(V.titulo, V.subtitulo)}<div class="video-frame"><video id="videoMaria" src="${V.arquivo}#t=0.1" ${V.poster ? `poster="${V.poster}"` : ''} playsinline webkit-playsinline disablepictureinpicture preload="metadata" oncontextmenu="return false" onerror="var s=this.closest('section');if(s)s.style.display='none'"></video><button class="vplay" id="vplay" type="button" aria-label="Reproduzir vídeo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button></div>`);
 
 if (C.local) sec('local', 'Local', tit(C.local.titulo) + ev.map(e => {
   const d = new Date(e.dataHora), q = [e.espaco, e.endereco, C.cidade].filter(Boolean).join(' ');
@@ -529,6 +532,13 @@ if (cp) cp.onclick = () => {
 /* vídeo da debutante: pausa a música enquanto ele toca e retoma depois */
 const vm = $('#videoMaria');
 if (vm) {
+  /* só botão de play/pausa: sem barra de controles e sem volume (o volume é o do aparelho) */
+  const bt = $('#vplay');
+  const alterna = () => { if (vm.paused) { const p = vm.play(); if (p && p.catch) p.catch(() => {}); } else vm.pause(); };
+  bt.onclick = alterna; vm.onclick = alterna;
+  vm.addEventListener('play', () => bt.classList.add('oculto'));
+  vm.addEventListener('pause', () => bt.classList.remove('oculto'));
+  vm.addEventListener('ended', () => bt.classList.remove('oculto'));
   let tinha = false;
   vm.addEventListener('play', () => { if (C.video.pausarMusica !== false && tocando) { tinha = true; pausar(); } });
   const volta = () => { if (tinha) { tinha = false; tocar(); } };
@@ -587,5 +597,3 @@ if (slides.length > 1) setInterval(() => {
 </script>
 </body>
 </html>
-
-
