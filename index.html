@@ -30,7 +30,9 @@ window.addEventListener('error', function () {
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- fontes carregam sem travar a página (se o Google Fonts estiver lento ou bloqueado, o convite abre igual) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600&display=swap"></noscript>
 <style>
 /* Valores padrão. Para mudar cores e fontes, edite CONFIG.paleta e CONFIG.fontes no script. */
 :root{
@@ -156,6 +158,8 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 .vplay{position:absolute;top:50%;left:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);border:3px solid var(--claro);display:grid;place-items:center;transition:opacity .3s}
 .vplay svg{width:34px;height:34px;margin-left:4px}
 .vplay.oculto{opacity:0;pointer-events:none}
+#intro .dica{position:absolute;left:0;right:0;bottom:calc(9% + env(safe-area-inset-bottom,0px));z-index:5;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500;color:var(--enfase);text-shadow:0 1px 8px rgba(255,255,255,.9);opacity:0;animation:surge 1s ease 2.5s forwards;pointer-events:none}
+@keyframes surge{to{opacity:1}}
 /* Celulares antigos sem aspect-ratio (iOS < 15, Android antigo) */
 @supports not (aspect-ratio:1/1){
   .carrossel{height:0;padding-top:133.33%}
@@ -279,7 +283,7 @@ const CONFIG = {
       { nome: "Hotel Supremo", link: "https://www.hotelsupremo.com.br/", botao: "Visitar site", imagem: "" },
       { nome: "Hotel Moriah", link: "https://www.instagram.com/hotelmoriah_/", botao: "Ver Instagram", imagem: "" }
     ],
-    renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true", fundo: "", cor: "", veu: 
+    renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true", fundo: "", cor: "", veu: 0
   },
 
   rodape: { renda: "", rendaAltura: 24, rendaPos: "topo" },
@@ -436,9 +440,10 @@ if (A.usar !== false) {
     tentar();
   };
   if (A.imagem) intro.style.backgroundImage = `url("${A.imagem}")`;
-  const vid = A.video ? `<video id="introVid" src="${A.video}" ${A.imagem ? `poster="${A.imagem}"` : ''} playsinline preload="auto"></video>` : '';
+  const conn = navigator.connection || {}, leve = conn.saveData || /(^|-)(2g|3g)$/.test(conn.effectiveType || ''),
+    vid = (A.video && !conn.saveData) ? `<video id="introVid" src="${A.video}" ${A.imagem ? `poster="${A.imagem}"` : ''} playsinline preload="${leve ? 'none' : 'auto'}"></video>` : '';
   intro.innerHTML = A.imagem
-    ? `${vid}<button class="selo-clique" id="abrir" aria-label="Abrir convite"></button>`
+    ? `${vid}<button class="selo-clique" id="abrir" aria-label="Abrir convite"></button><p class="dica">${A.texto || 'Toque para abrir'}</p>`
     : `${vid}<button class="selo" id="abrir">${A.texto || 'Abrir'}</button>`;
   if (A.imagem) {
     intro.onclick = abrir;
@@ -593,6 +598,3 @@ if (slides.length > 1) setInterval(() => {
 </script>
 </body>
 </html>
-
-
-
