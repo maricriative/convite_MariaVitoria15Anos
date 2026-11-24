@@ -160,6 +160,10 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 .vplay.oculto{opacity:0;pointer-events:none}
 #intro .dica{position:absolute;left:0;right:0;bottom:calc(9% + env(safe-area-inset-bottom,0px));z-index:5;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500;color:var(--enfase);text-shadow:0 1px 8px rgba(255,255,255,.9);opacity:0;animation:surge 1s ease 2.5s forwards;pointer-events:none}
 @keyframes surge{to{opacity:1}}
+.deslize{margin-top:26px;display:flex;flex-direction:column;align-items:center}
+.deslize span{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.deslize svg{width:22px;height:22px;margin-top:4px;animation:desce 1.6s ease-in-out infinite}
+@keyframes desce{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
 /* Celulares antigos sem aspect-ratio (iOS < 15, Android antigo) */
 @supports not (aspect-ratio:1/1){
   .carrossel{height:0;padding-top:133.33%}
@@ -231,6 +235,7 @@ const CONFIG = {
     renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Capa.jpg?raw=true", cor: "", veu: 0
   },
   dataTexto: "",
+  deslize: { texto: "Deslize para baixo", cor: "#2F4A38" },   // aviso no fim da capa; texto vazio = não mostra. cor = verde escuro
 
   mensagem: {
     titulo: "Maria Vitória XV anos",   // só aparece se usarLogo for false (aqui vai TEXTO, não link)
@@ -474,6 +479,7 @@ const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.ca
     <div class="orn">♥</div>
     <p class="data data-capa">${dataTexto}</p>
     <p class="sub" style="margin-top:6px">${C.cidade}</p>
+    ${C.deslize && C.deslize.texto ? `<div class="deslize" style="color:${C.deslize.cor || '#2F4A38'}"><span>${C.deslize.texto}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>` : ''}
   </div></header>`;
 
 /* Mensagem: logo no lugar do nome + texto mais abaixo */
