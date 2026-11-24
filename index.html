@@ -297,7 +297,7 @@ const CONFIG = {
 
   /* 🎬 VÍDEO DA DEBUTANTE: coloque o arquivo na mesma pasta do convite com este nome (ou mude o nome aqui).
      Se o arquivo não existir, a seção some sozinha. poster = imagem de capa do vídeo (opcional). */
-  video: { titulo: "Um Pouco da Maria Vitória", subtitulo: "Vídeo", arquivo: "VideoMariaVitoria02.mp4", poster: "", renda: "", fundo: "", cor: "", veu: 0 },
+  video: { titulo: "Um Pouco da\nMaria Vitória", subtitulo: "", arquivo: "VideoMariaVitoria02.mp4", poster: "", renda: "", fundo: "", cor: "", veu: 0 },
 
   /* Confirmar presença: agora só mostra o aviso de que a assessoria entrará em contato */
   rsvp: {
@@ -462,7 +462,7 @@ const sec = (id, rot, html, cls = '') => {
   const cor = cls.includes('escuro') ? 'var(--enfase)' : cls.includes('alt') ? 'var(--secaoAlt)' : 'var(--fundo)';
   secoes.push(`<section class="sec ${cls}" id="${id}"${corSec(CFG[id])}>${fundoHTML(CFG[id], cor)}${rendaHTML(CFG[id])}<div class="wrap">${html}</div></section>`);
 };
-const tit = (t, s) => `${s ? `<p class="sub">${s}</p>` : ''}<h2>${t}</h2><div class="orn">♥</div>`;
+const tit = (t, s) => `${s ? `<p class="sub">${s}</p>` : ''}<h2>${String(t).replace(/\n/g, '<br>')}</h2><div class="orn">♥</div>`;
 const ICONE_OK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12.5l3.2 3.2 5.8-6.4"/></svg>`;
 
 const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.capa, 'var(--fundo)')}${rendaHTML(C.capa)}
