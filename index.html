@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://maricriative.github.io/convite_MariaVitoria15Anos/Wedding_invitation_suite_design_1b18670d%20(1).jpg">
 <meta property="og:url" content="https://maricriative.github.io/convite_MariaVitoria15Anos/">
 <script>
-/* Rede de segurança (compatível com navegadores antigos): se o script principal falhar, o convite não fica preso na abertura */
+/* Rede de segurança: se o script principal falhar, o convite não fica preso na abertura */
 window.addEventListener('error', function () {
   try {
     if (window.__pronto) return;
@@ -30,71 +30,87 @@ window.addEventListener('error', function () {
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- fontes carregam sem travar a página (se o Google Fonts estiver lento ou bloqueado, o convite abre igual) -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Pinyon+Script&family=Montserrat:wght@300;400;500;600;700&display=swap"></noscript>
 <style>
-/* Valores padrão. Para mudar cores e fontes, edite CONFIG.paleta e CONFIG.fontes no script. */
+/* ===== ESTILO (não precisa mexer: cores, fontes e links ficam no CONFIG lá embaixo) ===== */
 :root{
   --fundo:#FBF3F5; --card:#FFFAFB; --secaoAlt:#F7E6EA;
   --claro:#F1CCD4; --rosa:#E6A9BA; --antigo:#D299A2; --salmao:#E3A1A8;
   --enfase:#8A4E5B; --texto:#5E2F3A; --textoSuave:#85535F; --textoClaro:#FFF7F8;
-  --f-tit:'Achetta','Italiana',serif; --f-script:'Barsela Calligraphy','Pinyon Script',cursive; --f-corpo:'Montserrat',sans-serif;
+  --textoForte:#3E1C26; --textoMedio:#4A2530;
+  --f-tit:'Playfair Display',serif; --f-script:'Pinyon Script',cursive; --f-corpo:'Raleway',sans-serif;
+  --btn-rgb:241,204,212; --btn-txt:#7A3F4C; --btn-op:.9; --btn-raio:99px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
-body{background:var(--fundo);color:var(--texto);font-family:var(--f-corpo);font-weight:300;font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body.locked{overflow:hidden}
+body{background:var(--fundo);color:var(--textoForte);font-family:var(--f-corpo);font-weight:500;font-size:17px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums}
+body.locked,body.modal-aberto{overflow:hidden}
 img,video,iframe{max-width:100%;display:block}
 button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
-h2{font-family:var(--f-tit);font-weight:400;font-size:2.1rem;line-height:1.2;text-align:center;color:var(--enfase)}
-h3{font-family:var(--f-tit);font-weight:400;font-size:1.5rem;color:var(--enfase)}
-h3.script,.script{font-family:var(--f-script);font-weight:400;font-size:2.3rem;line-height:1.1}
-.sub{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;text-align:center;color:var(--textoSuave);font-weight:500}
-.orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px auto 26px;color:var(--antigo);font-size:11px}
+h2{font-family:var(--f-tit);font-weight:600;font-size:2.3rem;line-height:1.2;text-align:center;color:var(--enfase)}
+h3{font-family:var(--f-tit);font-weight:600;font-size:1.7rem;line-height:1.25;color:var(--enfase)}
+.script{font-family:var(--f-script);font-weight:400;font-size:2.3rem;line-height:1.1}
+.sub{font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;text-align:center;color:var(--textoForte);font-weight:700;margin-bottom:4px}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:10px auto 18px;color:var(--antigo);font-size:14px}
 .orn::before,.orn::after{content:"";width:44px;height:1px;background:var(--antigo)}
-.texto{font-size:1.02rem;color:var(--textoSuave)}
-.data{font-family:var(--f-tit);font-size:1.15rem;color:var(--enfase)}
-.data-capa{font-size:1.75rem;line-height:1.25}
+.texto{font-size:1.2rem;color:var(--textoMedio);font-weight:500;line-height:1.65}
+.data{font-family:var(--f-corpo);font-weight:700;font-size:1.3rem;color:var(--textoForte)}
+.data-capa{font-family:var(--f-data,var(--f-corpo));font-weight:600;font-size:clamp(1.9rem,8vw,2.9rem);line-height:1.25}
 
-section.sec{padding:64px 22px;position:relative;overflow:hidden}
+section.sec{padding:46px 22px;position:relative;overflow:hidden}
 .bg{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .veu{position:absolute;top:0;right:0;bottom:0;left:0;z-index:1}
 .wrap,.capa-card{position:relative;z-index:2}
 section.alt{background:var(--secaoAlt)}
-.wrap{max-width:480px;margin:0 auto;text-align:center}
-.ev{margin-top:34px}
-.ev+.ev{padding-top:34px;border-top:1px solid var(--antigo)}
-.ev-card{position:relative;overflow:hidden;margin-top:30px;padding:34px 20px;border:1px solid var(--antigo)}
+.wrap{max-width:680px;margin:0 auto;text-align:center}
+.ev{margin-top:26px}
+.ev+.ev{padding-top:26px;border-top:1px solid var(--antigo)}
+.ev h3{margin-bottom:4px}
+.ev-card{position:relative;overflow:hidden;margin-top:20px;padding:28px 20px;border:1px solid var(--antigo)}
 .ev-conteudo{position:relative;z-index:2}
-.ev-nome{font-family:var(--f-tit);font-weight:400;font-size:1.9rem;line-height:1.15;color:var(--enfase)}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 28px;border-radius:99px;border:1px solid var(--enfase);color:var(--enfase);
-  text-decoration:none;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:transform .2s}
-.btn:active{transform:scale(.97)}
+.ev-card .sub{margin-bottom:6px}
+.ev-nome{font-family:var(--f-tit);font-weight:600;font-size:1.9rem;line-height:1.15;color:var(--enfase);margin-bottom:8px}
+.ev-card .btn{margin-top:16px}
 
-.foto{width:100%;max-width:280px;aspect-ratio:2/3;object-fit:cover;margin:30px auto 8px;
+/* BOTÕES — apenas contorno e texto, sem preenchimento (cores no CONFIG.botoes) */
+.btn,.rsvp-ico,#musicBtn,.pix-num{
+  background:transparent;color:var(--btn-txt);
+  border:2px solid var(--btn-borda,var(--btn-txt));box-shadow:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:15px 38px;border-radius:var(--btn-raio);
+  text-decoration:none;font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;transition:transform .2s}
+.btn:active,.pix-num:active{transform:scale(.97)}
+.texto+.btn-abrir{margin-top:22px}
+
+.dress-img{width:100%;max-width:360px;margin:18px auto 6px;border-radius:20px;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2);object-fit:cover}
+.foto{width:100%;max-width:420px;aspect-ratio:2/3;object-fit:cover;margin:24px auto 8px;
   border-radius:140px 140px 6px 6px;border:3px solid var(--antigo);padding:6px;background:var(--card);
   outline:1px solid var(--rosa);outline-offset:6px;box-shadow:0 12px 30px rgba(138,78,91,.25)}
-.gal-wrap{position:relative;width:100%;max-width:300px;margin:0 auto}
-.gal-wrap.com-renda{margin:70px auto 60px}
-.gal-wrap.com-faixa{margin:40px auto}
-.gal-renda{position:absolute;left:50%;top:50%;width:calc(var(--esc,1.3)*100%);max-width:calc(100vw - 8px);height:auto;transform:translate(-50%,-50%);pointer-events:none;z-index:3}
-.gal-faixa{position:absolute;left:-14px;right:-14px;height:var(--fh,28px);background-repeat:repeat-x;background-position:center;background-size:auto 100%;pointer-events:none;z-index:3}
-.gal-faixa.topo{top:calc(var(--fh,28px)/-2)}
-.gal-faixa.base{bottom:calc(var(--fh,28px)/-2);transform:scaleY(-1)}
-.gal-lado{position:absolute;top:50%;width:calc(100%*4/3 + 28px);height:var(--fh,28px);background-repeat:repeat-x;background-position:center;background-size:auto 100%;pointer-events:none;z-index:3}
-.gal-lado.esq{left:0;transform:translate(-50%,-50%) rotate(-90deg)}
-.gal-lado.dir{right:0;transform:translate(50%,-50%) rotate(90deg)}
 
-.carrossel{position:relative;width:100%;max-width:300px;aspect-ratio:3/4;margin:0 auto;overflow:hidden;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2)}
-.slide{position:absolute;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .9s}
-.slide.ativo{opacity:1;z-index:1}
-.slide img{width:100%;height:100%;max-width:none;object-fit:cover}
-.pontos{position:absolute;left:0;right:0;bottom:10px;z-index:2;display:flex;gap:6px;justify-content:center}
-.pontos i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.7);transition:.3s}
-.pontos i.ativo{background:var(--enfase);transform:scale(1.25)}
+/* GALERIA — mosaico (blocos de 4 fotos) */
+.mosaico{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.mos-bloco{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:repeat(20,minmax(0,1fr));gap:8px;aspect-ratio:1/1.1;height:auto}
+.mos-bloco>:nth-child(1){grid-area:1/1/14/2}
+.mos-bloco>:nth-child(2){grid-area:1/2/11/3}
+.mos-bloco>:nth-child(3){grid-area:14/1/21/2}
+.mos-bloco>:nth-child(4){grid-area:11/2/21/3}
+.mos-bloco.esp{grid-template-columns:1fr 2fr}
+.mos-bloco.esp>:nth-child(1){grid-area:1/2/14/3}
+.mos-bloco.esp>:nth-child(2){grid-area:1/1/11/2}
+.mos-bloco.esp>:nth-child(3){grid-area:14/2/21/3}
+.mos-bloco.esp>:nth-child(4){grid-area:11/1/21/2}
+.mos-f{position:relative;overflow:hidden;min-width:0;min-height:0;border:2px solid var(--antigo);background:var(--card);box-shadow:0 6px 16px rgba(138,78,91,.18);padding:0}
+.mos-f img{position:absolute;top:0;left:0;width:100%;height:100%;max-width:none;object-fit:cover;transition:transform .5s}
+.mos-f:active img{transform:scale(1.04)}
+#lb{position:fixed;top:0;right:0;bottom:0;left:0;z-index:400;background:rgba(40,16,24,.95);display:none;align-items:center;justify-content:center;padding:56px 12px}
+#lb.on{display:flex}
+#lbImg{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-select:none}
+#lb button{position:absolute;color:#fff;background:rgba(255,255,255,.14);border-radius:50%;width:44px;height:44px;font-size:1.9rem;line-height:1;display:grid;place-items:center}
+#lb.solo #lbP,#lb.solo #lbN{display:none}
+#lbX{top:calc(10px + env(safe-area-inset-top,0px));right:12px}
+#lbP{left:8px;top:50%;margin-top:-22px}
+#lbN{right:8px;top:50%;margin-top:-22px}
+#lbC{position:absolute;top:calc(20px + env(safe-area-inset-top,0px));left:0;right:0;text-align:center;color:#fff;font-size:.85rem;letter-spacing:.2em;pointer-events:none}
 
-.cores{display:flex;gap:12px;justify-content:center;margin-top:20px}
+.cores{display:flex;gap:12px;justify-content:center;margin-top:18px}
 .cores i{width:34px;height:34px;border-radius:50%;border:2px solid var(--card);box-shadow:0 2px 8px rgba(0,0,0,.2)}
 
 #intro{position:fixed;top:0;right:0;bottom:0;left:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;color:var(--enfase);
@@ -102,44 +118,81 @@ section.alt{background:var(--secaoAlt)}
 #intro.open{transform:translateY(-100%);opacity:0}
 #introVid{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;z-index:10;background:transparent;opacity:0;pointer-events:none;transition:opacity .25s}
 #introVid.pronto{opacity:1;pointer-events:auto}
-.selo{width:104px;height:104px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);border:3px solid var(--card);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500}
+.selo{width:104px;height:104px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);border:3px solid var(--card);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:600}
 .selo-clique{width:130px;height:130px;border-radius:50%;background:transparent}
+#intro .toque{position:absolute;left:50%;bottom:calc(7% + env(safe-area-inset-bottom,0px));z-index:5;
+  width:min(36vw,170px);height:auto;transform:translateX(-50%);pointer-events:none;
+  filter:drop-shadow(0 5px 10px rgba(94,47,58,.35));opacity:0;animation:surge 1s ease 2.5s forwards,pulsa 2.2s ease-in-out 3.5s infinite}
+@keyframes pulsa{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.07)}}
+@keyframes surge{to{opacity:1}}
+#intro .dica{position:absolute;bottom:calc(9% + env(safe-area-inset-bottom,0px));z-index:5;left:50%;transform:translateX(-50%);width:max-content;max-width:90vw;
+  font-size:1.1rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--enfase);padding:14px 30px;border-radius:99px;
+  box-shadow:0 6px 16px rgba(138,78,91,.4);opacity:0;animation:surge 1s ease 2.5s forwards;pointer-events:none}
 
 .hero{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:36px 20px;background:var(--fundo) center/cover no-repeat}
-.capa-card{width:100%;max-width:400px;text-align:center;padding:10px}
+.capa-card{width:100%;max-width:620px;text-align:center;padding:10px 6px}
 .capa-card .nome{font-family:var(--f-script);font-size:clamp(2.8rem,14vw,4rem);line-height:1.05;color:var(--enfase);margin:8px 0}
-.frase{font-family:var(--f-tit);font-size:1.08rem;color:var(--texto);margin:16px 0 4px;line-height:1.45}
+.capa-card .sub{font-size:.95rem;line-height:1.9}
+.capa-card .logo-nome{width:92%;max-width:480px;margin:14px auto}
+.frase{font-family:var(--f-corpo);font-size:clamp(1.25rem,4.6vw,1.7rem);font-weight:600;color:var(--textoForte);margin:22px 0 8px;line-height:1.5}
 
-.escuro{background:var(--enfase);color:var(--textoClaro);padding:90px 22px}
-.escuro h2{color:var(--textoClaro)}
-.escuro .sub{color:var(--claro)}
+.escuro{padding:56px 22px}
+#contagem{background-color:var(--ct-fundo,var(--fundo))}
+#contagem h2{color:var(--ct-titulo,var(--enfase))}
+#contagem .sub{color:var(--ct-sub,var(--textoForte))}
 .renda{position:absolute;left:0;right:0;z-index:3;background-repeat:repeat-x;background-position:center top;background-size:auto 100%;pointer-events:none}
 .renda.topo{top:0}
 .renda.base{bottom:0;transform:scaleY(-1)}
-.cd{display:flex;justify-content:center}
-.cd>div{margin:0 8px}
-.cd b{display:block;font-family:var(--f-tit);font-weight:400;font-size:2.1rem;line-height:1}
-.cd span{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--claro)}
+.cd{display:flex;justify-content:center;gap:8px;margin:22px auto 0;max-width:420px}
+.cd>div{flex:1;min-width:0;padding:16px 4px 12px;border:2px solid var(--ct-moldura,var(--ct-num,var(--enfase)));border-radius:14px}
+.cd b{display:block;font-family:var(--f-num,var(--f-corpo));font-weight:600;font-size:2.3rem;line-height:1;color:var(--ct-num,var(--enfase))}
+.cd span{display:block;margin:10px 10px 0;padding-top:7px;border-top:1px solid var(--ct-moldura,var(--ct-num,var(--enfase)));font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ct-rot,var(--enfase))}
 
-.tl{position:relative;text-align:left}
-.tl::before{content:"";position:absolute;left:103px;top:10px;bottom:10px;width:1px;background:var(--antigo)}
-.tl-i{display:grid;grid-template-columns:84px 18px 1fr;gap:10px;margin-bottom:26px;align-items:start}
-.tl-h{font-family:var(--f-tit);font-size:1.35rem;color:var(--enfase);text-align:right;line-height:1.1}
-.tl-h small{display:block;font-family:var(--f-corpo);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--textoSuave)}
+.tl{position:relative;text-align:left;--col:104px}
+.tl::before{content:"";position:absolute;left:calc(var(--col) + 19px);top:10px;bottom:10px;width:1px;background:var(--antigo)}
+.tl-i{display:grid;grid-template-columns:var(--col) 18px 1fr;gap:10px;margin-bottom:22px;align-items:start}
+.tl-h{font-family:var(--f-corpo);font-weight:700;font-size:1.4rem;color:var(--textoForte);text-align:right;line-height:1.1}
+.tl-h small{display:block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--textoMedio);margin-top:4px}
 .tl-d{color:var(--antigo);font-size:.8rem;text-align:center}
-.tl-t b{display:block;font-family:var(--f-tit);font-weight:400;font-size:1.15rem;color:var(--enfase)}
-.tl-t span{font-size:.85rem;color:var(--textoSuave)}
+.tl-t b{display:block;font-family:var(--f-tit);font-weight:600;font-size:1.3rem;color:var(--enfase);margin-bottom:2px}
+.tl-t span{font-size:1rem;font-weight:500;color:var(--textoMedio)}
+.tl-t em{display:block;margin-top:6px;font-style:normal;font-weight:700;color:var(--enfase)}
 
-/* Confirmar presença (apenas aviso, sem formulário) */
-.rsvp-ico{width:84px;height:84px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);display:grid;place-items:center;margin:8px auto 4px;border:4px solid var(--claro)}
+/* MOLDURA DO VÍDEO + RENDA NOS CANTOS (imagens no CONFIG.mensagem.videoRenda) */
+.video-frame{position:relative;max-width:460px;margin:24px auto 0;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2);background:#000}
+.video-frame video{width:100%;max-height:80vh;display:block}
+.video-frame .canto{position:absolute;width:var(--vr,100%);height:var(--vh,auto);object-fit:cover;max-width:none;pointer-events:none;z-index:3}
+.video-frame .canto.sd{top:-6px;right:0;object-position:right center}
+.video-frame .canto.ie{bottom:-6px;left:0;object-position:left center}
+.video-frame .canto.gira{transform:rotate(180deg)}
+
+.rsvp-ico{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;margin:14px auto 4px}
+button.rsvp-ico{cursor:pointer;animation:anel 2.6s ease-out infinite;transition:transform .2s}
+button.rsvp-ico:active{transform:scale(.94)}
+@keyframes anel{0%{box-shadow:0 0 0 0 rgba(210,153,162,.65)}70%,100%{box-shadow:0 0 0 20px rgba(210,153,162,0)}}
 .rsvp-ico svg{width:40px;height:40px}
 .rsvp-ico img{width:44px;height:44px;object-fit:contain}
+.rsvp-form{max-width:460px;margin:0 auto;text-align:left}
+.rsvp-form label{display:block;font-weight:700;font-size:1.05rem;margin:16px 0 8px;color:var(--textoForte)}
+.rsvp-form input,.rsvp-form textarea{width:100%;font:inherit;font-size:1.1rem;font-weight:500;padding:14px 16px;border:2px solid var(--antigo);border-radius:12px;background:var(--card);color:var(--textoForte);outline:none}
+.rsvp-form input:focus,.rsvp-form textarea:focus{border-color:var(--enfase)}
+.rsvp-form textarea{resize:vertical}
+.rsvp-erro{margin-top:10px;font-weight:700;color:#A12B3C}
+.rsvp-form .btn{display:flex;width:100%;margin-top:22px}
 
-footer{position:relative;overflow:hidden;background:var(--enfase);color:var(--textoClaro);text-align:center;padding:52px 20px calc(52px + env(safe-area-inset-bottom,0px))}
+.janela-fundo{position:fixed;top:0;right:0;bottom:0;left:0;z-index:300;background:rgba(62,28,38,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+.janela-fundo.on{display:flex}
+.janela{position:relative;width:min(440px,100%);max-height:88vh;max-height:88svh;overflow:auto;background:var(--card);border:1px solid var(--antigo);border-radius:26px;padding:44px 24px 28px;text-align:center;box-shadow:0 20px 50px rgba(62,28,38,.35);animation:pop .45s cubic-bezier(.2,.9,.3,1.15)}
+@keyframes pop{from{opacity:0;transform:scale(.92) translateY(14px)}}
+.janela-x{position:absolute;top:8px;right:10px;width:42px;height:42px;border-radius:50%;font-size:1.8rem;line-height:1;color:var(--enfase)}
+.janela .orn{margin:10px auto 18px}
+.janela-img{width:100%;height:auto;margin:0 auto 18px;border-radius:16px;border:2px solid var(--antigo);box-shadow:0 8px 20px rgba(138,78,91,.18)}
+.janela .pix{margin-top:20px}
+
+footer{position:relative;overflow:hidden;background:var(--enfase);color:var(--textoClaro);text-align:center;padding:44px 20px calc(44px + env(safe-area-inset-bottom,0px))}
 footer .script{font-size:2.8rem}
-footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
-#musicBtn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:120;width:46px;height:46px;border-radius:50%;
-  border:1.5px solid var(--antigo);background:var(--enfase);color:var(--textoClaro);font-size:1.1rem;display:grid;place-items:center}
+footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro);margin-top:10px}
+#musicBtn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:120;width:46px;height:46px;border-radius:50%;font-size:1.1rem;display:grid;place-items:center}
 #musicBtn.tocando{animation:giro 6s linear infinite}
 @keyframes giro{to{transform:rotate(360deg)}}
 #ytwrap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -148,90 +201,22 @@ footer p{letter-spacing:.2em;font-size:.8rem;color:var(--claro)}
 .rv.in{opacity:1;transform:none}
 .logo-nome{display:block;width:80%;max-width:300px;height:auto;margin:10px auto}
 .logo-nome.branca{filter:brightness(0) invert(1)}
-.presente-lista{margin-top:22px}
-.presente-lista p{padding:10px 0;border-bottom:1px solid var(--rosa)}
+.logo-msg{margin:0 0 0 50%;transform:translateX(-50%);width:min(var(--lw,460px),calc(100vw - 16px));max-width:none}
+.presente-lista{margin-top:16px}
+.presente-lista p{padding:14px 0;border-bottom:1px solid var(--rosa)}
 .presente-lista p:last-child{border-bottom:none}
-.pix{margin-top:30px;padding:26px 18px;border:1px solid var(--antigo);background:var(--card)}
-.pix-num{font-size:1.5rem;margin:6px 0 16px}
-.video-frame{position:relative;max-width:320px;margin:0 auto;border:3px solid var(--antigo);box-shadow:0 10px 26px rgba(138,78,91,.2);overflow:hidden;background:#000}
-.video-frame video{width:100%;max-height:80vh;display:block;cursor:pointer}
-.vplay{position:absolute;top:50%;left:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;background:var(--enfase);color:var(--textoClaro);border:3px solid var(--claro);display:grid;place-items:center;transition:opacity .3s}
-.vplay svg{width:34px;height:34px;margin-left:4px}
-.vplay.oculto{opacity:0;pointer-events:none}
-#intro .dica{position:absolute;left:0;right:0;bottom:calc(9% + env(safe-area-inset-bottom,0px));z-index:5;font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;font-weight:500;color:var(--enfase);text-shadow:0 1px 8px rgba(255,255,255,.9);opacity:0;animation:surge 1s ease 2.5s forwards;pointer-events:none}
-@keyframes surge{to{opacity:1}}
-.deslize{margin-top:26px;display:flex;flex-direction:column;align-items:center}
-.deslize span{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
-.deslize svg{width:22px;height:22px;margin-top:4px;animation:desce 1.6s ease-in-out infinite}
+.pix{margin-top:22px;padding:24px 18px;border:1px solid var(--antigo);background:var(--card)}
+.pix .sub{font-size:.9rem}
+.pix-num{display:block;width:100%;margin:10px 0 8px;padding:16px 10px;border-radius:18px;font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.15rem,5vw,1.5rem);font-weight:700;letter-spacing:.05em;color:var(--btn-txt);transition:transform .2s}
+.pix-dica{font-size:.85rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--enfase)}
+.deslize{margin-top:18px;display:flex;flex-direction:column;align-items:center}
+.deslize span{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+.deslize svg{width:20px;height:20px;margin-top:2px;animation:desce 1.6s ease-in-out infinite}
 @keyframes desce{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(6px);opacity:1}}
-/* Celulares antigos sem aspect-ratio (iOS < 15, Android antigo) */
 @supports not (aspect-ratio:1/1){
-  .carrossel{height:0;padding-top:133.33%}
+  .mos-bloco{height:520px}
   .foto{height:400px}
 }
-
-/* ==========================================================================
-   AJUSTES DE LEITURA, CONTRASTE E TOQUE (revisão da cliente)
-   ========================================================================== */
-body{font-size:17px;font-weight:400;color:#3E1C26}
-
-/* Textos: maiores, mais escuros e mais firmes */
-.sub{font-size:.85rem;font-weight:600;letter-spacing:.2em;color:#3E1C26}
-.escuro .sub{color:var(--claro)}
-.texto{font-size:1.2rem;font-weight:500;color:#4A2530;line-height:1.7}
-h2{font-size:2.6rem;-webkit-text-stroke:.5px var(--enfase)}
-h3{font-size:1.8rem;-webkit-text-stroke:.4px var(--enfase)}
-.escuro h2{-webkit-text-stroke:0}
-.orn{font-size:14px}
-
-/* Números e datas: fonte reta (a Italiana corta as pontas dos dígitos) */
-.data,.tl-h{font-family:var(--f-corpo);font-weight:600;font-variant-numeric:lining-nums;color:#3E1C26}
-.cd b{font-family:var(--f-corpo);font-weight:600;font-variant-numeric:lining-nums;font-size:2.4rem}
-.cd span{font-size:.7rem;font-weight:600}
-.data{font-size:1.3rem}
-.tl{--col:104px}
-.tl::before{left:calc(var(--col) + 19px)}
-.tl-i{grid-template-columns:var(--col) 18px 1fr}
-.tl-h{font-size:1.4rem}
-.tl-h small{font-size:.7rem;font-weight:600;color:#4A2530}
-.tl-t b{font-size:1.3rem;-webkit-text-stroke:.4px var(--enfase)}
-.tl-t span{font-size:1rem;font-weight:500;color:#4A2530}
-
-/* Capa: bloco maior, ocupando melhor a tela */
-.capa-card{max-width:620px;padding:10px 6px}
-.capa-card .sub{font-size:.95rem;font-weight:700;color:#3E1C26;line-height:1.9}
-.capa-card .logo-nome{width:92%;max-width:480px}
-.frase{font-family:var(--f-corpo);font-size:clamp(1.25rem,4.6vw,1.7rem);font-weight:600;color:#3E1C26;line-height:1.5;margin:22px 0 8px}
-.data-capa{font-size:clamp(1.7rem,7vw,2.5rem);font-weight:700;line-height:1.3}
-.deslize span{font-size:.95rem;font-weight:700}
-.deslize svg{width:32px;height:32px}
-
-/* Seções mais largas (menos vazio) */
-.wrap{max-width:680px}
-section.sec{padding:80px 22px}
-.escuro{padding:100px 22px}
-
-/* Fotos, galeria e vídeo maiores */
-.foto{max-width:420px}
-.gal-wrap,.carrossel{max-width:460px}
-.video-frame{max-width:460px}
-
-/* Presentes e chave Pix legíveis */
-.presente-lista p{padding:14px 0}
-.pix{padding:30px 18px}
-.pix .sub{font-size:.9rem}
-.pix-num{font-family:Arial,Helvetica,sans-serif;font-size:clamp(1.9rem,8vw,2.6rem);font-weight:700;letter-spacing:.06em;color:#3E1C26;margin:10px 0 20px}
-
-/* Botões grandes, preenchidos e fáceis de tocar */
-.btn{background:var(--enfase);color:#fff;border:2px solid var(--enfase);min-height:54px;padding:16px 38px;
-  font-size:.95rem;font-weight:700;letter-spacing:.14em;box-shadow:0 6px 16px rgba(138,78,91,.35)}
-
-/* Abertura: faixa "Toque para abrir" (PNG) por cima da imagem inicial */
-#intro .toque{position:absolute;left:50%;bottom:calc(6% + env(safe-area-inset-bottom,0px));z-index:5;
-  width:min(78vw,420px);height:auto;transform:translateX(-50%);pointer-events:none;
-  filter:drop-shadow(0 6px 14px rgba(94,47,58,.35));opacity:0;animation:surge 1s ease 2.5s forwards,pulsa 2.2s ease-in-out 3.5s infinite}
-@keyframes pulsa{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.06)}}
-#intro .dica{font-size:1.1rem;font-weight:700;color:#fff;background:var(--enfase);width:max-content;max-width:90vw;left:50%;right:auto;transform:translateX(-50%);padding:14px 30px;border-radius:99px;text-shadow:none;box-shadow:0 6px 16px rgba(138,78,91,.4)}
 </style>
 </head>
 <body class="locked">
@@ -241,30 +226,26 @@ section.sec{padding:80px 22px}
 <main id="app"></main>
 <button id="musicBtn" title="Música">♪</button>
 <div id="barra-inf"></div>
+<div class="janela-fundo" id="janela" role="dialog" aria-modal="true"><div class="janela"><button class="janela-x" id="janelaX" type="button" aria-label="Fechar">×</button><div id="janelaConteudo"></div></div></div>
+<div id="lb" role="dialog" aria-modal="true"><span id="lbC"></span><button id="lbX" type="button" aria-label="Fechar">×</button><button id="lbP" type="button" aria-label="Anterior">‹</button><img id="lbImg" alt=""><button id="lbN" type="button" aria-label="Próxima">›</button></div>
 
 <script>
-/* ==========================================================================
-   ✏️ CONFIGURAÇÕES — XV ANOS MARIA VITÓRIA
-   EM TODAS AS SEÇÕES VOCÊ PODE USAR:
-     fundo: imagem, GIF ou vídeo .mp4 (o vídeo toca sozinho, mudo e em loop). "" = sem fundo.
-     repetir: false = o vídeo de fundo toca UMA vez só (começa quando a seção aparece na tela).
-     espacoTopo: espaço (px) acima do título da seção: aumente para afastar o texto das flores.
-     cor:   cor de fundo da seção, em hexadecimal. "" = cor padrão da seção.
-     veu:   de 0 a 1, cobre o fundo com a cor da seção para dar leitura ao texto.
-     renda: imagem PNG de renda repetida no topo e na base da seção. "" = sem renda.
-            A altura agora se ajusta sozinha ao formato da imagem (nunca menor que rendaAltura).
-     rendaAltura: altura MÍNIMA da renda, em px (padrão 24).
-     rendaPos: "ambas" (padrão), "topo" ou "base".
-   ========================================================================== */
+/* ============================================================================
+   COMO USAR: cada seção do convite tem um bloco numerado.
+   Mexa só no que está entre aspas "…". "" (vazio) = não usar.
+   Arquivo na mesma pasta → só o nome:  "VideoMaria.mp4"   |   da internet → link inteiro.
+   ============================================================================ */
 const CONFIG = {
+
+/* 0 — GERAL */
   nome: "Maria Vitória",
-  logoNome: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA_Prancheta%201.png?raw=true",
-  logoRodape: "",
-  logoRodapeBranca: true,
   hashtag: "#MariaVitóriaXV",
   cidade: "São Francisco - MG",
-  celebracao: "Aniversário de\nMaria Vitória\ne de seu Vô Tone Veloso",   // \n = quebra de linha
-
+  logoNome: "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/Posicionar_XV_abaixo_do_nome_b63098b8.png?raw=true",
+  logoRodape: "",
+  logoRodapeBranca: true,
+  renda: "",
+  rendaAltura: 24, rendaAlturaMax: 110, rendaTile: 360,
   barras: { superior: "#F1CCD4", inferior: "#F1CCD4" },
 
   paleta: {
@@ -274,78 +255,160 @@ const CONFIG = {
     claro:       "#F1CCD4",
     rosa:        "#E6A9BA",
     antigo:      "#D299A2",
-    salmao:      "#E3A1A8",
-    enfase:      "#8A4E5B",
+    salmao:      "#FBF3F5",
+    enfase:      "#c68f98",   // títulos
     texto:       "#5E2F3A",
     textoSuave:  "#85535F",
-    textoClaro:  "#FFF7F8"
+    textoClaro:  "#FFF7F8",
+    textoForte:  "#59000b",
+    textoMedio:  "#4A2530"
   },
 
-  fontes: { arquivoTitulo: "", arquivoScript: "" },
+  /* BOTÕES — somente contorno e texto (sem preenchimento) */
+  botoes: {
+    texto: "#7A3F4C",    // cor das letras do botão
+    contorno: "#7A3F4C", // cor da linha do contorno (se apagar, usa a cor do texto)
+    raio: "99px"         // "99px" = pílula | "18px" = cantos mais retos
+  },
 
-  renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true",
-  rendaAltura: 24,       // altura mínima (px) de todas as rendas
-  rendaAlturaMax: 110,   // altura máxima (px) quando a renda é ajustada automaticamente
-  rendaTile: 360,        // largura (px) de cada repetição da renda: aumente para rendas maiores
-
-  /* 👉 Quando você tiver a nova imagem e o novo vídeo (com o monograma "MV"), troque os nomes de "imagem" e "video" abaixo.
-     toque = faixa PNG "Toque para abrir" (fundo transparente), colocada por cima da imagem inicial. "" = usa o texto simples. */
-  abertura: { usar: true, cor: "", imagem: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Wedding_invitation_suite_design_1b18670d%20(1).jpg?raw=true", video: "Untitled project 12.mp4", toque: "toque-para-abrir.png", texto: "Toque para abrir" },
+  fontes: {
+    titulo: "Playfair Display",
+    corpo:  "Raleway",
+    script: "Pinyon Script",
+    data:    "Cormorant Garamond",   // fonte da data da capa (08 e 09 de janeiro de 2027). Ideias: "Bodoni Moda", "Italiana", "Marcellus", "Playfair Display", "Cinzel"
+    numeros: "Bodoni Moda",          // fonte dos números da contagem. Ideias: "Syne", "Outfit", "Unbounded", "Cormorant Garamond", "Italiana"
+    arquivoTitulo: "",
+    arquivoScript: ""
+  },
 
   musica: "",
   youtube: "https://youtu.be/6_LsCe4jUF8?is=hUHBTJKa1Hb2_wkU",
 
+
+/* 1 — ABERTURA */
+  abertura: {
+    usar: true,
+    imagem: "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/CapaAbertura.jpg?raw=true",
+    video: "VideoMariaVitoria03.mp4",
+    toque: "",                       // opcional: imagem sua de "toque para abrir" (ex.: "ToqueParaAbrir.png"); se preencher, substitui o texto
+    texto: "Toque para abrir",
+    cor: ""
+  },
+
+
+/* 2 — CAPA */
   capa: {
+    celebracao: "Aniversário de",
     frase: "Nada acontece sem antes existir um sonho, e na idade dos sonhos tudo é possível!",
-    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Capa.jpg?raw=true", cor: "", veu: 0
+    dataTexto: "",
+    fundo: "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/CapaFlor02.png?raw=true",
+    renda: "", cor: "", veu: 0
   },
-  dataTexto: "",
-  deslize: { texto: "Deslize para baixo", cor: "#1F3A2A" },   // aviso no fim da capa; texto vazio = não mostra. cor = verde escuro
+  deslize: { texto: "Deslize para baixo", cor: "#1F3A2A" },
 
+
+/* 3 — MENSAGEM */
   mensagem: {
-    titulo: "Maria Vitória XV anos",   // só aparece se usarLogo for false (aqui vai TEXTO, não link)
-    usarLogo: true,      // true = mostra a imagem de "logo" no lugar do nome; false = mostra o texto do título
-    logo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/ID%20VISUAL%20MARIA%20VITORIA-02.png?raw=true",   // logo da seção Mensagem (vazio = usa a logoNome da capa)
-    textoEspaco: 34,     // distância (px) entre a logo e o texto: aumente para descer o texto
+    titulo: "Maria Vitória XV anos",
     texto: "Nunca deixe de sonhar, pois se podemos sonhar, também podemos tornar nossos sonhos realidade.",
-    foto: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.27.jpeg?raw=true",
-    renda: "", fundo: "gesso_flores.png", cor: "", veu: 0
+    usarLogo: true,
+    logo: "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/Nome0002.png?raw=true",
+    logoLargura: 460,
+    foto: "",
+    video: "VideoMaria.mp4",
+    poster: "",
+    videoRenda: {
+      superiorDireito: "",     // renda da borda de CIMA
+      inferiorEsquerdo: "",    // renda da borda de BAIXO (se deixar vazio, usa a de cima girada 180°)
+      largura: 100,            // largura da renda em % da moldura (100 = cobre a moldura inteira de ponta a ponta)
+      altura: 0                // 0 = altura natural da imagem. Para a renda ficar mais ALTA, coloque um valor em px (ex.: 40, 60)
+    },
+    textoEspaco: 0,
+    fundo: "", renda: "", cor: "", veu: 0
   },
 
-  contagem: { subtitulo: "Faltam", titulo: "Contagem regressiva", renda: "", fundo: "", cor: "", veu: 0.0 },
 
+/* 4 — CONTAGEM REGRESSIVA */
+  contagem: {
+    subtitulo: "Faltam", titulo: "Contagem regressiva",
+    paleta: {
+      fundo:     "#FBF3F5",
+      titulo:    "#b77982",     // vazio = usa a cor de título do convite. Se preencher, usa exatamente a cor que você colocar
+      subtitulo: "#b77982",     // vazio = cor do texto forte
+      numeros:   "#b77982",     // vazio = cor de título
+      rotulos:   "#b77982",     // vazio = cor de título
+      moldura:   "#b77982"      // cor do contorno dos quadradinhos (vazio = cor de título)
+    },
+    fundo: "",
+    renda: "", cor: "", veu: 0
+  },
+
+
+/* 5 — EVENTOS */
   eventos: [
-    { titulo: "Missa", dataHora: "2027-01-08T19:00:00", espaco: "Igreja Sagrada Família", endereco: "", mapsUrl: "",
-      fundo: "", cor: "", veu: 0 },
-    { titulo: "Baile", dataHora: "2027-01-09T20:00:00", espaco: "OAB São Francisco-MG",
+    {
+      titulo: "Missa",
+      dataHora: "2027-01-08T19:00:00",
+      espaco: "Igreja Sagrada Família",
+      obs: "Celebração do aniversário da Maria Vitória e do seu Vô Tone Veloso",
+      endereco: "",
+      mapsUrl: "",
+      fundo: "", cor: "", veu: 0
+    },
+    {
+      titulo: "Baile",
+      dataHora: "2027-01-09T20:00:00",
+      espaco: "OAB São Francisco-MG",
+      obs: "",
       endereco: "Av. Montes Claros, 2550, João Aguiar - São Francisco",
       mapsUrl: "https://maps.app.goo.gl/kBrdsFXsnrKq6bA29?g_st=iw",
-      fundo: "", cor: "", veu: 0 }
+      fundo: "", cor: "", veu: 0
+    }
   ],
 
-  programacao: { titulo: "O Grande Dia", subtitulo: "Programação", itens: null, espacoTopo: 130, renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(10).png?raw=true", cor: "", veu: 0 },
 
-  /* repetir: false = o vídeo toca só 1 vez (quando a seção aparece) e fica parado no fim.
-     congelarAntes: segundos antes do final em que o vídeo é congelado (evita a tela preta do último quadro).
-     Ainda aparece preto? aumente (ex.: 0.8). Ainda aparecem borboletas? diminua (ex.: 0.2). */
-  local: { titulo: "Onde & Quando", renda: "", fundo: "Borboletas.mp4", poster: "", repetir: false, congelarAntes: 0.5, cor: "#fbf3f5", veu: 0 },
+/* 6 — PROGRAMAÇÃO */
+  programacao: {
+    titulo: "O Grande Dia", subtitulo: "Programação",
+    itens: null,
+    espacoTopo: 70,            // espaço no topo (era 130). Aumente se a arte de fundo cobrir o título
+    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(10).png?raw=true",
+    renda: "", cor: "", veu: 0
+  },
 
-  dressCode: { titulo: "Dress Code", texto: "", cores: [], renda: "", fundo: "", cor: "", veu: 0 },
 
+/* 7 — LOCAL */
+  local: {
+    titulo: "Onde & Quando",
+    fundo: "Borboletas.mp4",
+    poster: "",
+    repetir: false,
+    congelarAntes: 0.5,
+    renda: "", cor: "#fbf3f5", veu: 0
+  },
+
+
+/* 8 — GALERIA EM MOSAICO (toque na foto = tela cheia, deslize para passar)
+       Use 4 ou 8 fotos (blocos de 4). Cada foto pode ser só o link, ou
+       { src: "link", foco: "top" } para escolher qual parte aparece no recorte
+       (foco: "top", "center", "bottom", "left", "right" ou "50% 20%"). */
   galeria: {
     titulo: "Galeria",
     fotos: [
-      "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.21.jpeg?raw=true",
-      "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/WhatsApp%20Image%202026-11-19%20at%2011.33.26.jpeg?raw=true",
-      "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Foto%20de%20Deyvison%20Marlon%20(7).jpg?raw=true",
-      "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Foto%20de%20Deyvison%20Marlon%20(5).jpg?raw=true"
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto01.jpeg?raw=true",
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto03.jpg?raw=true",
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto06.jpeg?raw=true",
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto05.jpeg?raw=true",
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto04.jpeg?raw=true",   // foto 5
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto02.jpg?raw=true",   // foto 6
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto08.jpg?raw=true",   // foto 7
+      "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/foto7.jpg?raw=true"    // foto 8
     ],
-    rendaMoldura: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true",
-    escalaMoldura: 1.3,
-    rendaFaixaAltura: 28,   // altura MÍNIMA da faixa (tipo A); cresce sozinha conforme a imagem
-    renda: "", fundo: "", cor: "#fbf3f5", veu: 0
+    fundo: "", renda: "", cor: "#fbf3f5", veu: 0
   },
 
+
+/* 9 — HOSPEDAGEM */
   hospedagem: {
     titulo: "Onde se Hospedar",
     texto: "Sugestões de hotel e pousada para hospedagem:",
@@ -353,33 +416,71 @@ const CONFIG = {
       { nome: "Hotel Supremo", link: "https://www.hotelsupremo.com.br/", botao: "Visitar site", imagem: "" },
       { nome: "Hotel Moriah", link: "https://www.instagram.com/hotelmoriah_/", botao: "Ver Instagram", imagem: "" }
     ],
-    renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true", fundo: "", cor: "", veu: 0
+    renda: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(11).png?raw=true",
+    fundo: "", cor: "", veu: 0
   },
 
-  rodape: { renda: "", rendaAltura: 24, rendaPos: "topo" },
 
+/* 10 — DRESS CODE (agora logo abaixo da Hospedagem) */
+  dressCode: {
+    usar: true,
+    abrirEmJanela: true,
+    titulo: "Dress Code",
+    imagem: "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/IMADEM%2002.png?raw=true",                // ⚠️ IMAGEM do Dress Code: abre em tela cheia (como a galeria) quando a pessoa toca no botão (ex.: "DressCode.jpg")
+    introducao: "Confira como se vestir para a nossa celebração.",
+    botao: "Ver Dress Code",
+    traje: "Traje fino",
+    texto: "Sugerimos que utilize um estilo de roupa elegante e confortável. Pedimos que evite o tom rosa da festa.",
+    cores: [],
+    fundo: "", renda: "", cor: "", veu: 0
+  },
+
+
+/* 11 — PRESENTES (toque na chave Pix = copia) */
   presentes: {
+    abrirEmJanela: true,
     titulo: "Sugestão de Presente", subtitulo: "Ideias de presentes", texto: "",
+    botao: "Ver sugestões",
+    imagem: "https://github.com/deyvisonmarlondf-hash/convite-teste/blob/main/IMAGEM01.png?raw=true",                    // ⚠️ IMAGEM dos presentes: abre em tela cheia (como a galeria) quando a pessoa toca no botão (ex.: "Presentes.jpg")
     itens: ["Tamanho de roupa P", "Calça 36 boca de sino, flare", "Joias em prata ou ouro"],
-    pix: "45988415642", pixTexto: "45 98841-5642",   // pix = o que é copiado; pixTexto = o que aparece (vazio em pix = sem bloco Pix)
-    renda: "", fundo: "", cor: "#fbf3f5", veu: 0
+    pix: "45988415642",            // o que é COPIADO
+    pixTexto: "45 98841-5642",     // o que APARECE
+    fundo: "", renda: "", cor: "#fbf3f5", veu: 0
   },
 
-  /* 🎬 VÍDEO DA DEBUTANTE: coloque o arquivo na mesma pasta do convite com este nome (ou mude o nome aqui).
-     Se o arquivo não existir, a seção some sozinha. poster = imagem de capa do vídeo (opcional). */
-  video: { titulo: "Um Pouco da\nMaria Vitória", subtitulo: "", arquivo: "VideoMariaVitoria02.mp4", poster: "", renda: "", fundo: "", cor: "", veu: 0 },
 
-  /* Confirmar presença: agora só mostra o aviso de que a assessoria entrará em contato */
+/* 12 — CONFIRMAR PRESENÇA (com lista de convidados criptografada)
+       Quem confirma digita o nome do TITULAR do convite (o primeiro nome de cada grupo).
+       Para atualizar a lista, edite o gerar-lista.js e rode: node gerar-lista.js */
   rsvp: {
+    abrirEmJanela: true,
     titulo: "Confirmar Presença",
+    instrucao: "Para confirmar a sua presença, toque no ícone abaixo e digite o nome do titular do convite que você recebeu.",
+    rotuloNome: "Nome do titular do convite",
+    placeholderNome: "Nome e sobrenome",
+    avisoNome: "Por favor, digite o nome do titular do convite.",
+    botaoBuscar: "Buscar meu convite",
+    naoEncontrado: "Não encontramos esse nome na lista. Digite o nome completo do titular do convite, como está escrito no convite que você recebeu.",
+    avisoCripto: "Não foi possível verificar o nome neste navegador. Abra o link no Chrome ou no Safari.",
+    saudacao: "Olá, {nome}!",
+    instrucaoLista: "Marque quem vai comparecer:",
+    botao: "Confirmar pelo WhatsApp",
+    mensagemWhats: "Olá! Confirmo a presença no XV anos da Maria Vitória.\n\nConvite de: {nome}\nConfirmados: {confirmados}",
+    mensagemNao: "Olá! Infelizmente não poderemos comparecer ao XV anos da Maria Vitória.\n\nConvite de: {nome}",
+    whatsapp: "5541992665353",   // 55 + DDD 41 + 9 9266-5353
+    sal: "mv-xv-2027",         // precisa ser IGUAL ao SAL do gerar-lista.js
+    convidados: [ {"h":"0fdedbc03c222523d7340d6e5b229cc2","d":"EGctsBYSBtU+zSnW9mSp3toz8IH9MR1w8TBy0x3i/1bEaNqUuQYT7sdaTwbuWPcsjXHhJ/jHnu3uqZ2bHX/QGA=="}, {"h":"e10b494eb520a8fbfe35a23d9002ca3f","d":"Dj0uT3rlVF3tYSGjAfRiGsN157c9X53oh7sAs52F+7UiOp5ShZMaVXbdJbUDiISWmpEU5DTDCD4Zsx7RPST87ViJVIV4G3nJWCsjJ3rK7i7rkjAEVtHqukc9H3UMxAUNuHr+ZBb1bBAI/Uy5U3Z61/O7bNo6nowwOgjXN6oDARhMoaoC7RI08brNLXkoMizKTWAUEl69AQYC5ASx5k+hLrWJPg6lQxczSIpVniQ="}, {"h":"c85bc8412e6a61442184880e7e4bc619","d":"EYF4oGXSFv7sHTVrTGBsTmOW40oi8Jo19cSCGIKbWkcgvgE6xdOVw23B3pUlca5VynWgiayj9JefFLqukGPWR4ruAy+cZ2aHUFsiPQ4AnL7G+BMA6GBEOzNdN4M="}, {"h":"458d17e58f622e0855f31e40bfa09a3a","d":"ps6yCr+Q2AYj6Ervwa0N2WdX0mL8epBLpu2VJcCd5XtMh8dVoDzrKpXMsFnPsU1ED5vzc/jiuh6Z8QTd99saVw90y/DBBzFXHpq9SzZes0u8AczjTQ=="}, {"h":"1ae7d1e5f4d44d3a6c9a25040bb2735b","d":"ZB2atP37BAhhI2bXTdD8evqtfeGE87eqPviTZqQxEtRLOvrWT+Tcg2/qAQLTqSYxRKh+rRkhB8OwfsMzIPam0HEY8ZOW46RUN8ouXiqOG2e1+w=="}, {"h":"c53e70f31050911da6aa7c4ef485cc18","d":"uT6XvLDmKr3K+JiCYROtynZiy3+uI/E7aRSbb2Kdxgg7tIYq15wZN3EXakVRmRRbmmczlFuxEGFV1JFij28v0LnK12842+I="}, {"h":"cd4cf242f1426152b6096e5ed49c93a9","d":"YCagsCA+/8+YR+CT3T/1O1MpNG9t4LZrk9QPbGN06QeWbasB8dRms1mL0dav+zC6LSTz6ig7rar/L+ME/zwszwfiekfhPrmEB7Eg"}, {"h":"2601fff70f02445f7c758dd68b8d7931","d":"hGtRfk8CxKFP8ugu+2GKcMBOUOSNf1EPny9j9t0c6a1s8+B7MkAlKHxChRUdYsuz2CfonFjIpLvJQTMui5fo3Dg0C0YovudopC/l//ke+Wqs0FvVhHsIOQg="}, {"h":"aaae524d6c4b4b4cda993200ebba81b2","d":"1dz2LFEfNFsDxWSFMN5KqTlqz65PIaT/yCcudh661yozkG7XIKi1ZMRl0JeFZpCWW9ThkbjpGL1zErrrI6pmAZjeH9qQ6iKrFq4qyvql"}, {"h":"5aa85719a3e0cddbed2848d113767c44","d":"8F2fT1bSD3OZql99LyIuGvnB87B7BYRT1L3fzr+jb1c7GDsMvReM4SlGqMNregGYFG8HyuUC1qAnweY2FZb14B3I9mvTy1tonQ=="}, {"h":"e52f80bd4d918c3075f79be7e4ace402","d":"WjPYakyRfvb3jIjRj/30LM39MlahImEOQww6Qe0zIG9Drp9JphMCW3NPPkXrmzI8GxjRjoKShlgjbDb6nRN9XZg56lMnelh1qBrZHbg8WZVdZGKYd1GEfUIwq0ECk3IEVX4mXr+hOnpVY8sIasF9uvzbMdIv2/a8ZvDy1EBJERpU9mZCAgn6nbfk"}, {"h":"0d70016627828e81b3d0e1593b3b1226","d":"BjavxBIxwPX/89OWa/Uxd9niNkLc9CchkDCZMKACTP5Rp4UNrG8a8fUPkuHSoK6t6VhjmFLn2ezwl9tjfEfZVbWI2BZQA+U7eXaBnDsrvVclsf2RBw=="}, {"h":"753f669b796af88c4e5e46fa363d008e","d":"re+mE7vNTCv5LyQVxakUGVL4QnxexccQZAeEBl4gTOStc/u1Mp38xzBwXqL47NDsK9pEajX2gDgT4wyqSLQ9SnQB5AY8LcLXWaxdOHR/Sg=="}, {"h":"3bc9e906a4d21b6e14e4dd01afe94465","d":"kGNWj2pUsZ843fgGRJ8vbqZHWbR6rmjx/5zlix56NJaA0jCdigODmBDkY0UcwBrKM4gc78UahssmlJJ53zLeteGutlFN9qmY4pHFzBzrS7FZZgBl1RGe2rX/DSOSi3CHHdTpnKnzsg=="}, {"h":"286fcd1b05453ab74205cc22e52170ca","d":"yrTTbynUjaU6lMx+pkQATPEGsy6/ARGjOmWRgsbsKZn5mwcdS/cTIgPW3YVXuJ7vhj8ofJW59SXsLk7+q/NvXuDkXD2PmCcyJSEWOipnme5LMH/bpPwR3LPwuzNms2O3PESUKvlvtDk="}, {"h":"54c83d3bfffcaf2fe9c6ff49ed3eec67","d":"std8w0P/K+IJ9ADggcXGdg5+4L41wJwvsuNmKJiZK7wOU6KKU9M7Cq1Em/ugX4sNeOsdzhRbC2jpTyu0YtxcenpaFP8JdMf90lm2"}, {"h":"ae99a9bad7c8249851a33e6b97ee6819","d":"70o2bUUnMgJGY36q1PeF5X1p1cO3vU12KIT+by7R51BQUhdYx7LvJYRGvDP3UDJwgK6jTiQmlpFKlYb2q45xlg2pXM45Dko="}, {"h":"067f4e36e62addccdb0b427fcd37a657","d":"1nnfIodDksShzek4Q2Ool912qEDr+AmTScr+DwM9AkE2qNWi8nraT7qpejs7HKg1poCyMy5hG9hiDoKoIw8JbbDmwjYBTy5pSBDuX0BO9OybKNb+pas86KyDUdIwGmbW2PE="}, {"h":"9a2270299f3065515ec123f970ed4dcd","d":"/GUyZgUp/832cqmg7JJ7jR5D2IWebBHwCcX/V4Fnm9tCC8zLXP9/aURPbVfnGqNYF4wwjE7CAAF8cF2NdIzQ+qByEm/XuoYJQQzYiASTvQ=="}, {"h":"db99004bb607ca2931299b66ec351771","d":"6Cg7jUxfDNEHmh+89Wcgagvxd1CeOohIx+Ozsx3FE39ezk2d3zwwRtFm6R4AWRe8lo88cjjgwJFL8gcYoVcl"}, {"h":"0dbf4b01acc2957ff5bad86da8a60424","d":"GF3b7DbSTi1azPkg5Ie9Rrl7sTSbqeDsmqa8Q37BlIelWuYeJegY/2E/zEf2ek9JTaWYdK4="}, {"h":"3e414a113fd282c88c9fb187fda0cb0e","d":"txELR0PtbUjX1NcliCbjvpkIhqSnjYe9Li0/AyAiWIp/mxG1blswgYsRRoLYmwaUhZfZn+mKzyDWO+CWo7bsxOlPpNWu"}, {"h":"a1052771aac0f8cfaa4c51c55fb853fd","d":"faj16jDd2774xBWjjDxCstFnURQM6FUxpx7PQE79lpgVqCB03WUrLhCAzMGZXRwrQTYOXEhlwFYxUg035tkhn5qsPGT/sQ4GyA=="}, {"h":"62556d90caeb27c3c71fd4e66f9e4375","d":"Xlum3o6i8W41qT19sgmXmQmFx1NVt5eCoXzqOWAkOsIIZchoCP7mubkt2ST0zURUWKV+9BPVr/m2v9ttrCZJBUPRV5x/8kMSvVC/yc/Ysew="}, {"h":"3a857b01be6d76d0dcca035d9d03f9fe","d":"oGCkHHAMYf5B5p4/ag3EcFbzksjJ0zHuQF1HthjcykvXZ4INvtkbUo3a8NdMqem66i/xk32wpVHIPL/Vn4sIXlYQJN3GKfQXSSdK2CNTr3re"}, {"h":"49dcf04620bb36b8115bc33799a91cb5","d":"By+TQ+hXJ4tnc+G3d/DXLTX0riseCi+Pk6tTbmROmtyDhIh5RwplmSQ0+zAeW/M8hEyC+BBNqr39RfuqeDpBbWWWhOUrQXcg3LWya8LAuMWGm37rMtSNUQcCExlE5By/8TEBlry7oG6zD+4cBImXTSUgdv9PAFBBwKsByT1KKDOPy8CFzg3kF11a5HyXrfbeSvIwCpLJ5zrSJVshHBPSPbJ66FQUvle/nIpjoKF8HfrGkQcCwepE1utOjQvOrmLqooMw2+EwRplg55hb4PlVDNllCoasJ1KPcbPTRY0+BKnT"}, {"h":"a21e04ea70584e4ba4e58c6befc1650f","d":"rHFIOlZLjDWCUlwO8m2isUdnus2c3h6r6tVjT4UX71hpe20d6S/B7hFy/vAVvn5EuKs5ZKJa9Hlb/2ceJmugs2msBAT0KQ6xw/ZWyZH5YUXbEgddyKFYSm99V1SLPsE="}, {"h":"efa394ef65eeece6c9bc4a1e8f722989","d":"6FMYZNrD9aRtBFqVxlPKFKc3W/GRg/iRilFxok6xC64n/SkGk/C9AKU962G829Nqa0z2W83Kgc3Euq8VASLMgbJee0jZTX4GfA=="}, {"h":"ba361e6e341f037a0058018d073bed7a","d":"rJiIN3T0MwaIGcD6t8FnGZs+oCBMFAebrwIjOQZfOW44zBA5/Mnt6C23wUPARn42wkG0TZCXX/Q4JtGRLNhowaymmZMACw=="}, {"h":"8ee2265e4a200fcbcd192613e9c722ac","d":"KxPjLwi3z9KSzxZ2AOagXIrorEMkP07YdfVBRiHRsEtI8nvzony4TBz0ipRGKH0HpAQ6NOw+zxfGS9PtLkHEuzsSlrc="}, {"h":"cc2c3d3af9f9d86aef4ca4cf53db8b99","d":"Rv/TFP2S4UfKiYZNkoLdTAS0GvQbV6TMbVxSrC01eyXmEnkEtOEKiNXp45azXnff2Dp3h1R6b72dQs9Agyf3qTFhgzMyz18EiMFaGbJHwCqy2y2JxA=="}, {"h":"8432b5b1ea9b8f323619e9076705abc1","d":"5Hv6RndJdOiXiJgJvGEm6o7erPNCH8Bzv49JkxZCdgzQHcjYQILlg9x077B7lBlXqQkdMeQOTJkPmb85Rm4FYxQYIDERJ36wUotR5y9OqU0LlA=="}, {"h":"3130b786aece2c5c8886b98b984f984a","d":"nWSzqj/zFKLBzGnYSOVi0nQ4FpGnavkcz9gL0e99A25tDmDdwFVaHkgREvNCLSqRFfcvWSuOFmeYYwF278LghuUa+Qg9sCLuz8E="}, {"h":"fbd5c8c1d72b719588045643a98dbfef","d":"2Xr3XC8Kb0eZvsYuPdipcv9h8IxHi4auUykYFVLf5dg9zQlma4P+o0kn/A8F2yUORDtBR56by+ftI0lCJF7wCBkYxskI0tCV8Hu+mJwOKKpiZs2IAZQ="}, {"h":"86b6f45c73a59ad25e7a18c9685d61fe","d":"91a/r/f7ofNTeV7b4AXqX7rq0Vg/zqmHyad5AEOediGTIH3lt/9hM05lOL3waZjqilPfzwNmLI6iDkUKddLdTWsDZdn6X0M3CWMjpxwdhQWAHzhO0aIJDTgRAdG2PkA5NQ=="}, {"h":"c9c0ddc969e711165559d3ea0120bbdd","d":"YM6lI9YhuUmuFxTbCtSseUBloWS3mZL/mBmziz3lSaZELzlhlfZwxO8OvjYhaGQ9tXoVH3hWH1axaQvdD1tsVN5MVuo3KBSHKKg="}, {"h":"2446382bebed3a8514e93b0e651e0821","d":"FEDAVr34oIEiJzml9b8V/iLUPMnQ1BcCahtR5u/8QM2EaM4EwMrav9RYk6q9CcpPtorqFbLlIVn6f8wq/iVCm7c+3HFvny8ct69Kx9baP0r0+mMsTQnbK4CMZVil1MwhYfDpjtmxXL2FrrUVLoIEwJUm+QCoZ8f3U8FyK/5X7w=="}, {"h":"cb470a53a8942ac1a53d62578599e2e6","d":"IJYzJYsfj2bLsA0lT0kfHBJMNTqOM8x6iE/W7/iW0n9NVtvkYkz2pRezhHb307usVC0hvGoaAUfBhgF7uAkh9wKsVDwRzCkdIcY="}, {"h":"abf1723daed8058bcf8066b1878dfbd8","d":"JDnyPxBrRh2JQnYXb5x7SdSiZ15jH+hEM/L1JGlZkoN/mJUJvTP8lIvL4kv3U2eDzUKlzV19LTwuaWQAvMbMnOw0jNSBjLDjQ6szeAPScXt9uzw="}, {"h":"4dc42cea4db6665a45e27770c3ba27b4","d":"FgT4PmcvslTPUZ0DaQWSDDuQ4lKqqV8h3McVR/4a0b31PJqNJ4Fgu6htb/pJod/iNKcWAjedFrfbUyOPCh8s6ioFHvzMWKF+JpnEtyDmsRRwe5P9afzaWygUyMWuGBASZvj+WOPR"}, {"h":"8e7d219eafd26dd5ea640eb513c28d8a","d":"jL1lfygescXqI7c9xWX6mdK4Sl2rtL4Mnq3q5BB1WdlFF9B0Bw5arxiwrCUiewzKaTJLcvuWJZNYdNfzntJrhC2SXjnvrfN4fIcA"}, {"h":"a6f366335c06de1bdade5fe66ca80e42","d":"ZfhQ9mM74NV+0fvpjhySgMrxT2GAV/2Zi7O8yD1wXqs2UReCDu7Aw4jA0gL827CetEIyzgjUKgkcIUYXqawnoP4ZzxnyY8aScF8oWMTnOGaMf2c="}, {"h":"75ee8cfef38504cd6c00922f5b3478ca","d":"hKZyktfb28sK7nz24BlaK/Gv54Rc+8jMvpzThRPJ3KSzATV1FmH+9GXfZogSUc1EV88Z8whLEAzJ77xAlc1Szqjxmb7Mc1GEudZKYZTVO4yEIJwHpMQHkxNeNhWg/Fg="}, {"h":"f254f59b84e9e902c45e56ee2e4c2001","d":"WBZPq0BGJd+kM5az/jzLxfWBnLs64ZlPRwUDUABM6gvNAyY17sJptiDzX3TbAAAXrzHPCECWtEfx9ssRYTooVBPMdH9Z5F73tIAMI25EmwqKJmIFD4PLWZKde3Q5f7GRnOy4bYDB4GCO1WHMonL8qBeddecz3oyY"}, {"h":"06d3ef0ba0dd43f97094da8d73c77a1c","d":"/FLoeuZFmsUZbwCv3YtOlKGRO4C7qyu+JG94NoK0k/eMMlThckcIm0DYBQdf/aoquJz7Qr2sAXzPsrgZ+vPtABLY1EpGZZZMKgnrTaF+Rzx+fW9v7eGGvC8NPJPRX99SFBCNewY2NJJV+E5WLOIrSOWdqc0pFpzH9et7Tk4aEHU0GEisyaE="}, {"h":"3e4110b8c1c8831989b30261556e0204","d":"WvPLuo8pp+teBZPzkEUrjZ+9a6B2nbRsxB74IP10b8jBipdHyluSOWGA9Dy7V/evDk3+Oz2ktX0PfnDfqFuZk25CGF/wHoW2ihDYi3vAHfCs0F5g/1tj44q6KgEEmFEBIgjrqK2KJJ0XzP9MdmY3RmfsHP/P"}, {"h":"d630c792baff8003657ae35837c65aa7","d":"slN17MNDmA9gLld45ZqT03EqlGmEWuAIS/Ue49TIPxU6rPmQKr7dSe8LAmxl4eF6YAtfr3dRyI+D/FnaP2oHCc2WNwSKKUl16ES7H34="}, {"h":"cdbcbf2d3b3450ffb88d4d366be7d7ca","d":"rKmgreYp7b9NCGvz76ln+myyQ7KozVWbQWlJRu5bcBCqg3asjhCoMpGcvYDqoXIRNh8vLBuKx+5Z+Jrnr2wK+Xi8++PJ"}, {"h":"459a787c3cb6995d02fe98bfef67c734","d":"t4CAwh46lzIXWDezL2mNM0pE2MG0IL9ilC5cWKP0b1WARaG232FJVYCuotzc3DZB3piWBb+H2Zy1AYDhSspeXpel"}, {"h":"4c59bc647632016ea525bae7043276b2","d":"RxqgduhPQeDuyWzNUHtK3UF+IyYUUHr1bM0hH5YIdW3PjxivInObDg+sWE4n6eTV2A=="}, {"h":"dcd8b6665f3b751c806a7eac1a0d5b4c","d":"vSFjj8nXmEwBQiVidYE1uB6FIPNw3scL3ZGE44UnAucmPnJIA4gnexNuB8RQQTu+tNWI2wXnu2Js5ehmlcSJPzmPKFKd5ok7/fbLMENpGugg71Mf"}, {"h":"f64fdcd6bd80f473ba14b3cd45975b7d","d":"t4pywS0HNnDlg/mkAM6wcGHn/W1NwsbmiklL0oJQ/Ri59iVNTGmcEmxGf1/dltiUyMKjhX40rVzU+SKO2VOCRFviXlMy3qpI229B6mKeLbgy2So4HwgKq22u"}, {"h":"cfc9dc3534ba2bd39ef55d8c43925855","d":"hf0GsqHToLgCdSthuV2maqfLTKprv+9JNAD1YwHkca8Z+G6U3lz8c3N/4I/5Zbv7bkURxo7xgBPsja5JxyIDV4kq/NtU5PkjVUNO7dJrXPX6xHvwWkV98RI="}, {"h":"533421397771800251631e9bf265bcce","d":"BYxkUAyMA/QpcCAXLQtsh51CAgYmQOKeI9RQTzOraFzTCt4eYFkNu8G38SvvR3CDMwCuBo9kYLr18EArBzKXtgmldsqfSji5So6RMtS4s5yaUldWXTzwMDiSvFattD4EcO3Y/HYPcwhSEZVLQT//TJ/U96GfYkbeidf+6M77JNySLUq+NgsWtYY9OSW5cFFktWeoDhKHdOpZmlI5pXho"}, {"h":"5da995ab024ef49e9812d474da015063","d":"GKsDfEfFW6FaI1K1RAewUv4c0V2Ki6HU2xGKJpiDnAvh2jTb7H0Pr/DozJxj+uCXUyrdFHW8eRwSx8rgpIjhcU0GNWCasmkCZoqleN4HnyJKDy5HrzOscqrPh4M6BY1UwfuXwUNLTVKnh7nkXA=="}, {"h":"242c66b1bb76efeb07fc86674d183372","d":"SN1buo2O5y7Ji3CCQIIvsd+Ond6V1g19A8l1mRBuA0nLXkKOpoq1nZzOBk1/zmIE1Vpn9x+sj/spEA=="}, {"h":"e79fe246dd2d5af544eca6be845f46a5","d":"xBAYbRu6V4KY0JX5CClu/x7DUNVQoBb7+V8Ao0v24LVPgCotIstABpjTfxr53Url7MVllYh30jSAQFI3RWYAvrlGy7IIFuQxpfVT0bbHAppj/pWG"}, {"h":"772a6172b56a92e6b7d47ed07b6aedae","d":"ym4yDAJQpMh1brsjT6ITtEOevSyL+tjkYEs4Dh4UZfdelxd/hm6UGSUK+0h45nLwg2gfZ0ryQN+ZlxP4lhDie9UWq7ZBUA=="}, {"h":"bae8b5498c49721690621b6238c570cc","d":"U/aVzzZA5etmWlHPwjvlwkOCLh30c8Iat8i+9dkE3kXYmvXlm9E92H0hR1/kbLwtPWsRgC1y83KDuGs3npAOeHs+QRfQofmqbgLZDKuNtfk="}, {"h":"e93b133fb6e746a08b58c359ab4c474a","d":"VOMMw9+7FX3jPYYClmdp9H0thzRWtrRELIJ2Lpi4+EHpeK2CcWbfmZqZSIN15I4lpwKhOzjVNg2bj2W5CQ=="}, {"h":"b25e9a58f3922b2b46330028d8d7be07","d":"mYFnHYaDgF+Oc/tItK7MaiN3Rbl5sn6ztFUHpyw9RZCzuul3WVK/hXttkNx39Lp00ix++dq1rR7PTmFD"}, {"h":"381a7bf2cff1831b7b9876e7badb0d0a","d":"Bed+PxYUJI94X/PylObLi1BQGkM8H4htCt0v9s3tUil2EEivvjczJNUOEPrMQqcORBPPmCq9Mw=="}, {"h":"d10e938b6071400b9a20423c420321ae","d":"8/0un1wZix4hRT3Pahl7txzXP+aAn0XLeXeQnDyVWLAZ856awWIZoy2kpenomMgT"}, {"h":"3ae1f6b0f25087365e8a6fa4c6b72078","d":"HsZRFAE0VpM4UW+CNWD7GTuzf7TvFwDrDGoZvQtQTWE5gmOxShWFHp8uYUF14TSBzhiX70QfFhUgL1v5Vm6bYA=="}, {"h":"e28ea403bbbcf9c3addfd78165369c55","d":"txMn3LcbF4fi+shEVprjsfTvwolpW3aw2TbgSNRUMCUIkpFsTJdkZ6WYk2kNd+mLnI3k0cSVdmqvh1rSiniUHTTusgUlokVQ3dpvuM5k6cxN9JpA8uXfPVBgJI2fKVA="}, {"h":"cd2c1e7b33166771db02e7e764eef2cc","d":"TRMdzwC8Zg/E0/HlZdMMepXfr0sgEtFWrrDMMVXcti0y1Nxy6PuQorSlAy/wX6s3sZEcBY8="} ],
     iconeImagem: "",
-    mensagem: "Em breve a nossa assessoria entrará em contato para confirmar a sua presença e a dos seus acompanhantes.",
-    renda: "", fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(13).png?raw=true", cor: "", veu: 0
-  }
+    fundo: "https://github.com/maricriative/convite_MariaVitoria15Anos/blob/main/Novo%20Projeto%20(13).png?raw=true",
+    renda: "", cor: "", veu: 0
+  },
+
+/* 13 — RODAPÉ */
+  rodape: { renda: "", rendaAltura: 24, rendaPos: "topo" }
 };
 
-/* 🔧 No GitHub Pages usa os arquivos da própria pasta do site (mais rápido e estável que o link do github.com).
-   Também codifica espaços nos nomes de arquivos locais. */
+/* ============================ FUNCIONAMENTO — NÃO PRECISA MEXER ============================ */
+
 (function (o) {
   var pages = /\.github\.io$/i.test(location.hostname);
   var rx = /^https:\/\/github\.com\/[^\/]+\/[^\/]+\/(?:blob|raw)\/[^\/]+\/(.+?)(?:\?raw=true)?$/i;
@@ -396,23 +497,39 @@ const CONFIG = {
   })(o);
 })(CONFIG);
 
-/* ==========================================================================
-   ⚙️ LÓGICA
-   ========================================================================== */
 const $ = (s, r = document) => r.querySelector(s), C = CONFIG, enc = encodeURIComponent, root = document.documentElement;
 Object.entries(C.paleta || {}).forEach(([k, v]) => v && root.style.setProperty('--' + k, v));
+
+/* Botões (contorno) */
+{
+  const B = C.botoes || {};
+  if (B.texto) root.style.setProperty('--btn-txt', B.texto);
+  root.style.setProperty('--btn-borda', B.contorno || B.texto || '#7A3F4C');
+  if (B.raio) root.style.setProperty('--btn-raio', B.raio);
+}
 
 const Bar = C.barras || {}, corTopo = Bar.superior || '', corBase = Bar.inferior || corTopo;
 if (corTopo) document.querySelectorAll('meta[name="theme-color"],meta[name="msapplication-navbutton-color"]').forEach(m => m.setAttribute('content', corTopo));
 root.style.colorScheme = 'light';
 if (corBase) { root.style.backgroundColor = corBase; $('#barra-inf').style.background = corBase; }
 
-const F = C.fontes || {}; let ff = '';
+const F = C.fontes || {}, fTit = F.titulo || 'Playfair Display', fCorpo = F.corpo || 'Raleway', fScript = F.script || 'Pinyon Script';
+const gf = (n, pesos) => 'family=' + n.trim().replace(/ /g, '+') + (pesos ? ':wght@400;500;600;700;800' : '');
+const fData = F.data || '', fNum = F.numeros || '', jaTem = [fTit, fCorpo, fScript];
+const gfx = n => 'family=' + n.trim().replace(/ /g, '+') + ':wght@400;500;600;700';
+{ const fam = [gf(fTit, 1), gf(fCorpo, 1), gf(fScript, 0)];
+  [fData, fNum].forEach((n, i) => { if (n && !jaTem.includes(n) && (i === 0 || n !== fData)) fam.push(gfx(n)); });
+  const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?' + fam.join('&') + '&display=swap'; document.head.appendChild(l); }
+if (fData) root.style.setProperty('--f-data', `'${fData}',serif`);
+if (fNum) root.style.setProperty('--f-num', `'${fNum}',serif`);
+root.style.setProperty('--f-tit', (F.arquivoTitulo ? "'Achetta'," : '') + `'${fTit}',serif`);
+root.style.setProperty('--f-corpo', `'${fCorpo}',sans-serif`);
+root.style.setProperty('--f-script', (F.arquivoScript ? "'Barsela Calligraphy'," : '') + `'${fScript}',cursive`);
+let ff = '';
 if (F.arquivoTitulo) ff += `@font-face{font-family:'Achetta';src:url("${F.arquivoTitulo}")}`;
 if (F.arquivoScript) ff += `@font-face{font-family:'Barsela Calligraphy';src:url("${F.arquivoScript}")}`;
 if (ff) { const st = document.createElement('style'); st.textContent = ff; document.head.appendChild(st); }
 
-/* renda: faixa de imagem repetida no topo e/ou na base de uma seção (altura ajustada depois por ajustarRendas) */
 const rendaHTML = c => {
   if (!c || !c.renda) return '';
   const min = c.rendaAltura || C.rendaAltura || 24, pos = c.rendaPos || 'ambas',
@@ -420,7 +537,6 @@ const rendaHTML = c => {
   return (pos !== 'base' ? `<i class="renda topo"${at} style="${st}"></i>` : '') + (pos !== 'topo' ? `<i class="renda base"${at} style="${st}"></i>` : '');
 };
 
-/* altura automática da renda conforme o formato da imagem (evita rendas minúsculas) */
 function alturaRenda(w, h, min, max) { return Math.round(Math.min(max, Math.max(min, (C.rendaTile || 360) * h / w))); }
 function ajustarRendas() {
   const cache = {};
@@ -431,30 +547,24 @@ function ajustarRendas() {
   });
 }
 
-/* renda da galeria: FAIXA (bem mais larga que alta) vira topo + base + laterais; MOLDURA inteira fica por cima */
-function galRenda(img) {
-  const w = img.parentNode;
-  if (img.naturalWidth / img.naturalHeight > 1.5) {
-    w.style.setProperty('--fh', alturaRenda(img.naturalWidth, img.naturalHeight, (C.galeria && C.galeria.rendaFaixaAltura) || 28, 90) + 'px');
-    const st = `background-image:url('${img.src}')`;
-    img.remove();
-    w.classList.remove('com-renda'); w.classList.add('com-faixa');
-    w.insertAdjacentHTML('beforeend', `<i class="gal-faixa topo" style="${st}"></i><i class="gal-faixa base" style="${st}"></i><i class="gal-lado esq" style="${st}"></i><i class="gal-lado dir" style="${st}"></i>`);
-  }
-}
-
 const nomeHTML = (cls, branca, logo) => { const L = logo || C.logoNome; return L ? `<img class="logo-nome${branca && C.logoRodapeBranca !== false ? ' branca' : ''}" src="${L}" alt="${C.nome}">` : `<div class="${cls}">${C.nome}</div>`; };
 const extrairId = u => { const m = (u || '').match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/); return m ? m[1] : null; };
 const fm = (d, o) => new Intl.DateTimeFormat('pt-BR', o).format(d);
 const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const hora = d => fm(d, { hour: '2-digit', minute: '2-digit' }).replace(':', 'h');
 const ev = C.eventos, d0 = new Date(ev[0].dataHora);
-const dataTexto = C.dataTexto || (ev.map(e => fm(new Date(e.dataHora), { day: '2-digit' })).join(' e ') + ' de ' + cap(fm(d0, { month: 'long' })) + '<br>de ' + fm(d0, { year: 'numeric' }));
+const dataTexto = C.capa.dataTexto || (ev.map(e => fm(new Date(e.dataHora), { day: '2-digit' })).join(' e ') + ' de ' + cap(fm(d0, { month: 'long' })) + '<br>de ' + fm(d0, { year: 'numeric' }));
 document.title = `${C.nome} — XV Anos`;
 
-const corSec = c => { let st = ''; if (c && c.cor) st += `background-color:${c.cor};`; if (c && c.espacoTopo) st += `padding-top:${c.espacoTopo}px;`; return st ? ` style="${st}"` : ''; };
+const PC = { fundo: '--ct-fundo', titulo: '--ct-titulo', subtitulo: '--ct-sub', numeros: '--ct-num', rotulos: '--ct-rot', moldura: '--ct-moldura' };
+const corSec = c => {
+  let st = '';
+  if (c && c.cor) st += `background-color:${c.cor};`;
+  if (c && c.espacoTopo) st += `padding-top:${c.espacoTopo}px;`;
+  if (c && c.paleta) for (const k in c.paleta) if (PC[k] && c.paleta[k]) st += `${PC[k]}:${c.paleta[k]};`;
+  return st ? ` style="${st}"` : '';
+};
 
-/* fundo de seção: imagem, gif ou vídeo (repetir:false = vídeo toca uma vez só) */
 const fundoHTML = (c, cor) => {
   if (!c || !c.fundo) return '';
   const s = c.fundo, ehVideo = /\.(mp4|webm|mov|m4v)(\?|$)/i.test(s),
@@ -462,7 +572,7 @@ const fundoHTML = (c, cor) => {
   return el + (c.veu > 0 ? `<div class="veu" style="background:${c.cor || cor};opacity:${c.veu}"></div>` : '');
 };
 
-/* 🎵 Música */
+/* Música */
 let audio = null, yt = null, tocando = false, quer = false;
 const mb = $('#musicBtn');
 if (C.musica) { audio = new Audio(C.musica); audio.loop = true; audio.volume = .7; }
@@ -480,7 +590,7 @@ function tocar() {
 function pausar() { quer = false; if (audio) audio.pause(); else if (yt && yt.pauseVideo) yt.pauseVideo(); mb.classList.remove('tocando'); tocando = false; }
 mb.onclick = () => tocando ? pausar() : tocar();
 
-/* ✉️ Abertura */
+/* Abertura */
 const intro = $('#intro'), A = C.abertura || {};
 if (A.cor) intro.style.backgroundColor = A.cor;
 if (A.imagem) { const l = document.createElement('link'); l.rel = 'preload'; l.as = 'image'; l.href = A.imagem; document.head.appendChild(l); }
@@ -500,7 +610,6 @@ if (A.usar !== false) {
     if (aberto) return; aberto = true; tocar();
     const v = $('#introVid');
     if (!v) return entrar();
-    /* se o vídeo não começar em 6 s (internet lenta, formato não suportado, economia de dados), abre o convite sem ele */
     let rodando = false, espera = null;
     const limite = setTimeout(() => { if (!rodando) entrar(); }, 6000);
     v.addEventListener('playing', () => { rodando = true; clearTimeout(limite); clearTimeout(espera); v.classList.add('pronto'); });
@@ -512,16 +621,14 @@ if (A.usar !== false) {
   if (A.imagem) intro.style.backgroundImage = `url("${A.imagem}")`;
   const conn = navigator.connection || {}, leve = conn.saveData || /(^|-)(2g|3g)$/.test(conn.effectiveType || ''),
     vid = (A.video && !conn.saveData) ? `<video id="introVid" src="${A.video}" ${A.imagem ? `poster="${A.imagem}"` : ''} playsinline preload="${leve ? 'none' : 'auto'}"></video>` : '';
-  /* aviso "Toque para abrir": faixa PNG por cima da imagem (se não carregar, cai para o texto em botão) */
   const aviso = A.toque
     ? `<img class="toque" src="${A.toque}" alt="${A.texto || 'Toque para abrir'}" onerror="var p=document.createElement('p');p.className='dica';p.textContent='${A.texto || 'Toque para abrir'}';this.replaceWith(p)">`
-    : `<p class="dica">${A.texto || 'Toque para abrir'}</p>`;
+    : (A.texto ? `<p class="dica">${A.texto}</p>` : '');
   intro.innerHTML = A.imagem
     ? `${vid}<button class="selo-clique" id="abrir" aria-label="Abrir convite"></button>${aviso}`
     : `${vid}<button class="selo" id="abrir">${A.texto || 'Abrir'}</button>`;
   if (A.imagem) {
     intro.onclick = abrir;
-    /* se a imagem de abertura não carregar, mostra o botão redondo visível */
     const t = new Image();
     t.onerror = () => { intro.style.backgroundImage = 'none'; const b = $('#abrir'); if (b) { b.className = 'selo'; b.textContent = A.texto || 'Abrir'; } };
     t.src = A.imagem;
@@ -529,11 +636,18 @@ if (A.usar !== false) {
   $('#abrir').onclick = e => { e.stopPropagation(); abrir(); };
 } else { intro.remove(); document.body.classList.remove('locked'); }
 
+/* Janela (pop-up) */
+const janela = $('#janela'), jc = $('#janelaConteudo');
+const fechaJ = () => { janela.classList.remove('on'); document.body.classList.remove('modal-aberto'); };
+const abreJ = (html, fn) => { jc.innerHTML = html; janela.classList.add('on'); document.body.classList.add('modal-aberto'); jc.parentNode.scrollTop = 0; if (fn) fn(jc); };
+janela.onclick = e => { if (e.target === janela) fechaJ(); };
+$('#janelaX').onclick = fechaJ;
+
 /* Seções */
 const secoes = [];
-const CFG = { convite: C.mensagem, contagem: C.contagem && { ...C.contagem, renda: C.contagem.renda || C.renda }, dia: C.programacao, local: C.local, traje: C.dressCode, galeria: C.galeria, video: C.video, hospedagem: C.hospedagem, presentes: C.presentes, confirmar: C.rsvp };
+const CFG = { convite: C.mensagem, contagem: C.contagem && { ...C.contagem, renda: C.contagem.renda || C.renda }, dia: C.programacao, local: C.local, traje: C.dressCode, galeria: C.galeria, hospedagem: C.hospedagem, presentes: C.presentes, confirmar: C.rsvp };
 const sec = (id, rot, html, cls = '') => {
-  const cor = cls.includes('escuro') ? 'var(--enfase)' : cls.includes('alt') ? 'var(--secaoAlt)' : 'var(--fundo)';
+  const cor = cls.includes('escuro') ? 'var(--ct-fundo,var(--fundo))' : cls.includes('alt') ? 'var(--secaoAlt)' : 'var(--fundo)';
   secoes.push(`<section class="sec ${cls}" id="${id}"${corSec(CFG[id])}>${fundoHTML(CFG[id], cor)}${rendaHTML(CFG[id])}<div class="wrap">${html}</div></section>`);
 };
 const tit = (t, s) => `${s ? `<p class="sub">${s}</p>` : ''}<h2>${String(t).replace(/\n/g, '<br>')}</h2><div class="orn">♥</div>`;
@@ -541,9 +655,8 @@ const ICONE_OK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 
 const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.capa, 'var(--fundo)')}${rendaHTML(C.capa)}
   <div class="capa-card">
-    <p class="sub">${C.celebracao.replace(/\n/g, '<br>')}</p>
+    <p class="sub">${C.capa.celebracao.replace(/\n/g, '<br>')}</p>
     ${nomeHTML('nome')}
-    <p class="sub">XV Anos</p>
     <p class="frase">“${C.capa.frase}”</p>
     <div class="orn">♥</div>
     <p class="data data-capa">${dataTexto}</p>
@@ -551,84 +664,194 @@ const capa = `<header class="hero" id="inicio"${corSec(C.capa)}>${fundoHTML(C.ca
     ${C.deslize && C.deslize.texto ? `<div class="deslize" style="color:${C.deslize.cor || '#1F3A2A'}"><span>${C.deslize.texto}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>` : ''}
   </div></header>`;
 
-/* Mensagem: logo no lugar do nome + texto mais abaixo */
-const M = C.mensagem;
-if (M) sec('convite', 'Convite', `${(M.usarLogo !== false && (M.logo || C.logoNome)) ? `<img class="logo-nome" src="${M.logo || C.logoNome}" alt="${C.nome}"><p class="sub">XV Anos</p><div class="orn">♥</div>` : tit(M.titulo)}<p class="texto" style="margin-top:${M.textoEspaco != null ? M.textoEspaco : 28}px">${M.texto}</p>${M.foto ? `<img class="foto" src="${M.foto}" alt="${C.nome}">` : ''}`);
+/* Renda nos cantos da moldura do vídeo */
+const VR = (C.mensagem && C.mensagem.videoRenda) || {};
+const cantoImg = (src, cls) => `<img class="canto ${cls}" src="${src}" alt="" style="--vr:${VR.largura || 100}%${VR.altura ? ';--vh:' + VR.altura + 'px' : ''}" onerror="this.style.display='none'">`;
+const cantosV = (VR.superiorDireito ? cantoImg(VR.superiorDireito, 'sd') : '')
+  + ((VR.inferiorEsquerdo || VR.superiorDireito) ? cantoImg(VR.inferiorEsquerdo || VR.superiorDireito, 'ie' + (VR.inferiorEsquerdo ? '' : ' gira')) : '');
 
-if (C.contagem) sec('contagem', 'Contagem', `<p class="sub">${C.contagem.subtitulo || ''}</p><h2>${C.contagem.titulo}</h2><div id="cd" class="cd" style="margin-top:22px"></div>`, 'escuro');
+const M = C.mensagem;
+if (M) sec('convite', 'Convite', `${(M.usarLogo !== false && (M.logo || C.logoNome)) ? `<img class="logo-nome logo-msg" style="--lw:${M.logoLargura || 460}px" src="${M.logo || C.logoNome}" alt="${C.nome}"><div class="orn">♥</div>` : tit(M.titulo)}<p class="texto" style="margin-top:${M.textoEspaco != null ? M.textoEspaco : 0}px">${M.texto}</p>${M.video
+  ? `<div class="video-frame"><video id="videoMaria" src="${M.video}#t=0.1" ${M.poster ? `poster="${M.poster}"` : ''} controls controlsList="nodownload" playsinline webkit-playsinline preload="metadata" onerror="this.parentNode.style.display='none'"></video>${cantosV}</div>`
+  : (M.foto ? `<img class="foto" src="${M.foto}" alt="${C.nome}">` : '')}`);
+
+if (C.contagem) sec('contagem', 'Contagem', `<h2>${C.contagem.titulo}</h2>${C.contagem.subtitulo ? `<p class="sub" style="margin-top:4px">${C.contagem.subtitulo}</p>` : ''}<div id="cd" class="cd"></div>`, 'escuro');
 
 const P = C.programacao;
 if (P) {
-  const itens = P.itens || ev.map(e => { const d = new Date(e.dataHora); return { hora: hora(d), dia: fm(d, { day: '2-digit', month: 'short' }).replace('.', ''), titulo: e.titulo, descricao: e.espaco }; });
+  const itens = P.itens || ev.map(e => { const d = new Date(e.dataHora); return { hora: hora(d), dia: fm(d, { day: '2-digit', month: 'short' }).replace('.', ''), titulo: e.titulo, descricao: e.espaco + (e.obs ? `<em>${e.obs}</em>` : '') }; });
   sec('dia', 'Programação', `${tit(P.titulo, P.subtitulo)}<div class="tl">${itens.map(i => `<div class="tl-i"><div class="tl-h">${i.hora}<small>${i.dia || ''}</small></div><div class="tl-d">♥</div><div class="tl-t"><b>${i.titulo}</b><span>${i.descricao || ''}</span></div></div>`).join('')}</div>`);
 }
 
-const GA = C.galeria, fotosG = GA ? (GA.fotos || []).filter(Boolean) : [];
-if (fotosG.length) sec('galeria', 'Galeria', `${tit(GA.titulo || 'Galeria')}
-  <div class="gal-wrap${GA.rendaMoldura ? ' com-renda' : ''}" style="--fh:${GA.rendaFaixaAltura || 28}px"><div class="carrossel">${fotosG.map((g, i) => `<div class="slide${i ? '' : ' ativo'}"><img src="${g}" alt="Foto ${i + 1}" loading="lazy"></div>`).join('')}
-  ${fotosG.length > 1 ? `<div class="pontos">${fotosG.map((_, i) => `<i class="${i ? '' : 'ativo'}"></i>`).join('')}</div>` : ''}</div>
-  ${GA.rendaMoldura ? `<img class="gal-renda" src="${GA.rendaMoldura}" alt="" style="--esc:${GA.escalaMoldura || 1.3}" onload="galRenda(this)">` : ''}</div>`, 'alt');
-
-/* Vídeo da debutante */
-const V = C.video;
-if (V && V.arquivo) sec('video', 'Vídeo', `${tit(V.titulo, V.subtitulo)}<div class="video-frame"><video id="videoMaria" src="${V.arquivo}#t=0.1" ${V.poster ? `poster="${V.poster}"` : ''} playsinline webkit-playsinline disablepictureinpicture preload="metadata" oncontextmenu="return false" onerror="var s=this.closest('section');if(s)s.style.display='none'"></video><button class="vplay" id="vplay" type="button" aria-label="Reproduzir vídeo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></button></div>`);
+/* Galeria em mosaico */
+const GA = C.galeria, fotosG = GA ? (GA.fotos || []).map(g => typeof g === 'string' ? { src: g } : g).filter(g => g && g.src) : [];
+if (fotosG.length) {
+  const blocos = [];
+  for (let i = 0; i < fotosG.length; i += 4) blocos.push(fotosG.slice(i, i + 4));
+  sec('galeria', 'Galeria', `${tit(GA.titulo || 'Galeria')}<div class="mosaico">${blocos.map((b, bi) => `<div class="mos-bloco${bi % 2 ? ' esp' : ''}">${b.map((g, j) => { const n = bi * 4 + j; return `<button class="mos-f" type="button" data-i="${n}" aria-label="Abrir foto ${n + 1}"><img src="${g.src}" alt="Foto ${n + 1}" loading="lazy" style="object-position:${g.foco || 'center'}"></button>`; }).join('')}</div>`).join('')}</div>`, 'alt');
+}
 
 if (C.local) sec('local', 'Local', tit(C.local.titulo) + ev.map(e => {
   const d = new Date(e.dataHora), q = [e.espaco, e.endereco, C.cidade].filter(Boolean).join(' ');
   return `<div class="ev-card"${corSec(e)}>${fundoHTML(e, 'var(--secaoAlt)')}<div class="ev-conteudo"><p class="sub">${e.titulo}</p><h3 class="ev-nome">${e.espaco}</h3>
     <p class="data">${cap(fm(d, { weekday: 'long' }))}, ${fm(d, { day: 'numeric', month: 'long' })} · ${hora(d)}</p>
-    ${e.endereco ? `<p class="texto" style="margin-top:6px">${e.endereco}</p>` : ''}
-    <a class="btn" style="margin-top:16px" href="${e.mapsUrl || 'https://www.google.com/maps/search/?api=1&query=' + enc(q)}" target="_blank" rel="noopener">Como chegar</a></div></div>`;
+    ${e.endereco ? `<p class="texto" style="margin-top:8px">${e.endereco}</p>` : ''}
+    <a class="btn" href="${e.mapsUrl || 'https://www.google.com/maps/search/?api=1&query=' + enc(q)}" target="_blank" rel="noopener">Como chegar</a></div></div>`;
 }).join(''), 'alt');
-
-const D = C.dressCode, coresD = D ? (D.cores || []).filter(Boolean) : [];
-if (D && (D.texto || coresD.length)) sec('traje', 'Traje', `${tit(D.titulo)}${D.texto ? `<p class="texto">${D.texto}</p>` : ''}${coresD.length ? `<div class="cores">${coresD.map(c => `<i style="background:${c}"></i>`).join('')}</div>` : ''}`);
-
 
 const H = C.hospedagem;
 if (H) sec('hospedagem', 'Hospedagem', `${tit(H.titulo)}<p class="texto">${H.texto}</p>` + H.lista.map(h => `<div class="ev">${h.imagem ? `<img src="${h.imagem}" alt="${h.nome}" style="margin-bottom:14px">` : ''}<h3>${h.nome}</h3><a class="btn" style="margin-top:14px" href="${h.link}" target="_blank" rel="noopener">${h.botao || 'Saiba mais'}</a></div>`).join(''));
 
-const G = C.presentes;
-if (G && (G.texto || (G.itens || []).length || G.pix)) sec('presentes', 'Presentes', `${tit(G.titulo, G.subtitulo)}${G.texto ? `<p class="texto">${G.texto}</p>` : ''}${(G.itens || []).length ? `<div class="presente-lista">${G.itens.map(i => `<p class="texto">${i}</p>`).join('')}</div>` : ''}${G.pix ? `<div class="pix"><p class="sub">Chave Pix</p><p class="data pix-num">${G.pixTexto || G.pix}</p><button class="btn" id="copiarPix" type="button">Copiar chave</button></div>` : ''}`, 'alt');
+/* Dress Code (logo abaixo da Hospedagem) */
+const D = C.dressCode, coresD = D ? (D.cores || []).filter(Boolean) : [], temD = D && D.usar !== false && (D.texto || D.traje || D.imagem || coresD.length);
+const imgJ = s => s ? `<img class="janela-img" src="${s}" alt="" onerror="this.style.display='none'">` : '';
+const imgD = D && D.imagem && D.abrirEmJanela === false ? `<img class="dress-img" src="${D.imagem}" alt="${D.titulo}" onerror="this.style.display='none'">` : '';
+const corpoD = () => `${D.traje ? `<h3>${D.traje}</h3>` : ''}${D.texto ? `<p class="texto" style="margin-top:12px">${D.texto}</p>` : ''}${coresD.length ? `<div class="cores">${coresD.map(c => `<i style="background:${c}"></i>`).join('')}</div>` : ''}`;
+if (temD) sec('traje', 'Traje', tit(D.titulo) + imgD + (D.abrirEmJanela !== false
+  ? `${D.introducao ? `<p class="texto" style="margin-top:14px">${D.introducao}</p>` : ''}<button class="btn btn-abrir" id="abrirTraje" type="button">${D.botao || 'Ver Dress Code'}</button>`
+  : corpoD()));
 
-/* Confirmar presença: só o aviso, sem formulário */
-const R = C.rsvp;
-if (R) sec('confirmar', 'Confirmar', `${tit(R.titulo)}
-  <div class="rsvp-ico" aria-hidden="true">${R.iconeImagem ? `<img src="${R.iconeImagem}" alt="">` : ICONE_OK}</div>
-  <p class="texto" style="margin-top:18px">${R.mensagem}</p>`, 'alt');
+/* Presentes */
+const G = C.presentes, listaG = G ? (G.itens || []).length : 0;
+const corpoG = () => `${listaG ? `<div class="presente-lista">${G.itens.map(i => `<p class="texto">${i}</p>`).join('')}</div>` : ''}${G.pix ? `<div class="pix"><p class="sub">Chave Pix</p><button class="pix-num" id="copiarPix" type="button" aria-label="Copiar chave Pix">${G.pixTexto || G.pix}</button><p class="pix-dica" id="pixDica">Toque na chave para copiar</p></div>` : ''}`;
+if (G && (G.texto || listaG || G.pix || G.imagem)) sec('presentes', 'Presentes', tit(G.titulo, G.subtitulo) + (G.texto ? `<p class="texto">${G.texto}</p>` : '') + (G.abrirEmJanela !== false
+  ? `<button class="btn btn-abrir" id="abrirPresentes" type="button">${G.botao || 'Ver sugestões'}</button>`
+  : imgJ(G.imagem) + corpoG()), 'alt');
+
+/* Confirmar presença */
+const R = C.rsvp, janR = R && R.abrirEmJanela !== false;
+const iconeR = R ? (R.iconeImagem ? `<img src="${R.iconeImagem}" alt="">` : ICONE_OK) : '';
+/* ===== Confirmar presença com lista ===== */
+{ const st = document.createElement('style'); st.textContent =
+  '.rsvp-ola{font-family:var(--f-tit);font-weight:600;font-size:1.5rem;color:var(--enfase);text-align:center;margin-bottom:6px}' +
+  '.rsvp-chk{display:flex;align-items:center;gap:14px;padding:14px 16px;margin-top:10px;border:2px solid var(--antigo);border-radius:12px;background:var(--card);font-size:1.1rem;font-weight:600;color:var(--textoForte);cursor:pointer}' +
+  '.rsvp-chk input{width:24px;height:24px;flex:none;accent-color:var(--enfase)}' +
+  '.rsvp-erro a{color:var(--enfase)}.rsvp-form .btn:disabled{opacity:.5}';
+  document.head.appendChild(st); }
+
+const normNome = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+const TE = new TextEncoder(), TD = new TextDecoder();
+const idNome = async n => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', TE.encode(R.sal + '|' + n)))).map(b => b.toString(16).padStart(2, '0')).join('').slice(0, 32);
+const chaveNome = async n => crypto.subtle.deriveKey({ name: 'PBKDF2', salt: TE.encode(R.sal), iterations: 150000, hash: 'SHA-256' },
+  await crypto.subtle.importKey('raw', TE.encode(n), 'PBKDF2', false, ['deriveKey']), { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+async function abrirConvite(n) {
+  const id = await idNome(n), e = (R.convidados || []).find(x => x.h === id);
+  if (!e) return null;
+  const b = Uint8Array.from(atob(e.d), c => c.charCodeAt(0));
+  try { return JSON.parse(TD.decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b.slice(0, 12) }, await chaveNome(n), b.slice(12)))); }
+  catch (x) { return null; }
+}
+
+const formR = () => `<div class="rsvp-form">
+  <div id="rsvpBusca">
+    <label for="rsvpNome">${R.rotuloNome}</label>
+    <input id="rsvpNome" type="text" autocomplete="off" placeholder="${R.placeholderNome}">
+    <p class="rsvp-erro" id="rsvpErro" hidden></p>
+    <button class="btn" id="rsvpBuscar" type="button">${R.botaoBuscar}</button>
+  </div>
+  <div id="rsvpLista" hidden></div>
+</div>`;
+
+const bindRsvp = r => {
+  const buscar = $('#rsvpBuscar', r); if (!buscar) return;
+  const nomeEl = $('#rsvpNome', r), erro = $('#rsvpErro', r), busca = $('#rsvpBusca', r), lista = $('#rsvpLista', r);
+  const num = (R.whatsapp || '').replace(/\D/g, '');
+  const falha = h => { erro.innerHTML = h; erro.hidden = false; };
+  const enviar = txt => window.open('https://wa.me/' + num + '?text=' + enc(txt), '_blank');
+
+  function mostrar(c) {
+    const pessoas = [c.t].concat(c.a || []);
+    lista.innerHTML = '';
+    const ola = document.createElement('p'); ola.className = 'rsvp-ola'; ola.textContent = R.saudacao.replace('{nome}', () => c.t.split(' ')[0]); lista.appendChild(ola);
+    const ins = document.createElement('p'); ins.className = 'texto'; ins.style.textAlign = 'center'; ins.textContent = R.instrucaoLista; lista.appendChild(ins);
+    const checks = pessoas.map(p => {
+      const l = document.createElement('label'); l.className = 'rsvp-chk';
+      const i = document.createElement('input'); i.type = 'checkbox'; i.checked = true;
+      l.appendChild(i); l.appendChild(document.createTextNode(p)); lista.appendChild(l); return { i, p };
+    });
+    const b = document.createElement('button'); b.className = 'btn'; b.type = 'button'; b.textContent = R.botao; lista.appendChild(b);
+    b.onclick = () => {
+      const ok = checks.filter(x => x.i.checked).map(x => x.p);
+      const f = ok.length ? R.mensagemWhats : R.mensagemNao;
+      enviar(f.replace('{nome}', () => c.t).replace('{confirmados}', () => ok.join(', ')));
+    };
+    busca.hidden = true; lista.hidden = false;
+  }
+
+  const rodar = async () => {
+    erro.hidden = true;
+    const n = normNome(nomeEl.value);
+    if (!n) { falha(R.avisoNome); nomeEl.focus(); return; }
+    if (!(window.crypto && crypto.subtle)) { falha(R.avisoCripto); return; }
+    buscar.disabled = true;
+    let c = null;
+    try { c = await abrirConvite(n); } catch (e) { buscar.disabled = false; falha(R.avisoCripto); return; }
+    buscar.disabled = false;
+    if (!c) {
+      const link = num ? ` <a href="https://wa.me/${num}?text=${enc('Olá! Não encontrei meu nome na lista de convidados do XV anos da Maria Vitória. Meu nome é ' + nomeEl.value.trim() + '.')}" target="_blank" rel="noopener">Falar pelo WhatsApp</a>` : '';
+      falha(R.naoEncontrado + link); return;
+    }
+    mostrar(c);
+  };
+  buscar.onclick = rodar;
+  nomeEl.onkeydown = e => { if (e.key === 'Enter') rodar(); };
+};
+if (R) sec('confirmar', 'Confirmar', tit(R.titulo) + (janR
+  ? `<p class="texto">${R.instrucao}</p><button class="rsvp-ico" id="abrirRsvp" type="button" aria-label="${R.titulo}">${iconeR}</button>`
+  : `<div class="rsvp-ico" aria-hidden="true">${iconeR}</div><p class="texto" style="margin:14px 0 8px">${R.instrucao}</p>${formR()}`), 'alt');
 
 $('#app').innerHTML = capa + secoes.join('') + `<footer>${rendaHTML(C.rodape)}${nomeHTML('script', true, C.logoRodape)}<p>${C.hashtag}</p></footer>`;
 
 window.__pronto = true;
 
-/* copiar chave Pix */
-const cp = $('#copiarPix');
-if (cp) cp.onclick = () => {
-  const txt = C.presentes.pix, ok = () => { cp.textContent = 'Chave copiada!'; setTimeout(() => { cp.textContent = 'Copiar chave'; }, 2500); };
-  const alt = () => { const t = document.createElement('textarea'); t.value = txt; t.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); ok(); } catch (e) {} t.remove(); };
-  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, alt); else alt();
+/* copiar chave Pix (toque na própria chave) */
+const bindPix = r => {
+  const cp = $('#copiarPix', r); if (!cp) return;
+  const dica = $('#pixDica', r);
+  cp.onclick = () => {
+    const txt = C.presentes.pix, ok = () => { if (dica) { dica.textContent = 'Chave copiada!'; setTimeout(() => { dica.textContent = 'Toque na chave para copiar'; }, 2500); } };
+    const alt = () => { const t = document.createElement('textarea'); t.value = txt; t.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); ok(); } catch (e) {} t.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, alt); else alt();
+  };
 };
 
-/* vídeo da debutante (a música de fundo continua tocando normalmente) */
+const bTraje = $('#abrirTraje'), bPres = $('#abrirPresentes'), bRsvp = $('#abrirRsvp');
+if (bTraje) bTraje.onclick = () => D.imagem ? lbAbreImg(D.imagem) : abreJ(`<p class="sub">${D.titulo}</p><div class="orn">♥</div>${imgJ(D.imagem)}${corpoD()}`);
+if (bPres) bPres.onclick = () => G.imagem ? lbAbreImg(G.imagem) : abreJ(`<h3>${G.titulo}</h3><div class="orn">♥</div>${imgJ(G.imagem)}${corpoG()}`, bindPix); else bindPix(document);
+if (bRsvp) bRsvp.onclick = () => abreJ(`<h3>${R.titulo}</h3><div class="orn">♥</div>${formR()}`, bindRsvp); else bindRsvp(document);
+
+/* Galeria: tela cheia com deslize */
+const lb = $('#lb'), lbImg = $('#lbImg'), lbC = $('#lbC'); let lbI = 0, lbX0 = 0;
+const lbMostra = i => { if (!fotosG.length) return; lbI = (i + fotosG.length) % fotosG.length; lbImg.src = fotosG[lbI].src; lbC.textContent = (lbI + 1) + ' / ' + fotosG.length; };
+const lbAbreImg = src => { lbC.textContent = ''; lbImg.src = src; lb.classList.add('on', 'solo'); document.body.classList.add('modal-aberto'); };
+const lbAbre = i => { lb.classList.remove('solo'); lbMostra(i); lb.classList.add('on'); document.body.classList.add('modal-aberto'); };
+const lbFecha = () => { lb.classList.remove('on', 'solo'); document.body.classList.remove('modal-aberto'); lbImg.removeAttribute('src'); };
+document.querySelectorAll('.mos-f').forEach(b => b.onclick = () => lbAbre(+b.dataset.i));
+$('#lbX').onclick = lbFecha; $('#lbP').onclick = () => lbMostra(lbI - 1); $('#lbN').onclick = () => lbMostra(lbI + 1);
+lb.onclick = e => { if (e.target === lb) lbFecha(); };
+lb.addEventListener('touchstart', e => { lbX0 = e.changedTouches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - lbX0; if (Math.abs(dx) > 50 && !lb.classList.contains('solo')) lbMostra(lbI + (dx < 0 ? 1 : -1)); }, { passive: true });
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') { fechaJ(); lbFecha(); }
+  if (lb.classList.contains('on') && !lb.classList.contains('solo')) { if (e.key === 'ArrowRight') lbMostra(lbI + 1); if (e.key === 'ArrowLeft') lbMostra(lbI - 1); }
+});
+
+/* vídeo da mensagem: pausa a música ao dar play */
 const vm = $('#videoMaria');
 if (vm) {
-  /* só botão de play/pausa: sem barra de controles e sem volume (o volume é o do aparelho) */
-  const bt = $('#vplay');
-  const alterna = () => { if (vm.paused) { const p = vm.play(); if (p && p.catch) p.catch(() => {}); } else vm.pause(); };
-  bt.onclick = alterna; vm.onclick = alterna;
-  vm.addEventListener('play', () => bt.classList.add('oculto'));
-  vm.addEventListener('pause', () => bt.classList.remove('oculto'));
-  vm.addEventListener('ended', () => bt.classList.remove('oculto'));
+  let retomar = false;
+  vm.addEventListener('play', () => { if (tocando) { retomar = true; pausar(); } });
+  const volta = () => { if (vm.seeking || !retomar) return; retomar = false; tocar(); };
+  vm.addEventListener('pause', volta);
+  vm.addEventListener('ended', volta);
 }
 
-/* ajusta o tamanho das rendas conforme a imagem enviada */
 try { ajustarRendas(); } catch (e) {}
 
-/* vídeos que tocam uma vez só: começam quando a seção aparece na tela e param no último quadro */
+/* vídeos de fundo que tocam uma vez só */
 document.querySelectorAll('video[data-uma-vez]').forEach(v => {
   v.muted = true;
   const play = () => v.play().catch(() => {});
-  /* congela o vídeo um pouco antes do fim, para não aparecer o último quadro (preto) */
   const antes = parseFloat(v.dataset.antes) || 0;
   if (antes) {
     let vigia = false;
@@ -657,19 +880,11 @@ if ('IntersectionObserver' in window) {
 function contagem() {
   const el = $('#cd'); if (!el) return;
   const dif = d0 - new Date();
-  if (dif <= 0) { el.innerHTML = '<span style="font-size:.8rem">É HOJE!</span>'; return; }
+  if (dif <= 0) { el.innerHTML = '<div><b style="font-size:1.4rem">É HOJE!</b></div>'; return; }
   const n = [Math.floor(dif / 864e5), Math.floor(dif % 864e5 / 36e5), Math.floor(dif % 36e5 / 6e4), Math.floor(dif % 6e4 / 1e3)];
   el.innerHTML = n.map((v, i) => `<div><b>${String(v).padStart(2, '0')}</b><span>${['dias', 'horas', 'min', 'seg'][i]}</span></div>`).join('');
 }
 contagem(); setInterval(contagem, 1000);
-
-/* Galeria: troca automática de fotos */
-const slides = document.querySelectorAll('.slide'), pontos = document.querySelectorAll('.pontos i'); let cur = 0;
-if (slides.length > 1) setInterval(() => {
-  slides[cur].classList.remove('ativo'); pontos[cur].classList.remove('ativo');
-  cur = (cur + 1) % slides.length;
-  slides[cur].classList.add('ativo'); pontos[cur].classList.add('ativo');
-}, 4000);
 </script>
 </body>
 </html>
